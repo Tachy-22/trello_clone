@@ -21,7 +21,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={` relative min-h-screen dark:bg-black bg-white transition-colors duration-250`}
+          className={` relative  dark:bg-black bg-white transition-colors duration-250`}
         >
           <Providers>
             <Header />
