@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="w-full min-w-full flex  ">
+    <div className="w-full  flex  ">
       <div className="flex items-center gap-2 pr-[2rem] py-2">
         <Link className="" href="/">
           <div className="bg-gradient-to-br from-green-900 via-green-700 to-green-300 text-white p-4 w-10 h-10 rounded-md flex justify-center items-center font-extrabold">

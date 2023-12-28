@@ -59,7 +59,7 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
       </div>
       <div
         style={{ transitionDuration: "1s" }}
-        className={`transition-all w-full border ${hidden ? "opacity-0" : ""}`}
+        className={`transition-all w-fit flex flex-col border ${hidden ? "opacity-0" : ""}`}
       >
         {" "}
         {!hidden && children}
