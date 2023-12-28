@@ -41,7 +41,7 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
       style={{ transitionDuration: "3s" }}
       className={`${
         hidden
-          ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2rem] text-transparent "
+          ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2rem]  "
           : "md:min-w-[18rem] md:w-[18rem] w-fit relative"
       } border-r  transition-all    flex flex-col z-0 bg-white`}
     >
