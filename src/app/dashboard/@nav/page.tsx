@@ -4,7 +4,7 @@ import React from "react";
 const page = () => {
   return (
     <div className="w-fit  flex items-start justify-start bg-gray-500  ">
-      <div className="flex w-full items-center gap-2 pr-[3rem] py-2 bg-green-500">
+      <div className="flex w-full items-center gap-2 pr-[3rem] py-2 bg-blue-500">
         <Link className="" href="/">
           <div className="bg-gradient-to-br from-green-900 via-green-700 to-green-300 text-white p-4 w-10 h-10 rounded-md flex justify-center items-center font-extrabold">
             T
