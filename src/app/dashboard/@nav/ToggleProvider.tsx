@@ -42,7 +42,7 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
       className={`${
         hidden
           ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2rem] text-transparent "
-          : "min-w-[18rem] w-[18rem] relative"
+          : "md:min-w-[18rem] md:w-[18rem] w-fit relative"
       } border-r  transition-all    flex flex-col z-0 bg-white`}
     >
       <div className="relative w- p-1 z-50">
@@ -53,12 +53,13 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
             hidden ? "translate-x-[2rem] rotate-180 border-dashed border" : ""
           }`}
         >
+          tog
           <ArrowBigLeft fill="gray" />
         </div>
       </div>
       <div
         style={{ transitionDuration: "1s" }}
-        className={`transition-all w-full ${hidden ? "opacity-0" : ""}`}
+        className={`transition-all w-full border ${hidden ? "opacity-0" : ""}`}
       >
         {" "}
         {!hidden && children}
