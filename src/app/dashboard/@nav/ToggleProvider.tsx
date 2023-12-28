@@ -1,8 +1,9 @@
 "use client";
 import { ArrowBigLeft } from "lucide-react";
+import Link from "next/link";
 import React, { useCallback, useState, useEffect } from "react";
 
-const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
+const ToggleProvider = () => {
   const [hidden, toggleHidden] = useState(false);
 
   const handleAsideVisibility = useCallback(() => {
@@ -43,9 +44,9 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
         hidden
           ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2rem]  "
           : "md:min-w-fit  w-fit relative"
-      } border-r  transition-all bg-orange-500   flex flex-col  `}
+      } border-r  transition-all bg-blue-500   flex flex-col  `}
     >
-      <ArrowBigLeft />
+     
       <div className=" relative w-full flex p-1 z-50 h-fit  ">
         <div
           style={{ transitionDuration: "2s" }}
@@ -54,7 +55,7 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
             hidden ? "translate-x-[100%] rotate-180 border-dashed border" : ""
           }`}
         >
-          tog
+         
           <ArrowBigLeft />
         </div>{" "}
       </div>
@@ -64,7 +65,24 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
           hidden ? "opacity-0 " : ""
         }`}
       >
-        {!hidden && children}
+        {!hidden && (
+          <div className="w-fit  flex items-start justify-start   ">
+            <div className="flex w-full items-center gap-2 pr-[3rem] py-2 ">
+              <Link className="" href="/">
+                <div className="bg-gradient-to-br from-green-900 via-green-700 to-green-300 text-white p-4 w-10 h-10 rounded-md flex justify-center items-center font-extrabold">
+                  T
+                </div>
+              </Link>
+              <div className=" flex flex-col min-w-fit w-fit ">
+                <Link className="w-full font-semibold" href="/">
+                  Trello Workspace
+                </Link>
+
+                <p className="">Free</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </aside>
   );
