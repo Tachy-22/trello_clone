@@ -1,9 +1,9 @@
 import Link from "next/link";
 import React from "react";
-import ToggleProvider from "./ToggleProvider";
+import AsideContainer from "./AsideContainer";
 
 const page = () => {
-  return <ToggleProvider />;
+  return <AsideContainer />;
 };
 
 export default page;
