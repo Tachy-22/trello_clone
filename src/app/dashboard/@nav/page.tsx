@@ -10,12 +10,12 @@ const page = () => {
             T
           </div>
         </Link>
-        <div className=" flex flex-col min-w-full pr-4">
+        <div className=" flex flex-col min-w-full ">
           <Link className="w-full font-semibold" href="/">
             Trello Workspace
           </Link>
 
-          <p className="xA6qXDYKXT21gE">Free</p>
+          <p className="">Free</p>
         </div>
       </div>
     </div>
