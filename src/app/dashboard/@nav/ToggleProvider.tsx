@@ -43,9 +43,10 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
         hidden
           ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2rem]  "
           : "md:min-w-fit  w-fit relative"
-      } border-r  transition-all    flex flex-col z-0 bg-white`}
+      } border-r  transition-all    flex flex-col  bg-white`}
     >
-      <div className=" relative w- p-1 z-50 h-fit  bg-yellow-400">
+      <ArrowBigLeft />
+      <div className=" relative w-full flex p-1 z-50 h-fit  bg-yellow-400">
         <div
           style={{ transitionDuration: "2s" }}
           onClick={handleAsideVisibility}
@@ -54,7 +55,7 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
           }`}
         >
           tog
-          <ArrowBigLeft fill="gray" />
+          <ArrowBigLeft />
         </div>{" "}
       </div>
       <div
