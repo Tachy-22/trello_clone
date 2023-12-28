@@ -7,7 +7,7 @@ const DashBoardLayout = (props: {
 }) => {
   return (
     <div className="flex flex-col   h-full ">
-      <div className="flex  my-auto h-full fixed w-full">
+      <div className="flex overflow-x-auto  my-auto h-full fixed w-full">
         {props.nav}
         <div className="flex flex-col">
           <DashboardHeader />

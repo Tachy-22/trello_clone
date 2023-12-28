@@ -12,11 +12,12 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const setInitialHiddenState = () => {
       // Set hidden to true on smaller screens (less than 768px width)
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 540) {
         toggleHidden(true);
-      } else {
-        toggleHidden(false);
       }
+      // else {
+      //   toggleHidden(false);
+      // }
     };
 
     // Set initial state on component mount
@@ -37,19 +38,19 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <aside
-      style={{ transitionDuration: "1s" }}
+      style={{ transitionDuration: "3s" }}
       className={`${
         hidden
-          ? "-translate-x-[93%] w-6 text-transparent absolute"
-          : "min-w-[18rem] w-[18rem]"
-      } border-r  transition-all  flex flex-col relative`}
+          ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2rem] text-transparent "
+          : "min-w-[18rem] w-[18rem] relative"
+      } border-r  transition-all    flex flex-col z-0 bg-white`}
     >
-      <div className="relative w- p-1">
+      <div className="relative w- p-1 z-50">
         <div
           style={{ transitionDuration: "2s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 absolute rounded-full  right-0 p-1 ${
-            hidden ? "translate-x-[100%] rotate-180 border-dashed border" : ""
+          className={`transition-all duration-1000 absolute rounded-full   right-0 p-1 ${
+            hidden ? "translate-x-[2rem] rotate-180 border-dashed border" : ""
           }`}
         >
           <ArrowBigLeft fill="gray" />
