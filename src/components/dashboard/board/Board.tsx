@@ -123,7 +123,7 @@ export const Board = () => {
   );
 
   return (
-    <div className={`w-full flex-col-reverse lg:flex-row flex gap-2`}>
+    <div className={`w-full flex gap-2`}>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable
           droppableId="all-columns"
@@ -132,7 +132,7 @@ export const Board = () => {
         >
           {(provided) => (
             <div
-              className="flex flex-col lg:flex-row gap-2"
+              className="flex gap-2"
               {...provided.droppableProps}
               ref={provided.innerRef}
             >

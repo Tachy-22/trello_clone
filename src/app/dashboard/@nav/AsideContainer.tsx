@@ -43,7 +43,7 @@ const AsideContainer = () => {
       style={{ transitionDuration: "1s" }}
       className={`${
         hidden
-          ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2.2rem] sm:w-[2rem]  "
+          ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2.5rem] sm:w-[2rem]  "
           : "md:min-w-fit  w-fit relative"
       } border-r  transition-all  dark:bg-gray-500 bg-white  flex flex-col  `}
     >
@@ -51,7 +51,7 @@ const AsideContainer = () => {
         <div
           style={{ transitionDuration: "2s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 dark:text-white text-black absolute rounded-full top-[2rem]   w-fit p-1 ${
+          className={`transition-all duration-1000 dark:text-white text-black absolute rounded-full top-[3.5rem]   w-fit p-1 ${
             hidden
               ? "translate-x-[100%] -right-[0rem] rotate-180 border-dashed border"
               : "-right-[1rem]"
