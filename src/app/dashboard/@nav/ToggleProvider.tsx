@@ -45,23 +45,24 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
           : "md:min-w-fit  w-fit relative"
       } border-r  transition-all    flex flex-col z-0 bg-white`}
     >
-      <div className=" w- p-1 z relative bg-yellow-400"></div>
-      <div
-        style={{ transitionDuration: "1s" }}
-        className={`transition-all relative pl-[0.5rem] bg-orange-500 pr-[3rem] w-fit flex flex-col items-start justify-start border ${
-          hidden ? "opacity-0 " : ""
-        }`}
-      >
+      <div className=" relative w- p-1 z-50 h-fit  bg-yellow-400">
         <div
           style={{ transitionDuration: "2s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 bg-blue-500 absolute rounded-full top-0  right-0 w-full p-1 ${
-            hidden ? "translate-x-[2rem] rotate-180 border-dashed border" : ""
+          className={`transition-all duration-1000 bg-blue-500 absolute rounded-full top-0  right-0 w-fit p-1 ${
+            hidden ? "translate-x-[100%] rotate-180 border-dashed border" : ""
           }`}
         >
           tog
           <ArrowBigLeft fill="gray" />
         </div>{" "}
+      </div>
+      <div
+        style={{ transitionDuration: "1s" }}
+        className={`transition-all relative  bg-orange-500  w-fit flex flex-col items-start justify-start border ${
+          hidden ? "opacity-0 " : ""
+        }`}
+      >
         {!hidden && children}
       </div>
     </aside>
