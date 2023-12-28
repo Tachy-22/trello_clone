@@ -49,7 +49,7 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
         <div
           style={{ transitionDuration: "2s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 absolute rounded-full   right-0 p-1 ${
+          className={`transition-all duration-1000 absolute rounded-full top-0  right-0 p-1 ${
             hidden ? "translate-x-[2rem] rotate-180 border-dashed border" : ""
           }`}
         >
