@@ -45,7 +45,7 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
           : "md:min-w-fit  w-fit relative"
       } border-r  transition-all    flex flex-col z-0 bg-white`}
     >
-      <div className=" w- p-1 z-50">
+      <div className=" w- p-1 z bg-yellow-400">
         <div
           style={{ transitionDuration: "2s" }}
           onClick={handleAsideVisibility}
@@ -59,7 +59,7 @@ const ToggleProvider = ({ children }: { children: React.ReactNode }) => {
       </div>
       <div
         style={{ transitionDuration: "1s" }}
-        className={`transition-all pl-[0.5rem] pr-[3rem] w-fit flex flex-col border ${
+        className={`transition-all pl-[0.5rem] bg-orange-500 pr-[3rem] w-fit flex flex-col items-start justify-start border ${
           hidden ? "opacity-0 " : ""
         }`}
       >
