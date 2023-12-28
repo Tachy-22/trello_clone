@@ -1,14 +1,18 @@
 import React from "react";
+import DashboardHeader from "./DashboardHeader";
 
 const DashBoardLayout = (props: {
   children: React.ReactNode;
   nav: React.ReactNode;
 }) => {
   return (
-    <div className="flex flex-col bg-green-400  h-full ">
-      <div className="flex bg-purple-600  my-auto h-full fixed w-full" >
+    <div className="flex flex-col   h-full ">
+      <div className="flex  my-auto h-full fixed w-full">
         {props.nav}
-        {props.children}
+        <div className="flex flex-col">
+          <DashboardHeader />
+          {props.children}
+        </div>
       </div>
     </div>
   );

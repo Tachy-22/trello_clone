@@ -3,9 +3,9 @@ import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 
 import "./globals.css";
-import { Providers } from "./providers";
 import Header from "@/components/Header";
-
+import NextProvider from "./Providers/NextProvider";
+import StoreProvider from "./Providers/StoreProvider";
 
 export const metadata: Metadata = {
   title: "Trello",
@@ -20,14 +20,16 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          className={` relative  dark:bg-black bg-white transition-colors duration-250`}
-        >
-          <Providers>
-            <Header />
-            {children}
-          </Providers>
-        </body>
+        <NextProvider>
+          <StoreProvider>
+            <body
+              className={` relative  dark:bg-black bg-white transition-colors duration-250`}
+            >
+              <Header />
+              {children}
+            </body>
+          </StoreProvider>
+        </NextProvider>
       </html>
     </ClerkProvider>
   );

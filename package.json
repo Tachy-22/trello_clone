@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.1",
+    "@hello-pangea/dnd": "^16.5.0",
     "@nextui-org/react": "^2.2.9",
+    "@reduxjs/toolkit": "^2.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.16",
@@ -19,6 +21,7 @@
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-redux": "^9.0.4",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7"
   },
