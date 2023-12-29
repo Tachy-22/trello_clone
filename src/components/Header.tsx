@@ -16,10 +16,20 @@ import {
 import ProgressBar from "./ProgressBar";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import Logo from "./Logo";
+import { useDispatch } from "react-redux";
+import { updateUserDbData } from "@/lib/redux-toolkit/boardSlice";
+import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 
-export default function Header() {
+export default function Header({ dbData }: { dbData: userDbDataType }) {
   //   const { isLoaded, userId } = useAuth();
   //   const { isSignedIn, user } = useUser();
+
+  const dispatch = useDispatch();
+  const { userDbData } = useAppSelector((state) => state.board);
+
+  useEffect(() => {
+    userDbData === null && dispatch(updateUserDbData(dbData));
+  }, [dispatch, dbData, userDbData]);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -40,7 +50,10 @@ export default function Header() {
 
   const navLinks = [
     { href: "/", text: "Home" },
-    { href: "/dashboard", text: "Dashboard" },
+    {
+      href: "/dashboard/board-658ea13fa194627a9abea6a1",
+      text: "Dashboard",
+    },
     { href: "/contact", text: "Contact" },
     { href: "/about", text: "About" },
   ];

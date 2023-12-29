@@ -7,6 +7,8 @@ export interface CounterState {
   tasks: TaskType[];
   columns: ColumnType[];
   columnOrder: string[];
+  userDbData: userDbDataType | null;
+  boardList: BoardListType;
 }
 
 // Define the initial state using that type
@@ -31,6 +33,8 @@ const initialState: CounterState = {
     },
   ],
   columnOrder: ["column-1", "column-2"],
+  userDbData: null,
+  boardList: null,
 };
 
 export const boardSlice = createSlice({
@@ -60,6 +64,17 @@ export const boardSlice = createSlice({
       ...state,
       columnOrder: action.payload,
     }),
+    updateUserDbData: (
+      state,
+      action: PayloadAction<userDbDataType | null>
+    ) => ({
+      ...state,
+      userDbData: action.payload,
+    }),
+    updateBoardList: (state, action: PayloadAction<BoardListType | null>) => ({
+      ...state,
+      boardList: action.payload,
+    }),
   },
 });
 
@@ -70,6 +85,8 @@ export const {
   addTask,
   updateColumns,
   updateColumnOrder,
+  updateUserDbData,
+  updateBoardList,
 } = boardSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

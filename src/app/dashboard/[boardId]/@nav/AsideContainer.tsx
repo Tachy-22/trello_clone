@@ -1,10 +1,38 @@
 "use client";
 import AsideItems from "@/components/dashboard/aside/AsideItems";
+import { updateBoardList } from "@/lib/redux-toolkit/boardSlice";
+import { useAppDispatch } from "@/lib/redux-toolkit/hooks";
 import { ArrowBigLeft } from "lucide-react";
 import Link from "next/link";
 import React, { useCallback, useState, useEffect } from "react";
 
-const AsideContainer = () => {
+const AsideContainer = ({
+  myBoards,
+}: {
+  myBoards:
+    | ({
+        boards: {
+          id: string;
+          title: string;
+          authorId: string;
+          backgroundColor: string;
+          backgroundImage: string;
+          columnOrder: string[];
+        }[];
+      } & {
+        id: string;
+        email: string;
+        name: string | null;
+      })
+    | null
+    | undefined;
+}) => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(updateBoardList(myBoards));
+  }, [dispatch, myBoards]);
+
   const [hidden, toggleHidden] = useState(false);
 
   const handleAsideVisibility = useCallback(() => {

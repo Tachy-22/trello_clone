@@ -30,13 +30,37 @@ const ColumnsInit = [
 ];
 const ColumnOrderInit = ["column-1", "column-2"];
 
-export const Board = () => {
- 
-
+export const Board = ({
+  boardId,
+  boardData,
+}: {
+  boardId: string;
+  boardData:
+    | ({
+        columns: {
+          id: string;
+          title: string;
+          taskIds: string[];
+          boardId: string;
+        }[];
+        tasks: { id: string; content: string; boardId: string }[];
+      } & {
+        id: string;
+        title: string;
+        authorId: string;
+        backgroundColor: string;
+        backgroundImage: string;
+        columnOrder: string[];
+      })
+    | null
+    | undefined;
+}) => {
   const { value, tasks, columns, columnOrder } = useAppSelector(
     (state) => state.board
   );
   const dispatch = useAppDispatch();
+
+  console.log("boardData from board :", boardData);
 
   const data = useMemo(
     () => ({
@@ -129,7 +153,10 @@ export const Board = () => {
   //console.log("data :", data);
 
   return (
-    <div className={`w-full flex gap-2`}>
+    <div
+      style={{ backgroundColor: boardData?.backgroundColor }}
+      className={`w-full flex gap-2 h-full p-[1.5rem]`}
+    >
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable
           droppableId="all-columns"
@@ -146,7 +173,7 @@ export const Board = () => {
                 const column = data.columns.find(
                   (column) => column.id === columnId
                 ) as ColumnType;
-       
+
                 return (
                   <ColumnList
                     key={column.id as string}

@@ -1,0 +1,46 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+
+model User {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  email   String   @unique
+  name    String?
+  boards  Board[]
+}
+
+model Board {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  author   User      @relation(fields: [authorId], references: [id])
+  authorId String    @db.ObjectId
+  backgroundColor String
+  backgroundImage String
+  columns  Column[]
+  columnOrder String[]
+  tasks   Task[] 
+}
+
+model Column {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  taskIds String[]
+  board   Board   @relation(fields: [boardId], references: [id])
+  boardId String @db.ObjectId
+}
+
+model Task {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  content String
+  board   Board   @relation(fields: [boardId], references: [id])
+  boardId String @db.ObjectId
+}
+
+
