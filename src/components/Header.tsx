@@ -92,7 +92,7 @@ export default function Header() {
         )}
         {true && (
           <NavbarContent justify="end">
-            <NavbarItem className="hidden lg:flex">
+            <NavbarItem className="hidden sm:flex">
               <ThemeSwitcher />
             </NavbarItem>
 

@@ -19,7 +19,7 @@ const AddTask = ({columnId}:{columnId:string}) => {
       ) : (
         <div
           onClick={toggleFormOpen}
-          className="flex gap-2 h-fit cursor-pointer  rounded-lg py-1 px-2   hover:bg-black/5 items-center hover:text-white text-gray-500"
+          className="flex gap-2 h-fit cursor-pointer  rounded-lg  p-2   hover:bg-black/5 items-center hover:text-white text-gray-500"
         >
           {" "}
           <span className=" text-sm font-semibold ">

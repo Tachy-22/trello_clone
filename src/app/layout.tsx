@@ -23,7 +23,7 @@ export default function RootLayout({
         <NextProvider>
           <StoreProvider>
             <body
-              className={` relative  dark:bg-black bg-white transition-colors duration-250`}
+              className={` relative  dark:bg-gray-700 bg-white transition-colors duration-250`}
             >
               <Header />
               {children}

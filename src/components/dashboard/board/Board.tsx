@@ -126,7 +126,7 @@ export const Board = () => {
     [dispatch, data]
   );
 
-  console.log("data :", data);
+  //console.log("data :", data);
 
   return (
     <div className={`w-full flex gap-2`}>
@@ -138,7 +138,7 @@ export const Board = () => {
         >
           {(provided) => (
             <div
-              className="flex "
+              className="flex gap-3 "
               {...provided.droppableProps}
               ref={provided.innerRef}
             >

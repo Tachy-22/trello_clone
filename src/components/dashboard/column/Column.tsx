@@ -15,12 +15,12 @@ const Column = ({
     <Draggable draggableId={column.id} index={index}>
       {(provided) => (
         <div
-          className="bg-slate-100 rounded-md  flex flex-col gap-3 w-[20rem] h-fit"
+          className="bg-slate-100 rounded-md  flex flex-col gap- w-[20rem] h-fit"
           {...provided.draggableProps}
           ref={provided.innerRef}
         >
           <h1
-            className="py-3 p-4 font-semibold text-lg"
+            className="pt-3 px-4 text-black font-semibold text-lg"
             {...provided.dragHandleProps}
           >
             {column.title}
@@ -30,8 +30,8 @@ const Column = ({
             {(provided, snapshot) => (
               <div
                 className={`${
-                  snapshot.isDraggingOver ? "bg-black/30" : ""
-                } p-4 rounded-t-lg`}
+                  snapshot.isDraggingOver ? "bg-black/30 pt-2" : ""
+                } px-4 pb-4 rounded-lg`}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
                 //  isDraggingOver={snapshot.isDraggingOver}

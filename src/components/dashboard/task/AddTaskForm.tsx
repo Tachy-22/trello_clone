@@ -37,7 +37,7 @@ const AddTaskForm = ({
       action=""
       className=" bg-white rounded-lg shadow-lg border p-2 flex flex-col gap-2"
     >
-      <div className="py- px-2   border border-gray-300 rounded-md">
+      <div className="py-2 px-2   border border-gray-300 rounded-md">
         {" "}
         <input
           className="outline-none "
@@ -60,7 +60,7 @@ const AddTaskForm = ({
         </button>
         <PlusIcon
           onClick={onClose}
-          className={`text-4xl rotate-45 hover:bg-black/5 rounded-lg p-2`}
+          className={`text-4xl rotate-45 hover:bg-black/5 rounded-lg `}
         />
       </div>
     </form>
