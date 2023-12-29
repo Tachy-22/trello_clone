@@ -1,39 +1,51 @@
 "use client";
-import {
-  DragDropContext,
-  Draggable,
-  DropResult,
-  Droppable,
-} from "@hello-pangea/dnd";
-import { useCallback, useState } from "react";
+import { DragDropContext, DropResult, Droppable } from "@hello-pangea/dnd";
+import { useCallback, useMemo, useState } from "react";
 import ColumnList from "../column/ColumnList";
 import NewColumnWidget from "../column/NewColumnWidget";
+import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
+import {
+  updateColumnOrder,
+  updateColumns,
+} from "@/lib/redux-toolkit/boardSlice";
 
-const initialData = {
-  tasks: [
-    { id: "task-1", content: "Take out the garbage" },
-    { id: "task-2", content: "Watch my favorite show" },
-    { id: "task-3", content: "Charge my phone" },
-    { id: "task-4", content: "Cook dinner" },
-  ],
-  columns: [
-    {
-      id: "column-1",
-      title: "To do",
-      taskIds: ["task-1", "task-2"],
-    },
-    {
-      id: "column-2",
-      title: "In progress",
-      taskIds: ["task-3", "task-4"],
-    },
-  ],
-  // Facilitate reordering of the columns
-  columnOrder: ["column-1", "column-2"],
-};
+const TasksInit = [
+  { id: "task-1", content: "Take out the garbage" },
+  { id: "task-2", content: "Watch my favorite show" },
+  { id: "task-3", content: "Charge my phone" },
+  { id: "task-4", content: "Cook dinner" },
+];
+
+const ColumnsInit = [
+  {
+    id: "column-1",
+    title: "To do",
+    taskIds: ["task-1", "task-2"],
+  },
+  {
+    id: "column-2",
+    title: "In progress",
+    taskIds: ["task-3", "task-4"],
+  },
+];
+const ColumnOrderInit = ["column-1", "column-2"];
 
 export const Board = () => {
-  const [data, setData] = useState(initialData);
+ 
+
+  const { value, tasks, columns, columnOrder } = useAppSelector(
+    (state) => state.board
+  );
+  const dispatch = useAppDispatch();
+
+  const data = useMemo(
+    () => ({
+      tasks: tasks,
+      columns: columns,
+      columnOrder: columnOrder,
+    }),
+    [tasks, columns, columnOrder]
+  );
 
   const onDragEnd = useCallback(
     (result: DropResult) => {
@@ -55,12 +67,7 @@ export const Board = () => {
         const newColumnOrder = Array.from(data.columnOrder);
         newColumnOrder.splice(source.index, 1);
         newColumnOrder.splice(destination.index, 0, draggableId);
-
-        const newState = {
-          ...data,
-          columnOrder: newColumnOrder,
-        };
-        setData(newState);
+        dispatch(updateColumnOrder(newColumnOrder));
         return;
       }
 
@@ -85,12 +92,8 @@ export const Board = () => {
         const filteredColumns = data.columns.filter(
           (column) => column.id !== newHome.id
         );
-        const newState = {
-          ...data,
-          columns: [...filteredColumns, newHome],
-        };
-
-        setData(newState);
+        const newColumns = [...filteredColumns, newHome];
+        dispatch(updateColumns(newColumns));
         return;
       }
 
@@ -110,17 +113,20 @@ export const Board = () => {
           taskIds: foreignTaskIds,
         };
         const filteredColumns = data.columns.filter((column) => {
-          if (column.id !== newHome.id || column.id !== newForeign.id) return;
+          const conditions =
+            column.id !== newHome.id && column.id !== newForeign.id;
+          if (conditions) {
+            return column;
+          }
         });
-        const newState = {
-          ...data,
-          columns: [...filteredColumns, newHome, newForeign],
-        };
-        setData(newState);
+        const newColumns = [...filteredColumns, newHome, newForeign];
+        dispatch(updateColumns(newColumns));
       }
     },
-    [data]
+    [dispatch, data]
   );
+
+  console.log("data :", data);
 
   return (
     <div className={`w-full flex gap-2`}>
@@ -132,7 +138,7 @@ export const Board = () => {
         >
           {(provided) => (
             <div
-              className="flex gap-2"
+              className="flex "
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
@@ -140,6 +146,7 @@ export const Board = () => {
                 const column = data.columns.find(
                   (column) => column.id === columnId
                 ) as ColumnType;
+       
                 return (
                   <ColumnList
                     key={column.id as string}

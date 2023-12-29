@@ -4,5 +4,10 @@ type ColumnType = {
   taskIds: string[];
 };
 
-type TaskMapType = { id: string; content: string }[];
-type taskType = { id: string; content: string };
+type TaskType = { id: string; content: string };
+
+type BoardDataType = {
+  tasks: TaskType[];
+  columns: ColumnType[];
+  taskIds: string[];
+} ;

@@ -6,12 +6,12 @@ const ColumnList = ({
   index,
 }: {
   column: ColumnType;
-  taskMap: TaskMapType;
+  taskMap: TaskType[];
   index: number;
 }) => {
   const tasks = column.taskIds.map((taskId) =>
     taskMap.find((task: any) => taskId === task.id)
-  ) as taskType[];
+  ) as TaskType[];
   return <Column column={column} tasks={tasks} index={index} />;
 };
 

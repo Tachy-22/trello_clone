@@ -1,6 +1,6 @@
 import Task from "./Task";
 
-const TaskList = ({ tasks }: { tasks: { id: string; content: string }[] }) => {
+const TaskList = ({ tasks }: { tasks: TaskType[] }) => {
   return (
     <div className="flex flex-col gap-3">
       {tasks.map((task, index) => (

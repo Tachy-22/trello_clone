@@ -1,6 +1,6 @@
 import { Draggable } from "@hello-pangea/dnd";
 
-const Task = ({ task, index }: { task: taskType; index: number }) => {
+const Task = ({ task, index }: { task: TaskType; index: number }) => {
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided, snapshot) => (

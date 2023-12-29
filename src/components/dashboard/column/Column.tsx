@@ -1,5 +1,6 @@
 import { Draggable, Droppable } from "@hello-pangea/dnd";
 import TaskList from "../task/TaskList";
+import AddTask from "../task/AddTask";
 
 const Column = ({
   column,
@@ -7,7 +8,7 @@ const Column = ({
   index,
 }: {
   column: ColumnType;
-  tasks: taskType[];
+  tasks: TaskType[];
   index: number;
 }) => {
   return (
@@ -24,6 +25,7 @@ const Column = ({
           >
             {column.title}
           </h1>
+          <AddTask columnId={column.id} />
           <Droppable droppableId={column.id} type="task">
             {(provided, snapshot) => (
               <div
