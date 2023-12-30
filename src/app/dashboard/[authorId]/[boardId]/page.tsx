@@ -15,7 +15,7 @@ const DashBoard = async ({
         style={{ backgroundColor: boardData?.backgroundColor }}
         className="h-full   w-full overflow-auto flex  "
       >
-        <Board boardId={params.boardId} boardData={boardData} />
+        <Board boardId={params.boardId} boardData={boardData as BoardDataType} />
       </section>
     </div>
   );

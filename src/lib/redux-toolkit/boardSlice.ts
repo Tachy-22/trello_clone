@@ -8,7 +8,7 @@ export interface CounterState {
   columns: ColumnType[] | null;
   columnOrder: string[] | null;
   userDbData: userDbDataType | null;
-  boardList: BoardListType;
+  boardList: BoardListType | null;
   currentBoardData: BoardDataType | null;
 }
 

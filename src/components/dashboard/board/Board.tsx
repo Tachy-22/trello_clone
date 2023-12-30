@@ -37,26 +37,7 @@ export const Board = ({
   boardData,
 }: {
   boardId: string;
-  boardData:
-    | ({
-        columns: {
-          columnIdentifier: any;
-          id: string;
-          title: string;
-          taskIds: string[];
-          boardId: string;
-        }[];
-        tasks: { id: string; content: string; boardId: string }[];
-      } & {
-        id: string;
-        title: string;
-        authorId: string;
-        backgroundColor: string;
-        backgroundImage: string;
-        columnOrder: string[];
-      })
-    | null
-    | undefined;
+  boardData: BoardDataType;
 }) => {
   const dispatch = useAppDispatch();
   const { tasks, userDbData, columns, columnOrder, currentBoardData } =
@@ -73,22 +54,22 @@ export const Board = ({
   useEffect(() => {
     // console.log("ran the use effect hook");
     // updateColumnOrderInDb(boardData?.id as string, boardData?.authorId as string, columnOrder);
-    const initialColumnOrder = boardData?.columns.map(
+    const initialColumnOrder = boardData?.columns?.map(
       (column) => column.columnIdentifier
     ) as string[];
     console.log(
       "initialColumnOrder:",
       initialColumnOrder,
       boardData?.columnOrder.length === 0,
-      boardData?.columns.length !== 0
+      boardData?.columns?.length !== 0
     );
-    boardData?.columnOrder.length !== boardData?.columns.length &&
+    boardData?.columnOrder.length !== boardData?.columns?.length &&
       updateColumnOrderInDb(
         boardData?.id as string,
         boardData?.authorId as string,
         initialColumnOrder
       );
-    //  boardData?.columnOrder.length !== boardData?.columns.length &&
+    //  boardData?.columnOrder.length !== boardData?.columns?.length &&
     dispatch(updateCurrentBoardData(boardData));
     console.log("here sis it");
   }, [boardData, dispatch]);
@@ -140,26 +121,25 @@ export const Board = ({
         dispatch(
           updateCurrentBoardData({
             ...currentBoardData,
-
-            columnOrder: newColumnOrder,
-          })
+            columnOrder: newColumnOrder as string[],
+          } as BoardDataType)
         );
         dispatch(updateColumnOrder(newColumnOrder));
         return;
       }
 
-      const home = data?.columns.find((column) => {
+      const home = data?.columns?.find((column) => {
         console.log(column?.id, "column.id");
         return column.columnIdentifier === source.droppableId;
       }) as ColumnType;
 
-      const foreign = data?.columns.find(
+      const foreign = data?.columns?.find(
         (column) => column.columnIdentifier === destination.droppableId
       ) as ColumnType;
 
       //moving within lists
       if (home === foreign) {
-        const newTaskIds = Array.from(home.taskIds);
+        const newTaskIds = Array.from(home?.taskIds as string[]);
         newTaskIds.splice(source.index, 1);
         newTaskIds.splice(destination.index, 0, draggableId);
 
@@ -168,30 +148,30 @@ export const Board = ({
           taskIds: newTaskIds,
         };
 
-        const filteredColumns = data?.columns.filter(
+        const filteredColumns = data?.columns?.filter(
           (column) => column.id !== newHome.id
         ) as ColumnType[];
         const newColumns = [...filteredColumns, newHome];
-        dispatch(updateColumns(newColumns));
+        dispatch(updateColumns(newColumns as ColumnType[]));
         return;
       }
 
       // moving from one list to another
       if (home !== foreign) {
-        const homeTaskIds = Array.from(home.taskIds);
+        const homeTaskIds = Array.from(home?.taskIds as string[]);
         homeTaskIds.splice(source.index, 1);
         const newHome = {
           ...home,
           taskIds: homeTaskIds,
         };
 
-        const foreignTaskIds = Array.from(foreign.taskIds);
+        const foreignTaskIds = Array.from(foreign?.taskIds as string[]);
         foreignTaskIds.splice(destination.index, 0, draggableId);
         const newForeign = {
           ...foreign,
           taskIds: foreignTaskIds,
         };
-        const filteredColumns = data?.columns.filter((column) => {
+        const filteredColumns = data?.columns?.filter((column) => {
           const conditions =
             column.id !== newHome.id && column.id !== newForeign.id;
           if (conditions) {
@@ -199,7 +179,7 @@ export const Board = ({
           }
         }) as ColumnType[];
         const newColumns = [...filteredColumns, newHome, newForeign];
-        dispatch(updateColumns(newColumns));
+        dispatch(updateColumns(newColumns as ColumnType[]));
       }
     },
     [
@@ -232,13 +212,13 @@ export const Board = ({
                 ref={provided.innerRef}
               >
                 {data?.columnOrder?.map((columnId, index) => {
-                  const column = data?.columns.find(
+                  const column = data?.columns?.find(
                     (column) => column.columnIdentifier === columnId
                   ) as ColumnType;
 
                   return (
                     <ColumnList
-                      key={column.id as string}
+                      key={column?.id as string}
                       column={column}
                       taskMap={data?.tasks}
                       index={index}
