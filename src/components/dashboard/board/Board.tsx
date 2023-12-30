@@ -219,8 +219,8 @@ export const Board = ({
                   return (
                     <ColumnList
                       key={column?.id as string}
-                      column={column}
-                      taskMap={data?.tasks}
+                      column={column as ColumnType}
+                      taskMap={data?.tasks as TaskType[]}
                       index={index}
                     />
                   );

@@ -25,18 +25,8 @@ type userDbDataType =
 
 type BoardDataType =
   | ({
-      tasks: {
-        id: string;
-        content: string;
-        boardId: string;
-      }[];
-      columns: {
-        id: string;
-        title: string;
-        columnIdentifier: string;
-        taskIds: string[];
-        boardId: string;
-      }[];
+      tasks: TaskType[] | null | undefined;
+      columns: ColumnType[] | null | undefined;
     } & {
       id: string;
       title: string;
@@ -50,7 +40,7 @@ type BoardDataType =
 
 type BoardListType =
   | ({
-      boards: BoardDataType[];
+      boards: BoardDataType[] | null | undefined;
     } & userDbDataType)
   | null
   | undefined;
