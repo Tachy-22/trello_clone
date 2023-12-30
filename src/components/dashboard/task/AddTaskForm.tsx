@@ -17,9 +17,11 @@ const AddTaskForm = ({
 
   const handleTaskAddition = React.useCallback(() => {
     const newTask = { id: title, content: title };
-    dispatch(addTask(newTask));
-    const currentColumn = columns.find((column) => column.id === columnId);
-    const filteredColumns = columns.filter((column) => column.id !== columnId);
+    dispatch(addTask(newTask as TaskType));
+    const currentColumn = columns?.find((column) => column?.id === columnId);
+    const filteredColumns = columns?.filter(
+      (column) => column?.id !== columnId
+    ) as ColumnType[];
     dispatch(
       updateColumns([
         ...filteredColumns,

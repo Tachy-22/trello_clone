@@ -2,7 +2,7 @@ import { Draggable } from "@hello-pangea/dnd";
 
 const Task = ({ task, index }: { task: TaskType; index: number }) => {
   return (
-    <Draggable draggableId={task.id} index={index}>
+    <Draggable draggableId={task?.id as string} index={index}>
       {(provided, snapshot) => (
         <div
           className={`" p-3 rounded-md   bg-white ${
@@ -13,7 +13,7 @@ const Task = ({ task, index }: { task: TaskType; index: number }) => {
           ref={provided.innerRef}
           //    isDragging={snapshot.isDragging}
         >
-          <p className="text-black ">{task.content}</p>
+          <p className="text-black ">{task?.content as string}</p>
         </div>
       )}
     </Draggable>

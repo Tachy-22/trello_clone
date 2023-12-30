@@ -31,12 +31,12 @@ const NewColumnForm = ({ onClose }: { onClose: () => void }) => {
     const newColumns = [
       ...(currentBoardData?.columns as ColumnType[]),
       { columnIdentifier: columnIdentifier, title: title, taskIds: [] },
-    ];
+    ] as ColumnType[];
     //   dispatch(updateColumns(newColumns));
     const newColumnOrder = [
       ...(currentBoardData?.columnOrder as string[]),
       columnIdentifier,
-    ];
+    ] as string[];
     //   dispatch(updateColumnOrder(newColumnOrder));
     console.log(
       "currentBoardData?.id :",
@@ -54,7 +54,7 @@ const NewColumnForm = ({ onClose }: { onClose: () => void }) => {
         ...currentBoardData,
         columns: newColumns,
         columnOrder: newColumnOrder,
-      })
+      } as BoardDataType)
     );
     onClose();
   }, [currentBoardData, title, columnIdentifier, dispatch, onClose]);
