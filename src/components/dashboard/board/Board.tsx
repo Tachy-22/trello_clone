@@ -55,7 +55,7 @@ export const Board = ({
     // console.log("ran the use effect hook");
     // updateColumnOrderInDb(boardData?.id as string, boardData?.authorId as string, columnOrder);
     const initialColumnOrder = boardData?.columns?.map(
-      (column) => column.columnIdentifier
+      (column) => column?.columnIdentifier
     ) as string[];
     console.log(
       "initialColumnOrder:",
@@ -129,12 +129,12 @@ export const Board = ({
       }
 
       const home = data?.columns?.find((column) => {
-        console.log(column?.id, "column.id");
-        return column.columnIdentifier === source.droppableId;
+        console.log(column?.id, "column?.id");
+        return column?.columnIdentifier === source.droppableId;
       }) as ColumnType;
 
       const foreign = data?.columns?.find(
-        (column) => column.columnIdentifier === destination.droppableId
+        (column) => column?.columnIdentifier === destination.droppableId
       ) as ColumnType;
 
       //moving within lists
@@ -149,7 +149,7 @@ export const Board = ({
         };
 
         const filteredColumns = data?.columns?.filter(
-          (column) => column.id !== newHome.id
+          (column) => column?.id !== newHome.id
         ) as ColumnType[];
         const newColumns = [...filteredColumns, newHome];
         dispatch(updateColumns(newColumns as ColumnType[]));
@@ -173,7 +173,7 @@ export const Board = ({
         };
         const filteredColumns = data?.columns?.filter((column) => {
           const conditions =
-            column.id !== newHome.id && column.id !== newForeign.id;
+            column?.id !== newHome.id && column?.id !== newForeign.id;
           if (conditions) {
             return column;
           }
@@ -213,7 +213,7 @@ export const Board = ({
               >
                 {data?.columnOrder?.map((columnId, index) => {
                   const column = data?.columns?.find(
-                    (column) => column.columnIdentifier === columnId
+                    (column) => column?.columnIdentifier === columnId
                   ) as ColumnType;
 
                   return (

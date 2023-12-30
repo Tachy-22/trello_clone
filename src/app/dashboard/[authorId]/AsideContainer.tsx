@@ -6,27 +6,7 @@ import { ArrowBigLeft, ArrowDown10Icon, ArrowDownIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useCallback, useState, useEffect } from "react";
 
-const AsideContainer = ({
-  myBoards,
-}: {
-  myBoards:
-    | ({
-        boards: {
-          id: string;
-          title: string;
-          authorId: string;
-          backgroundColor: string;
-          backgroundImage: string;
-          columnOrder: string[];
-        }[];
-      } & {
-        id: string;
-        email: string;
-        name: string | null;
-      })
-    | null
-    | undefined;
-}) => {
+const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {

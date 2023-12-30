@@ -8,7 +8,7 @@ const Nav = async ({ params }: { params: string }) => {
   const myBoards = await fetchBoards(params);
     console.log("myBoards i kr:", myBoards);
 
-  return <AsideContainer myBoards={myBoards} />;
+  return <AsideContainer myBoards={myBoards as BoardListType} />;
 };
 
 export default Nav;

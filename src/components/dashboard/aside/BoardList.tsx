@@ -9,21 +9,21 @@ const BoardList = () => {
 
   return (
     <div className="flex flex-col">
-      {boardList?.boards.map((board) => {
+      {boardList?.boards?.map((board) => {
         return (
-          <div key={board.id}>
+          <div key={board?.id as string}>
             <Link
               // {`link ${pathname === '/' ? 'active' : ''}`}
               className={`"  ${
-                pathname.split("/").at(-1) === board.id ? "bg-black/20" : ""
+                pathname.split("/").at(-1) === board?.id ? "bg-black/20" : ""
               } px-4 py-2  hover:bg-black/10 flex gap-2 justify-start items-center "`}
-              href={`${board.id}`}
+              href={`${board?.id}`}
             >
               <div
-                style={{ backgroundColor: board.backgroundColor }}
+                style={{ backgroundColor: board?.backgroundColor }}
                 className="rounded-md w-[1.5rem] h-[1.5rem] border"
               ></div>
-              <p className=""> {board.title}</p>
+              <p className=""> {board?.title}</p>
             </Link>
           </div>
         );
