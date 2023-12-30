@@ -51,7 +51,7 @@ export default function Header({ dbData }: { dbData: userDbDataType }) {
   const navLinks = [
     { href: "/", text: "Home" },
     {
-      href: "/dashboard/board-658ea13fa194627a9abea6a1",
+      href: "/dashboard/658ea13fa194627a9abea6a1/board",
       text: "Dashboard",
     },
     { href: "/contact", text: "Contact" },
@@ -61,7 +61,7 @@ export default function Header({ dbData }: { dbData: userDbDataType }) {
   return (
     <>
       <Navbar
-        className="bg-white"
+        className="bg-white h-[4rem]"
         isBordered
         onMenuOpenChange={() => setIsMenuOpen((prev) => !prev)}
       >

@@ -9,6 +9,26 @@ export interface CounterState {
   columnOrder: string[];
   userDbData: userDbDataType | null;
   boardList: BoardListType;
+  currentBoardData:
+    | ({
+        columns: {
+          columnIdentifier: string;
+          id: string;
+          title: string;
+          taskIds: string[];
+          boardId: string;
+        }[];
+        tasks: { id: string; content: string; boardId: string }[];
+      } & {
+        id: string;
+        title: string;
+        authorId: string;
+        backgroundColor: string;
+        backgroundImage: string;
+        columnOrder: string[];
+      })
+    | null
+    | undefined;
 }
 
 // Define the initial state using that type
@@ -35,6 +55,7 @@ const initialState: CounterState = {
   columnOrder: ["column-1", "column-2"],
   userDbData: null,
   boardList: null,
+  currentBoardData:null
 };
 
 export const boardSlice = createSlice({
@@ -75,6 +96,10 @@ export const boardSlice = createSlice({
       ...state,
       boardList: action.payload,
     }),
+    updateCurrentBoardData: (state, action: PayloadAction<BoardDataType>) => ({
+      ...state,
+      currentBoardData: action.payload,
+    }),
   },
 });
 
@@ -87,6 +112,7 @@ export const {
   updateColumnOrder,
   updateUserDbData,
   updateBoardList,
+  updateCurrentBoardData,
 } = boardSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type

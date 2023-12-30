@@ -31,6 +31,7 @@ model Board {
 model Column {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   title String
+  columnIdentifier String
   taskIds String[]
   board   Board   @relation(fields: [boardId], references: [id])
   boardId String @db.ObjectId

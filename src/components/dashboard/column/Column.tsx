@@ -12,7 +12,7 @@ const Column = ({
   index: number;
 }) => {
   return (
-    <Draggable draggableId={column.id} index={index}>
+    <Draggable draggableId={column.columnIdentifier} index={index}>
       {(provided) => (
         <div
           className="bg-slate-100 rounded-md  flex flex-col gap- w-[20rem] h-fit"
@@ -26,7 +26,7 @@ const Column = ({
             {column.title}
           </h1>
           <AddTask columnId={column.id} />
-          <Droppable droppableId={column.id} type="task">
+          <Droppable droppableId={column.columnIdentifier} type="task">
             {(provided, snapshot) => (
               <div
                 className={`${

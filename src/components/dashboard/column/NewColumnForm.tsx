@@ -1,27 +1,63 @@
 "use client";
 
+import { addColumnToDb } from "@/actions/board/addColumnToDb";
+import { updateColumnOrderInDb } from "@/actions/board/updateColumnOrderInDb";
 import {
   updateColumnOrder,
   updateColumns,
+  updateCurrentBoardData,
 } from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { PlusIcon } from "lucide-react";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useId, useState } from "react";
 
 const NewColumnForm = ({ onClose }: { onClose: () => void }) => {
+  const columnIdentifier = `${useId()} ${
+    Math.random().toString().split(".")[1]
+  }`;
+
   const dispatch = useAppDispatch();
-  const {  columns, columnOrder } = useAppSelector(
+  const { columns, columnOrder, userDbData, currentBoardData } = useAppSelector(
     (state) => state.board
   );
   const [title, setTitle] = useState<string>("");
 
   const handleColumnAddition = useCallback(() => {
-    const newColumns = [...columns, { id: title, title: title, taskIds: [] }];
-    dispatch(updateColumns(newColumns));
-    const newColumnOrder = [...columnOrder, title];
-    dispatch(updateColumnOrder(newColumnOrder));
+    addColumnToDb(currentBoardData?.id as string, title, columnIdentifier).then(
+      (column) => {
+        console.log("column return", column);
+      }
+    );
+    const newColumns = [
+      ...(currentBoardData?.columns as ColumnType[]),
+      { columnIdentifier: columnIdentifier, title: title, taskIds: [] },
+    ];
+    //   dispatch(updateColumns(newColumns));
+    const newColumnOrder = [
+      ...(currentBoardData?.columnOrder as string[]),
+      columnIdentifier,
+    ];
+    //   dispatch(updateColumnOrder(newColumnOrder));
+    console.log(
+      "currentBoardData?.id :",
+      newColumns,
+      newColumnOrder,
+      currentBoardData?.id
+    );
+    updateColumnOrderInDb(
+      currentBoardData?.id as string,
+      currentBoardData?.authorId as string,
+      newColumnOrder as string[]
+    );
+    dispatch(
+      updateCurrentBoardData({
+        ...currentBoardData,
+        columns: newColumns,
+        columnOrder: newColumnOrder,
+      })
+    );
     onClose();
-  }, [dispatch, title, columnOrder, columns, onClose]);
+  }, [currentBoardData, title, columnIdentifier, dispatch, onClose]);
 
   return (
     <form
@@ -31,7 +67,7 @@ const NewColumnForm = ({ onClose }: { onClose: () => void }) => {
       <div className="py-2 px-2   border border-gray-300 rounded-md">
         {" "}
         <input
-          className="outline-none "
+          className="outline-none bg-white text-black"
           type="text"
           name="columnName"
           placeholder="Add a new column..."
@@ -51,7 +87,7 @@ const NewColumnForm = ({ onClose }: { onClose: () => void }) => {
         </button>
         <PlusIcon
           onClick={onClose}
-          className={`text-4xl rotate-45 hover:bg-black/5 rounded-lg p-`}
+          className={`text-4xl rotate-45 text-black hover:bg-black/5 rounded-lg p-`}
         />
       </div>
     </form>

@@ -32,7 +32,7 @@ export default async function RootLayout({
         <NextProvider>
           <StoreProvider>
             <body
-              className={` relative w-full  dark:bg-gray-700 bg-white transition-colors duration-250`}
+              className={` relative w-full min-h-screen    dark:bg-gray-900 bg-white transition-colors duration-250`}
             >
               <Header dbData={userDbData} />
               {children}

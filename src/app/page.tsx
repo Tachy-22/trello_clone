@@ -6,7 +6,7 @@ import { currentUser } from "@clerk/nextjs";
 export default async function Home() {
 
   return (
-    <main className="flex min-h-screen  max-w-screen   flex-col items-center  ">
+    <main className="flex  dark:bg-gray-500    flex-col items-center  ">
       <Hero />
       <Features />
     </main>

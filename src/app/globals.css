@@ -10,6 +10,9 @@ html {
   scrollbar-color: transparent transparent;
 
 }
+ .scrollVisible {
+   scrollbar-color: rgb(50, 49, 49) transparent;
+ }
 
 
 @-moz-document url-prefix() {
@@ -17,12 +20,16 @@ html {
   body,
   html {
     scrollbar-width: thin;
-    scrollbar-color: transparent transparent;
+    scrollbar-color: rgba(255, 255, 255, 0) transparent;
 
+
+  }
+  .scrollVisible{
+      scrollbar-color: rgb(50, 49, 49) transparent;
   }
 }
 
-/* *{
+/* 
+*{
   border:0.5px solid red
 } */
-

@@ -40,7 +40,7 @@ const AddTaskForm = ({
       <div className="py-2 px-2   border border-gray-300 rounded-md">
         {" "}
         <input
-          className="outline-none "
+          className="outline-none text-black bg-white "
           type="text"
           name="columnName"
           placeholder="Add a new column..."
@@ -60,7 +60,7 @@ const AddTaskForm = ({
         </button>
         <PlusIcon
           onClick={onClose}
-          className={`text-4xl rotate-45 hover:bg-black/5 rounded-lg `}
+          className={`text-4xl rotate-45 text-black hover:bg-black/5 rounded-lg `}
         />
       </div>
     </form>

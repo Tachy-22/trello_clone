@@ -1,4 +1,5 @@
 type ColumnType = {
+  columnIdentifier: string;
   id: string;
   title: string;
   taskIds: string[];
@@ -22,14 +23,13 @@ type userDbDataType =
 
 type BoardDataType =
   | ({
-      columns: ({
-        tasks: { id: string; content: string; columnId: string }[];
-      } & {
+      columns: {
         id: string;
         title: string;
         taskIds: string[];
         boardId: string;
-      })[];
+      }[];
+      tasks: { id: string; content: string; boardId: string }[];
     } & {
       id: string;
       title: string;

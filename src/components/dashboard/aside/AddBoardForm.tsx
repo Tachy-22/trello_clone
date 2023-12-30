@@ -49,7 +49,7 @@ const AddBoardForm: FC<AddBoardFormProps> = ({ onClose }) => {
     console.log("formdata :", boardCreationData, userDbData);
     addBoard(boardCreationData, userDbData?.id as string)
       .then((boardPath) => {
-        router.push(`${boardPath}-${userDbData?.id}` as string);
+        router.push(`${boardPath}` as string);
       })
       .catch(async (e) => {
         console.error(e);
@@ -61,7 +61,7 @@ const AddBoardForm: FC<AddBoardFormProps> = ({ onClose }) => {
   const isButtonDisabled = useMemo(() => boardTitle === "", [boardTitle]);
 
   return (
-    <form className="rounded-lg bg-white p-6 w-full md:w-full flex flex-col gap-3">
+    <form className="rounded-lg  p-3 w-full md:w-full flex flex-col gap-3">
       <div className=" flex justify-center">
         <Image
           style={{ backgroundColor: bgColor }}
@@ -69,14 +69,14 @@ const AddBoardForm: FC<AddBoardFormProps> = ({ onClose }) => {
           alt={`template`}
           width={200}
           height={200}
-          className="border p-2 rounded-md "
+          className=" p-2 rounded-md "
         />
       </div>
       <div className="form flex flex-col gap-1">
         <div className="">
           <label
             htmlFor="background"
-            className=" text-sm font-semibold text-gray-700"
+            className=" text-sm font-semibold  dark:text-white text-gray-700"
           >
             Background :
           </label>
@@ -105,16 +105,16 @@ const AddBoardForm: FC<AddBoardFormProps> = ({ onClose }) => {
         <div className="">
           <label
             htmlFor="title"
-            className=" text-sm font-semibold mb-2 text-gray-700"
+            className=" text-sm dark:text-white font-semibold mb-2 text-gray-700"
           >
             Board title :
           </label>
-          <div className="w-full border border-gray-300 rounded-lg   my-1">
+          <div className="w-full border border-gray-300 dark:border-gray-300/40 rounded-lg   my-1">
             <input
               type="text"
               id="title"
               name="board-title"
-              className="outline- p-2 px-3 w-full rounded-lg"
+              className="outline- p-2 px-3 w-full rounded-lg outline-none"
               autoFocus
               autoComplete=""
               value={boardTitle}
@@ -127,7 +127,7 @@ const AddBoardForm: FC<AddBoardFormProps> = ({ onClose }) => {
           onClick={handleFormSubmission}
           className={`${
             isButtonDisabled
-              ? "bg-black/20 border border-gray-400 cursor-not-allowed "
+              ? "bg-black/20 dark:bg-white/20 dark:text-white/30 border dark:border-gray-300/50 border-gray-400 cursor-not-allowed "
               : "bg-blue-500 hover:bg-blue-500/90"
           } text-white w-full  text-center p-1 rounded-lg my-2 transition-colors duration-200 "`}
           type="submit"

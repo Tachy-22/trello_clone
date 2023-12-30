@@ -2,7 +2,7 @@
 import AsideItems from "@/components/dashboard/aside/AsideItems";
 import { updateBoardList } from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch } from "@/lib/redux-toolkit/hooks";
-import { ArrowBigLeft } from "lucide-react";
+import { ArrowBigLeft, ArrowDown10Icon, ArrowDownIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useCallback, useState, useEffect } from "react";
 
@@ -73,24 +73,24 @@ const AsideContainer = ({
         hidden
           ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2.5rem] sm:w-[2rem]  "
           : "md:min-w-fit  w-fit relative"
-      } border-r  transition-all  dark:bg-gray-500 bg-white  flex flex-col  `}
+      }  h-full  transition-all   flex flex-col  `}
     >
-      <div className=" relative w-full flex p-1 z-50 h-fit  ">
+      <div className=" relative w-full flex p-1 z-50   ">
         <div
           style={{ transitionDuration: "2s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 dark:text-white text-black absolute rounded-full top-[3.5rem]   w-fit p-1 ${
+          className={`transition-all duration-1000 dark:text-white text-black absolute rounded-full top-[3.5rem] bg-white dark:bg-black/80  w-fit p-1 ${
             hidden
-              ? "translate-x-[100%] -right-[0rem] rotate-180 border-dashed border"
-              : "-right-[1rem]"
+              ? "translate-x-[100%] -right-[0rem] rotate-[270deg] "
+              : "-right-[1rem] rotate-90"
           }`}
         >
-          <ArrowBigLeft />
+          <ArrowDownIcon />
         </div>{" "}
       </div>
       <div
         style={{ transitionDuration: "1s" }}
-        className={`transition-all relative    w-fit flex flex-col items-start justify-start  ${
+        className={`transition-all relative  h-full  w-fit flex flex-col items-start justify-start  ${
           hidden ? "opacity-0 " : ""
         }`}
       >

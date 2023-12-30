@@ -14,7 +14,7 @@ export async function fetchBoards(authorId: string) {
         boards: true,
       },
     });
-    console.log("myBoards :", myBoards);
+    console.log("myBoards inner inner :", myBoards);
     revalidatePath("/myBoards");
     return myBoards;
   } catch (error) {
