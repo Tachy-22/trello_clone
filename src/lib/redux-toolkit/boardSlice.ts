@@ -3,21 +3,19 @@ import type { RootState } from "./store";
 
 // Define a type for the slice state
 export interface CounterState {
-  value: number;
-  tasks: TaskType[] | null;
-  columns: ColumnType[] | null;
-  columnOrder: string[] | null;
-  userDbData: userDbDataType | null;
-  boardList: BoardListType | null;
-  currentBoardData: BoardDataType | null;
+  tasks: TaskType[];
+  columns: ColumnType[];
+  columnOrder: string[];
+  userDbData: userDbDataType;
+  boardList: BoardListType;
+  currentBoardData: BoardDataType;
 }
 
 // Define the initial state using that type
 const initialState: CounterState = {
-  value: 0,
-  tasks: null,
-  columns: null,
-  columnOrder: null,
+  tasks: [],
+  columns: [],
+  columnOrder: [],
   userDbData: null,
   boardList: null,
   currentBoardData: null,
@@ -28,19 +26,9 @@ export const boardSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-    decrement: (state) => {
-      state.value -= 1;
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
-    },
-    addTask: (state, action: PayloadAction<TaskType>) => ({
+    updateTask: (state, action: PayloadAction<TaskType>) => ({
       ...state,
-      tasks: [...(state?.tasks as TaskType[]), action.payload],
+      tasks: [...state?.tasks, action.payload],
     }),
     updateColumns: (state, action: PayloadAction<ColumnType[]>) => ({
       ...state,
@@ -72,10 +60,7 @@ export const boardSlice = createSlice({
 });
 
 export const {
-  increment,
-  decrement,
-  incrementByAmount,
-  addTask,
+  updateTask,
   updateColumns,
   updateColumnOrder,
   updateUserDbData,
@@ -84,6 +69,4 @@ export const {
 } = boardSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.board.value;
-
 export default boardSlice.reducer;

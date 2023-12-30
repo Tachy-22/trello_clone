@@ -1,8 +1,14 @@
 "use client";
-import { addTask, updateColumns } from "@/lib/redux-toolkit/boardSlice";
+import { addTaskToDb } from "@/actions/task/addTaskToDb";
+import { updateTaskIdsInDb } from "@/actions/task/updateTaskIdsInDb";
+import {
+  updateTask,
+  updateColumns,
+  updateCurrentBoardData,
+} from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { PlusIcon } from "lucide-react";
-import React from "react";
+import React, { useId } from "react";
 
 const AddTaskForm = ({
   onClose,
@@ -11,28 +17,66 @@ const AddTaskForm = ({
   onClose: () => void;
   columnId: string;
 }) => {
+  const taskIdentifier = `${useId()} ${Math.random().toString().split(".")[1]}`;
+
   const dispatch = useAppDispatch();
-  const { columns } = useAppSelector((state) => state.board);
-  const [title, setTitle] = React.useState<string>("");
+  const { columns, currentBoardData } = useAppSelector((state) => state.board);
+  const [content, setContent] = React.useState<string>("");
 
   const handleTaskAddition = React.useCallback(() => {
-    const newTask = { id: title, content: title };
-    dispatch(addTask(newTask as TaskType));
-    const currentColumn = columns?.find((column) => column?.id === columnId);
-    const filteredColumns = columns?.filter(
+    const newTask = {
+      content: content,
+      taskIdentifier: taskIdentifier,
+    } as TaskType;
+
+
+    console.log("newtask :", newTask);
+
+    dispatch(updateTask(newTask));
+    
+    console.log("add task");
+    const currentColumn = currentBoardData?.columns?.find(
+      (column) => column?.id === columnId
+    ) as ColumnType;
+    console.log("current column");
+    const filteredColumns = currentBoardData?.columns?.filter(
       (column) => column?.id !== columnId
     ) as ColumnType[];
+    console.log("filtered Columns");
+    const updatedTasks = [...(currentBoardData?.tasks as TaskType[]), newTask];
+    const updatedTaskIds = [
+      ...currentColumn?.taskIds,
+      newTask?.taskIdentifier,
+    ] as string[];
+    const updatedColumns = [
+      ...filteredColumns,
+      { ...currentColumn, taskIds: updatedTaskIds },
+    ];
+
     dispatch(
-      updateColumns([
-        ...filteredColumns,
-        {
-          ...currentColumn,
-          taskIds: [...(currentColumn?.taskIds as string[]), title],
-        },
-      ] as ColumnType[])
+      updateCurrentBoardData({
+        ...currentBoardData,
+        tasks: updatedTasks,
+        columns: updatedColumns,
+      } as BoardDataType)
     );
+    console.log("miiki", currentColumn, updatedTasks);
+
+    console.log("mi   iololiki", updatedTaskIds);
+
+    console.log("updated columns duh :", updatedColumns);
+
+    addTaskToDb(currentBoardData?.id as string, content, taskIdentifier).then(
+      (column) => {
+        console.log("column return", column);
+      }
+    );
+
+    updateTaskIdsInDb(currentBoardData?.id as string, columnId, updatedTaskIds);
+
+    console.log("dispatched last nigga");
     onClose();
-  }, [columnId, columns, dispatch, onClose, title]);
+  }, [columnId, currentBoardData, dispatch, onClose, taskIdentifier, content]);
 
   return (
     <form
@@ -46,9 +90,9 @@ const AddTaskForm = ({
           type="text"
           name="columnName"
           placeholder="Add a new column..."
-          value={title}
+          value={content}
           onChange={(e) => {
-            setTitle(e.target.value);
+            setContent(e.target.value);
           }}
         />
       </div>

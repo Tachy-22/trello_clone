@@ -20,18 +20,21 @@ const Column = ({
           ref={provided.innerRef}
         >
           <h1
-            className="pt-3 px-4 text-black font-semibold text-lg"
+            className="py-3  px-4 text-black font-semibold text-lg"
             {...provided.dragHandleProps}
           >
             {column?.title}
           </h1>
-          <AddTask columnId={column?.id as string} />
-          <Droppable droppableId={column?.columnIdentifier as string} type="task">
+
+          <Droppable
+            droppableId={column?.columnIdentifier as string}
+            type="task"
+          >
             {(provided, snapshot) => (
               <div
                 className={`${
                   snapshot.isDraggingOver ? "bg-black/30 pt-2" : ""
-                } px-4 pb-4 rounded-lg`}
+                } px-4 pb-2 rounded-lg`}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
                 //  isDraggingOver={snapshot.isDraggingOver}
@@ -41,6 +44,7 @@ const Column = ({
               </div>
             )}
           </Droppable>
+          <AddTask columnId={column?.id as string} />
         </div>
       )}
     </Draggable>

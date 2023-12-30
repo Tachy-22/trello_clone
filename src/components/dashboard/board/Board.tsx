@@ -10,6 +10,7 @@ import {
   updateCurrentBoardData,
 } from "@/lib/redux-toolkit/boardSlice";
 import { updateColumnOrderInDb } from "@/actions/board/updateColumnOrderInDb";
+import { updateTaskIdsInDb } from "@/actions/task/updateTaskIdsInDb";
 
 const TasksInit = [
   { id: "task-1", content: "Take out the garbage" },
@@ -148,10 +149,23 @@ export const Board = ({
           taskIds: newTaskIds,
         };
 
+        console.log("homeic:", home);
         const filteredColumns = data?.columns?.filter(
           (column) => column?.id !== newHome.id
         ) as ColumnType[];
         const newColumns = [...filteredColumns, newHome];
+
+        updateTaskIdsInDb(
+          currentBoardData?.id as string,
+          newHome.id,
+          newTaskIds
+        );
+        dispatch(
+          updateCurrentBoardData({
+            ...currentBoardData,
+            columns: newColumns,
+          } as BoardDataType)
+        );
         dispatch(updateColumns(newColumns as ColumnType[]));
         return;
       }
@@ -179,6 +193,23 @@ export const Board = ({
           }
         }) as ColumnType[];
         const newColumns = [...filteredColumns, newHome, newForeign];
+
+        updateTaskIdsInDb(
+          currentBoardData?.id as string,
+          newHome.id,
+          homeTaskIds
+        );
+        updateTaskIdsInDb(
+          currentBoardData?.id as string,
+          newForeign.id,
+          foreignTaskIds
+        );
+        dispatch(
+          updateCurrentBoardData({
+            ...currentBoardData,
+            columns: newColumns,
+          } as BoardDataType)
+        );
         dispatch(updateColumns(newColumns as ColumnType[]));
       }
     },

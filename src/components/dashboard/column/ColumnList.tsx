@@ -10,8 +10,12 @@ const ColumnList = ({
   index: number;
 }) => {
   const tasks = column?.taskIds?.map((taskId) =>
-    taskMap.find((task: any) => taskId === task.id)
+    taskMap.find((task: any) => {
+      console.log("task map:", task.taskIdentifier, taskId);
+      return taskId === task.taskIdentifier;
+    })
   ) as TaskType[];
+  console.log("task map:", tasks, column?.taskIds, taskMap);
   return <Column column={column} tasks={tasks} index={index} />;
 };
 

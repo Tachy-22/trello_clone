@@ -2,11 +2,13 @@ import { Draggable } from "@hello-pangea/dnd";
 
 const Task = ({ task, index }: { task: TaskType; index: number }) => {
   return (
-    <Draggable draggableId={task?.id as string} index={index}>
+    <Draggable draggableId={task?.taskIdentifier as string} index={index}>
       {(provided, snapshot) => (
         <div
-          className={`" p-3 rounded-md   bg-white ${
-            snapshot.isDragging ? "border-2 border-dashed  border-gray-500" : ""
+          className={`" p-3 rounded-md drop-shadow-md   bg-white ${
+            snapshot.isDragging
+              ? "border-2 border-dashed  border-gray-500"
+              : " border border-gray-200"
           }  "`}
           {...provided.draggableProps}
           {...provided.dragHandleProps}

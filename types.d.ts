@@ -1,17 +1,18 @@
-type ColumnType =
-  | {
-      columnIdentifier: any;
-      id: string;
-      title: string;
-      taskIds: string[];
-      boardId: string;
-    }
-  | null
-  | undefined;
+type ColumnType = {
+  columnIdentifier: any;
+  id: string;
+  title: string;
+  taskIds: string[];
+  boardId: string;
+};
 
 type TaskType =
-  | { id: string; content: string; boardId: string }
-  | null
+  | {
+      id: string;
+      content: string;
+      boardId: string;
+      taskIdentifier: string;
+    }
   | undefined;
 
 type userDbDataType =
@@ -26,7 +27,7 @@ type userDbDataType =
 type BoardDataType =
   | ({
       tasks: TaskType[] | null | undefined;
-      columns: ColumnType[] | null | undefined;
+      columns: ColumnType[];
     } & {
       id: string;
       title: string;
