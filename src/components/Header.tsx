@@ -20,7 +20,7 @@ import { useDispatch } from "react-redux";
 import { updateUserDbData } from "@/lib/redux-toolkit/boardSlice";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 
-export default function Header({ dbData }: { dbData: userDbDataType }) {
+export default function Header({ dbData }: { dbData: userDbDataType|null }) {
   //   const { isLoaded, userId } = useAuth();
   //   const { isSignedIn, user } = useUser();
 

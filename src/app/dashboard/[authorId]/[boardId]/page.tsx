@@ -7,10 +7,7 @@ const DashBoard = async ({
 }: {
   params: { boardId: string; authorId: string };
 }) => {
-  const boardData = await fetchBoard(
-    params.boardId.split("-")[0],
-    params.boardId.split("-")[1]
-  );
+  const boardData = await fetchBoard(params.boardId, params.authorId);
   return (
     <div className="flex relative flex-col border-gray-500 border-l  w-full">
       <DashboardHeader boardId={params.boardId} boardData={boardData} />
