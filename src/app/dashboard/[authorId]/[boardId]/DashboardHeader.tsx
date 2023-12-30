@@ -1,14 +1,10 @@
 "use client";
-import { increment } from "@/lib/redux-toolkit/boardSlice";
-import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
-import React, { useEffect } from "react";
-import { Card, Skeleton, Button } from "@nextui-org/react";
+import { useAppSelector } from "@/lib/redux-toolkit/hooks";
+import React from "react";
 
 const DashboardHeader = ({
-  boardId,
   boardData,
 }: {
-  boardId: string;
   boardData:
     | ({
         columns: {
@@ -32,14 +28,12 @@ const DashboardHeader = ({
   const { userDbData } = useAppSelector((state) => state.board);
   console.log("userDbData mikyh :", userDbData);
 
-
   return (
     <div className="backdrop-blur-2xl px-[2rem] py-[1rem] w-full absolute left-0">
       <h1 className="font-semibold text-2xl capitalize w-fit">
         {" "}
         {boardData?.title}
       </h1>
-     
     </div>
   );
 };

@@ -10,7 +10,7 @@ const DashBoard = async ({
   const boardData = await fetchBoard(params.boardId, params.authorId);
   return (
     <div className="flex relative flex-col border-gray-500 border-l  w-full">
-      <DashboardHeader boardId={params.boardId} boardData={boardData} />
+      <DashboardHeader  boardData={boardData} />
       <section
         style={{ backgroundColor: boardData?.backgroundColor }}
         className="h-full   w-full overflow-auto flex  "
