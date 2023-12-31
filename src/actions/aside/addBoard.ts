@@ -6,6 +6,8 @@ import { revalidatePath } from "next/cache";
 type boardDataParam = {
   boardTitle: string;
   bgColor: string;
+
+  bgUrl: string;
 };
 
 export async function addBoard(
@@ -18,7 +20,7 @@ export async function addBoard(
       data: {
         title: boardCreationData.boardTitle,
         backgroundColor: boardCreationData.bgColor,
-        backgroundImage: boardCreationData.bgColor,
+        backgroundImage: boardCreationData.bgUrl,
         authorId: authorId,
       },
     });

@@ -2,8 +2,7 @@
 import AsideItems from "@/components/dashboard/aside/AsideItems";
 import { updateBoardList } from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch } from "@/lib/redux-toolkit/hooks";
-import { ArrowBigLeft, ArrowDown10Icon, ArrowDownIcon } from "lucide-react";
-import Link from "next/link";
+import { ChevronDownIcon } from "lucide-react";
 import React, { useCallback, useState, useEffect } from "react";
 
 const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
@@ -48,7 +47,7 @@ const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
 
   return (
     <aside
-      style={{ transitionDuration: "1s" }}
+      style={{ transitionDuration: "0.5s" }}
       className={`${
         hidden
           ? "lg:-translate-x-[93%] -translate-x-[90%]  w-[2.5rem] sm:w-[2rem]  "
@@ -57,19 +56,19 @@ const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
     >
       <div className=" relative w-full flex p-1 z-50   ">
         <div
-          style={{ transitionDuration: "2s" }}
+          style={{ transitionDuration: "0.5s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 dark:text-white text-black absolute rounded-full top-[3.5rem] bg-white dark:bg-black/80  w-fit p-1 ${
+          className={`transition-all duration-1000 dark:text-white text-black absolute rounded-full top-[3.5rem] bg-white dark:bg-gray-900  w-fit p-1 ${
             hidden
               ? "translate-x-[100%] -right-[0rem] rotate-[270deg] "
               : "-right-[1rem] rotate-90"
           }`}
         >
-          <ArrowDownIcon />
+          <ChevronDownIcon size={18} />
         </div>{" "}
       </div>
       <div
-        style={{ transitionDuration: "1s" }}
+        style={{ transitionDuration: "0.5s" }}
         className={`transition-all relative  h-full  w-fit flex flex-col items-start justify-start  ${
           hidden ? "opacity-0 " : ""
         }`}

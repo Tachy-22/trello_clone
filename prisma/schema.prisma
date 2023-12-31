@@ -19,8 +19,8 @@ model User {
 model Board {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   title    String
-  author   User      @relation(fields: [authorId], references: [id])
-  authorId String    @db.ObjectId
+  author   User?      @relation(fields: [authorId], references: [id])
+  authorId String?    @db.ObjectId
   backgroundColor String
   backgroundImage String
   columns  Column[]
@@ -33,16 +33,16 @@ model Column {
   title String
   columnIdentifier String
   taskIds String[]
-  board   Board   @relation(fields: [boardId], references: [id])
-  boardId String @db.ObjectId
+  board   Board?   @relation(fields: [boardId], references: [id])
+  boardId String? @db.ObjectId
 }
 
 model Task {
   id      String @id @default(auto()) @map("_id") @db.ObjectId
   content String
   taskIdentifier String
-  board   Board   @relation(fields: [boardId], references: [id])
-  boardId String @db.ObjectId
+  board   Board?   @relation(fields: [boardId], references: [id])
+  boardId String? @db.ObjectId
 }
 
 

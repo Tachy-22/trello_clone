@@ -15,7 +15,7 @@ const Column = ({
     <Draggable draggableId={column?.columnIdentifier as string} index={index}>
       {(provided) => (
         <div
-          className="bg-slate-100 rounded-md  flex flex-col gap- w-[20rem] h-fit"
+          className="bg-slate-100 rounded-xl  flex flex-col gap- w-[18rem] h-fit"
           {...provided.draggableProps}
           ref={provided.innerRef}
         >

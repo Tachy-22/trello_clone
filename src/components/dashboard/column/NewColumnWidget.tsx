@@ -17,7 +17,7 @@ const NewColumnWidget = () => {
       ) : (
         <div
           onClick={toggleFormOpen}
-          className="flex gap-2 h-fit cursor-pointer  rounded-lg p-3  bg-black/10 hover:bg-black/5 items-center text-white"
+          className="flex gap-2 h-fit cursor-pointer  rounded-xl p-3  hover:bg-black/40 bg-black/10 items-center text-white"
         >
           {" "}
           <span className=" text-sm font-semibold ">

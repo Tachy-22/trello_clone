@@ -12,26 +12,6 @@ import {
 import { updateColumnOrderInDb } from "@/actions/board/updateColumnOrderInDb";
 import { updateTaskIdsInDb } from "@/actions/task/updateTaskIdsInDb";
 
-const TasksInit = [
-  { id: "task-1", content: "Take out the garbage" },
-  { id: "task-2", content: "Watch my favorite show" },
-  { id: "task-3", content: "Charge my phone" },
-  { id: "task-4", content: "Cook dinner" },
-];
-
-const ColumnsInit = [
-  {
-    id: "column-1",
-    title: "To do",
-    taskIds: ["task-1", "task-2"],
-  },
-  {
-    id: "column-2",
-    title: "In progress",
-    taskIds: ["task-3", "task-4"],
-  },
-];
-const ColumnOrderInit = ["column-1", "column-2"];
 
 export const Board = ({
   boardId,
@@ -53,8 +33,6 @@ export const Board = ({
   );
 
   useEffect(() => {
-    // console.log("ran the use effect hook");
-    // updateColumnOrderInDb(boardData?.id as string, boardData?.authorId as string, columnOrder);
     const initialColumnOrder = boardData?.columns?.map(
       (column) => column?.columnIdentifier
     ) as string[];
@@ -70,21 +48,16 @@ export const Board = ({
         boardData?.authorId as string,
         initialColumnOrder
       );
-    //  boardData?.columnOrder.length !== boardData?.columns?.length &&
     dispatch(updateCurrentBoardData(boardData));
     console.log("here sis it");
   }, [boardData, dispatch]);
 
-  // const data = useMemo(
-  //   () => ({ tasks, columns, columnOrder }),
-  //   [tasks, columns, columnOrder]
+
   const data = useMemo(() => currentBoardData, [currentBoardData]);
   console.log(
     "boardData from board :",
     boardData,
-    //columnOrder,
     data
-    // columns
   );
 
   const onDragEnd = useCallback(
@@ -105,12 +78,7 @@ export const Board = ({
 
       if (type === "column") {
         const newColumnOrder = Array.from(data?.columnOrder as string[]);
-        // console.log(
-        //   "newColumnOrder 1:",
-        //   newColumnOrder,
-        //   source.index,
-        //   destination.index
-        // );
+
         newColumnOrder.splice(source.index, 1);
         newColumnOrder.splice(destination.index, 0, draggableId);
 
