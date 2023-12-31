@@ -62,7 +62,12 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
           console.log("updatedBoardList", updatedBoardList, "id", index);
         }
 
-       dispatch(updateBoardList({ ...boardList, boards: updatedBoardList }));
+        dispatch(
+          updateBoardList({
+            ...boardList,
+            boards: updatedBoardList,
+          } as BoardListType)
+        );
 
         updateBoardTitle(
           boardData?.id as string,
@@ -72,7 +77,15 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
         return;
       }
     },
-    [boardData?.authorId, boardData?.id, boardData?.title, boardList, currentBoardData, dispatch, title]
+    [
+      boardData?.authorId,
+      boardData?.id,
+      boardData?.title,
+      boardList,
+      currentBoardData,
+      dispatch,
+      title,
+    ]
   );
 
   return (
