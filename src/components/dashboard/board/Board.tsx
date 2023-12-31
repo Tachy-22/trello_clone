@@ -12,7 +12,6 @@ import {
 import { updateColumnOrderInDb } from "@/actions/board/updateColumnOrderInDb";
 import { updateTaskIdsInDb } from "@/actions/task/updateTaskIdsInDb";
 
-
 export const Board = ({
   boardId,
   boardData,
@@ -52,13 +51,8 @@ export const Board = ({
     console.log("here sis it");
   }, [boardData, dispatch]);
 
-
   const data = useMemo(() => currentBoardData, [currentBoardData]);
-  console.log(
-    "boardData from board :",
-    boardData,
-    data
-  );
+  console.log("boardData from board :", boardData, data);
 
   const onDragEnd = useCallback(
     (result: DropResult) => {

@@ -43,5 +43,5 @@ type BoardListType =
   | ({
       boards: BoardDataType[] | null | undefined;
     } & userDbDataType)
-  | null
+ 
   | undefined;
