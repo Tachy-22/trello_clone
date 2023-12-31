@@ -117,6 +117,8 @@ const AddBoardForm: FC<AddBoardFormProps> = ({ onClose }) => {
           width={200}
           height={200}
           className=" p-2 rounded-md "
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mO8sHdvPQAHegLLmK17/gAAAABJRU5ErkJggg=="
         />
       </div>
       <div className="form flex flex-col gap-1">

@@ -39,15 +39,12 @@ const Column = ({
         // const updatedColumn = currentBoardData?.columns?.filter(
         //   (col) => col.id === column.id
         // );
-
         // const updatedBoardList = Array.from(
         //   boardList?.boards as BoardDataType[]
         // );
-
         // const index = boardList?.boards?.findIndex(
         //   (obj) => obj?.id === column?.id
         // );
-
         // if (index == -1) {
         //   const boardIndex = ((boardList?.boards?.length as number) -
         //     1) as number;
@@ -63,12 +60,9 @@ const Column = ({
         //   );
         // } else {
         //   updatedBoardList?.splice(index as number, 1);
-
         //   updatedBoardList?.splice(index as number, 0, updatedBoard);
-
         //   console.log("updatedBoardList", updatedBoardList, "id", index);
         // }
-
         //  dispatch(updateBoardList({ ...boardList, boards: updatedBoardList }));
 
         updateColumnTitle(
@@ -128,7 +122,7 @@ const Column = ({
                 </h1>
               )}
 
-              <ColumnMenuButton />
+              <ColumnMenuButton board={currentBoardData} column={column} />
             </div>
 
             <Droppable

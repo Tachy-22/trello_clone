@@ -9,13 +9,21 @@ import { MoreHorizontalIcon } from "lucide-react";
 import React from "react";
 import ColumnMenu from "./ColumnMenu";
 
-const ColumnMenuButton = () => {
+const ColumnMenuButton = ({
+  column,
+  board,
+}: {
+  column: ColumnType;
+  board: BoardDataType;
+}) => {
   return (
     <Popover>
       <PopoverTrigger>
         <MoreHorizontalIcon className="text-black" size={15} />
       </PopoverTrigger>
-      <PopoverContent><ColumnMenu/></PopoverContent>
+      <PopoverContent>
+        <ColumnMenu column={column} board={board} />
+      </PopoverContent>
     </Popover>
   );
 };
