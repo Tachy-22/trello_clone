@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import { useCallback, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { updateColumnTitle } from "@/actions/column/updateColumnTitle";
-import { MoreHorizontalIcon } from "lucide-react";
-import { Button } from "@nextui-org/react";
+
 import ColumnMenuButton from "./ColumnMenuButton";
 
 const Column = ({

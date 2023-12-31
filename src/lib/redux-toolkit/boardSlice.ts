@@ -6,8 +6,8 @@ export interface CounterState {
   tasks: TaskType[];
   columns: ColumnType[];
   columnOrder: string[];
-  userDbData: userDbDataType;
-  boardList: BoardListType;
+  userDbData: userDbDataType | null;
+  boardList: BoardListType | null;
   currentBoardData: BoardDataType;
 }
 
