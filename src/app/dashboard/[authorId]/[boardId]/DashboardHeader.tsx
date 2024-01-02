@@ -9,6 +9,7 @@ import {
 import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
 import React, { useCallback, useState } from "react";
 
+
 const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
   const dispatch = useAppDispatch();
 
@@ -17,8 +18,8 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
   );
   console.log("userDbData mikyh :", userDbData);
   const [isUpdating, setIsUpdating] = useState(false);
-
   const [title, setTitle] = useState<string>(boardData?.title as string);
+
   const handleTitleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setTitle(e.target.value);
@@ -93,7 +94,7 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
   );
 
   return (
-    <div className="backdrop-blur-2xl text-white backdrop-brightness-90 px-[2rem] py-[0.5rem] w-full absolute left-0 flex justify-between">
+    <div className="backdrop-blur-2xl text-white backdrop-brightness-90 md:px-[2rem] px-[1rem] md:pr-[3rem] py-[0.5rem] w-full absolute left-0 flex justify-between">
       {" "}
       <div className="flex justify-start w-fit items-start">
         <input
@@ -101,7 +102,7 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
           onChange={handleTitleChange}
           value={title}
           type="text"
-          className="bg-transparent text-3xl font-semibold focus:bg-white p-2 rounded focus:text-black w-[30rem]"
+          className="bg-transparent text-xl md:text-2xl lg:text-3xl font-semibold focus:bg-white p-1 md:p-2 rounded focus:text-black md:w-[10rem] w-[5rem]"
         />{" "}
         {isUpdating && (
           <span className="relative flex h-2 w-3">
@@ -110,9 +111,10 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
           </span>
         )}
       </div>
-      <div className="flex items-center">
+      <div className="sm:flex hidden items-center">
         <NamedAvatarUi name={userDbData?.name as string} />
         <ShareBoardButton />
+       
       </div>
     </div>
   );

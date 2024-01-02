@@ -2,17 +2,13 @@
 import AsideItems from "@/components/dashboard/aside/AsideItems";
 import { updateBoardList } from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch } from "@/lib/redux-toolkit/hooks";
-import { ChevronDownIcon } from "lucide-react";
+import { Settings, X } from "lucide-react";
 import React, { useCallback, useState, useEffect } from "react";
 
-const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
+const SideSheet = () => {
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(updateBoardList(myBoards));
-  }, [dispatch, myBoards]);
-
-  const [hidden, toggleHidden] = useState(false);
+  const [hidden, toggleHidden] = useState(true);
 
   const handleAsideVisibility = useCallback(() => {
     toggleHidden((prev) => !prev);
@@ -50,21 +46,19 @@ const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
       style={{ transitionDuration: "0.5s" }}
       className={`${
         hidden
-          ? "-translate-x-[93%]   w-[1.3rem]  "
-          : "min-w-fit  w-fit relative"
-      }  h-full  transition-all   flex flex-col  `}
+          ? "lg:translate-x-[100%] translate-x-[100%]  w-[0rem] sm:w-[0rem]  "
+          : "md:min-w-fit  w-[25rem] relative"
+      }  h-full  transition-all   flex flex-col justify-start items-start `}
     >
-      <div className=" relative w-full flex p-1 z-50   ">
+      <div className=" relative w-full h-fit flex p-1 z-50   ">
         <div
           style={{ transitionDuration: "0.5s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 dark:text-white text-black absolute rounded-full top-[3.5rem] bg-white dark:bg-gray-900  w-fit p-1 ${
-            hidden
-              ? "translate-x-[100%] right-[0.5rem] rotate-[270deg] "
-              : "-right-[0.5rem] rotate-90 "
+          className={`transition-all duration-1000 bg-white dark:bg-gray-900  dark:text-white text-black absolute rounded-full top-[0rem]   w-fit p-1 mt-[1.4rem] right-0 ${
+            hidden ? " -translate-x-[90%]  " : "  "
           }`}
         >
-          <ChevronDownIcon size={22} />
+          {hidden ? <Settings size={20} /> : <X size={18} />}
         </div>{" "}
       </div>
       <div
@@ -73,10 +67,10 @@ const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
           hidden ? "opacity-0 " : ""
         }`}
       >
-        {!hidden && <AsideItems />}
+        {/* {!hidden && <AsideItems />} */}
       </div>
     </aside>
   );
 };
 
-export default AsideContainer;
+export default SideSheet;

@@ -1,6 +1,7 @@
 import { Board } from "@/components/dashboard/board/Board";
 import DashboardHeader from "./DashboardHeader";
 import { fetchBoard } from "@/actions/board/fetchBoard";
+import BoardView from "./BoardView";
 
 const DashBoard = async ({
   params,
@@ -25,13 +26,24 @@ const DashBoard = async ({
       }}
       className="flex relative bg-[image:var(--image-url) bg-contain flex-col border-gray-500 border-l  w-full "
     >
-      <DashboardHeader boardData={boardData as BoardDataType} />
-      <section className="h-full   w-full overflow-auto flex  ">
-        <Board
-          boardId={params.boardId}
-          boardData={boardData as BoardDataType}
-        />
-      </section>
+      {params.boardId !== "view" && (
+        <>
+          <DashboardHeader boardData={boardData as BoardDataType} />
+          <section className="h-full   w-full overflow-auto flex  ">
+            <Board
+              boardId={params.boardId}
+              boardData={boardData as BoardDataType}
+            />
+          </section>
+        </>
+      )}
+      {params.boardId === "view" && (
+        <>
+          <section className="h-full   w-full overflow-auto flex  ">
+            <BoardView />
+          </section>
+        </>
+      )}
     </div>
   );
 };

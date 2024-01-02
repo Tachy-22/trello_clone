@@ -7,7 +7,7 @@ const NamedAvatarUi = ({ name }: { name: string }) => {
       <div className="flex gap-3 items-center mr-3">
         <Avatar
           classNames={{
-            base: "bg-gradient-to-br text-xl  from-[#FFB457] to-[#FF705B]",
+            base: "bg-gradient-to-br lg:text-xl text-lg  from-[#FFB457] to-[#FF705B]",
           }}
           name={name
             ?.split(" ")

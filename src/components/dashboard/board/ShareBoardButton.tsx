@@ -12,10 +12,10 @@ const ShareBoardButton = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
-    <>
+    <div className="flex  items-center">
       <Button size="sm" color="default" onPress={onOpen} radius="sm">
-        <UserPlus size={15} />
-        <p className=" py-1 text-md">Share</p>
+        <UserPlus size={12} />
+        <p className=" py-1 text-md ">Share</p>
       </Button>
       <Modal size="3xl" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
@@ -31,7 +31,7 @@ const ShareBoardButton = () => {
           )}
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
 };
 

@@ -4,32 +4,53 @@
 
 
 
-body,
-html {
+* {
   scrollbar-width: thin;
   scrollbar-color: transparent transparent;
 
 }
- .scrollVisible {
-   scrollbar-color: rgb(50, 49, 49) transparent;
- }
+
+.scrollVisible {
+  scrollbar-color: rgb(50, 49, 49) transparent;
+}
 
 
 @-moz-document url-prefix() {
 
-  body,
-  html {
+  * {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0) transparent;
 
 
   }
-  .scrollVisible{
-      scrollbar-color: rgb(50, 49, 49) transparent;
+
+  .scrollVisible {
+    scrollbar-color: rgb(50, 49, 49) transparent;
   }
 }
 
-/* 
-*{
+.custom-shape-divider-bottom-1704131813 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1704131813 svg {
+  position: relative;
+  display: block;
+  width: calc(165% + 1.3px);
+  height: 184px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1704131813 .shape-fill {
+  fill: #FFFFFF;
+}
+
+
+/* *{
   border:0.5px solid red
 } */

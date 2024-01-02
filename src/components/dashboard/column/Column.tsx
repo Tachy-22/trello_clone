@@ -96,13 +96,13 @@ const Column = ({
       <Draggable draggableId={column?.columnIdentifier as string} index={index}>
         {(provided) => (
           <div
-            className="bg-slate-100 rounded-xl  flex flex-col gap- w-[18rem] h-fit"
+            className="bg-slate-100 rounded-xl   flex flex-col gap- w-[18rem] h-fit"
             {...provided.draggableProps}
             ref={provided.innerRef}
           >
             <div
               {...provided.dragHandleProps}
-              className=" px-4 py-2 flex justify-between gap-3 items-center"
+              className=" px-4 py-1 flex justify-between gap-2 items-center"
             >
               {isEditable ? (
                 <input
@@ -138,11 +138,12 @@ const Column = ({
                   {...provided.droppableProps}
                   //  isDraggingOver={snapshot.isDraggingOver}
                 >
-                  <TaskList tasks={tasks} />
+                  <TaskList tasks={tasks} column={column} />
                   {provided.placeholder}
                 </div>
               )}
             </Droppable>
+          
             <AddTask columnId={column?.id as string} />
           </div>
         )}

@@ -200,7 +200,7 @@ export const Board = ({
           >
             {(provided) => (
               <div
-                className="flex gap-3   w-fit "
+                className="flex gap-2   w-fit "
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >

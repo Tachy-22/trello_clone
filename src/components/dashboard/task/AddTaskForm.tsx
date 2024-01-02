@@ -29,11 +29,10 @@ const AddTaskForm = ({
       taskIdentifier: taskIdentifier,
     } as TaskType;
 
-
     console.log("newtask :", newTask);
 
     dispatch(updateTask(newTask));
-    
+
     console.log("add task");
     const currentColumn = currentBoardData?.columns?.find(
       (column) => column?.id === columnId
@@ -86,6 +85,7 @@ const AddTaskForm = ({
       <div className="py-2 px-2   border border-gray-300 rounded-md">
         {" "}
         <input
+          autoFocus
           className="outline-none text-black bg-white "
           type="text"
           name="columnName"

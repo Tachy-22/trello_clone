@@ -74,6 +74,8 @@ const NewColumnForm = ({ onClose }: { onClose: () => void }) => {
         <div className="py-2 px-2   border border-gray-300 rounded-md">
           {" "}
           <input
+            
+            autoFocus
             className="outline-none bg-white text-black"
             type="text"
             name="columnName"
