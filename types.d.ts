@@ -20,6 +20,7 @@ type userDbDataType =
       id: string;
       email: string;
       name: string | null | undefined;
+      invites: string[];
     }
   | null
   | undefined;
@@ -35,6 +36,7 @@ type BoardDataType =
       backgroundColor: string;
       backgroundImage: string;
       columnOrder: string[];
+      members?: string[];
     })
   | null
   | undefined;
@@ -43,5 +45,4 @@ type BoardListType =
   | ({
       boards: BoardDataType[] | null | undefined;
     } & userDbDataType)
- 
   | undefined;

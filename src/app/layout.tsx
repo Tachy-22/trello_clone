@@ -25,7 +25,7 @@ export default async function RootLayout({
   const email = user?.emailAddresses[0]?.emailAddress;
   const userDbData = await registerUser(email as string, name);
 
-  console.log("userDbData :", userDbData);
+ console.log("userDbData :", userDbData);
   return (
     <ClerkProvider>
       <html lang="en">

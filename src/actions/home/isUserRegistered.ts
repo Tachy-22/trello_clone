@@ -1,3 +1,4 @@
+"use server";
 import { prisma } from "@/lib/prisma";
 
 const isUserRegistered = async (email: string) => {
@@ -6,7 +7,8 @@ const isUserRegistered = async (email: string) => {
       email: email,
     },
   });
+  console.log("check;", user);
   return user;
 };
 
-export default   isUserRegistered
+export default isUserRegistered;

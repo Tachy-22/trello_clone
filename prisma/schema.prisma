@@ -14,6 +14,7 @@ model User {
   email   String   @unique
   name    String?
   boards  Board[]
+  invites String[]
 }
 
 model Board {
@@ -21,6 +22,7 @@ model Board {
   title    String
   author   User?      @relation(fields: [authorId], references: [id])
   authorId String?    @db.ObjectId
+  members String[]
   backgroundColor String
   backgroundImage String
   columns  Column[]

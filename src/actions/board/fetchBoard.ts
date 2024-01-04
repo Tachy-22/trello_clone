@@ -8,7 +8,7 @@ export async function fetchBoard(boardId: string, authorId: string) {
   try {
     const BoardData = await prisma.board.findFirst({
       where: {
-        authorId: authorId,
+        // authorId: authorId,
         id: boardId,
       },
       include: {

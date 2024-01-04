@@ -19,7 +19,7 @@ const DeleteBoardForm = ({
     setDeleting(true);
     deleteBoard(board?.id as string, board?.authorId as string)
       .then(() => {
-        router.push(`659047066b5756e45251aee7` as string);
+        router.push(`view` );
       })
       .then(() => {
         setDeleting(false);

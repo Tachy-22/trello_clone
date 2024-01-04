@@ -46,6 +46,8 @@ const BoardList = () => {
           </div>
         );
       })}
+
+      
     </div>
   );
 };
