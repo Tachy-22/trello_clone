@@ -1,7 +1,6 @@
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { MoreHorizontal } from "lucide-react";
 import DeleteBoardButton from "./DeleteBoardButton";
 
 const BoardList = () => {
@@ -38,16 +37,15 @@ const BoardList = () => {
                 }}
                 className="rounded-md w-[1.5rem] h-[1.5rem] border"
               />
+
               <p className=""> {board?.title}</p>
             </Link>
             <span className=" group-hover:block hidden pr-4">
-              <DeleteBoardButton board={board} />
+              <DeleteBoardButton type="delete" board={board} />
             </span>
           </div>
         );
       })}
-
-      
     </div>
   );
 };

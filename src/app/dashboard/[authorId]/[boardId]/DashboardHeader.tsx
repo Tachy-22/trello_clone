@@ -1,5 +1,8 @@
 "use client";
+import fetchBoardMembers from "@/actions/board/fetchBoardMembers";
+import fetchUserWithId from "@/actions/board/fetchUserWithId";
 import { updateBoardTitle } from "@/actions/board/updateBoardTitle";
+import isUserRegistered from "@/actions/home/isUserRegistered";
 import NamedAvatarUi from "@/components/dashboard/board/NamedAvatarUi";
 import ShareBoardButton from "@/components/dashboard/board/ShareBoardButton";
 import {
@@ -7,18 +10,48 @@ import {
   updateCurrentBoardData,
 } from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
-import React, { useCallback, useState } from "react";
+import { Avatar, AvatarGroup } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
+import React, { useCallback, useEffect, useState } from "react";
+import { toast } from "sonner";
 
+type memberDataType = {
+  email: string;
+  name: string | null;
+};
 
 const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
 
   const { userDbData, currentBoardData, boardList } = useAppSelector(
     (state) => state.board
   );
+
+  const isAMember =
+    boardData?.members?.filter((member) => member === userDbData?.email)
+      .length !== 0;
+
+  if (!isAMember) {
+    toast("You do not have access to this board");
+    router.push(`/dashboard/${userDbData?.id}/view`);
+  }
   console.log("userDbData mikyh :", userDbData);
   const [isUpdating, setIsUpdating] = useState(false);
   const [title, setTitle] = useState<string>(boardData?.title as string);
+  const [isEditable, setIsEditable] = useState<boolean>(false);
+  const [members, setMembers] = useState<memberDataType[] | null>(null);
+  const [admin, setAdmin] = useState<memberDataType | null>(null);
+  useEffect(() => {
+    fetchBoardMembers(currentBoardData?.members as string[]).then((result) => {
+      setMembers(result);
+    });
+  }, [currentBoardData?.members]);
+  useEffect(() => {
+    fetchUserWithId(currentBoardData?.authorId as string).then((result) =>
+      setAdmin(result)
+    );
+  }, [currentBoardData?.authorId]);
 
   const handleTitleChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,8 +62,10 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
 
   const handleTitleSubmission = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      setIsEditable(false);
       if (boardData?.title !== title) {
         setIsUpdating(true);
+
         const updatedBoard = {
           ...currentBoardData,
           title: title,
@@ -93,17 +128,31 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
     ]
   );
 
+  const initiateTitleEdit = useCallback(() => {
+    setIsEditable(true);
+  }, []);
+
   return (
     <div className="backdrop-blur-2xl text-white backdrop-brightness-90 md:px-[2rem] px-[1rem] md:pr-[3rem] py-[0.5rem] w-full absolute left-0 flex justify-between">
       {" "}
       <div className="flex justify-start w-fit items-start">
-        <input
-          onBlur={handleTitleSubmission}
-          onChange={handleTitleChange}
-          value={title}
-          type="text"
-          className="bg-transparent text-xl md:text-2xl lg:text-3xl font-semibold focus:bg-white p-1 md:p-2 rounded focus:text-black md:w-[10rem] w-[5rem]"
-        />{" "}
+        {isEditable ? (
+          <input
+            autoFocus
+            onBlur={handleTitleSubmission}
+            onChange={handleTitleChange}
+            value={title}
+            type="text"
+            className=" text-xl md:text-2xl lg:text-3xl text-elip font-semibold bg-white p-1 md:p-2 rounded text-black md:w-[10rem] w-[5rem]"
+          />
+        ) : (
+          <p
+            onClick={initiateTitleEdit}
+            className="text-xl md:text-2xl lg:text-3xl w-full  font-semibold p-1 md:p-2"
+          >
+            {title}
+          </p>
+        )}{" "}
         {isUpdating && (
           <span className="relative flex h-2 w-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -111,13 +160,52 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
           </span>
         )}
       </div>
-      <div className="sm:flex hidden items-center">
-        <NamedAvatarUi name={userDbData?.name as string} />
+      <div className="sm:flex gap-1 hidden items-center">
+        <div className="relative flex justify-center mix-blend-difference px-[1rem]">
+          <Avatar
+            classNames={{
+              base: "bg-gradient-to-br lg:text-xl text-lg  from-[#FFB457] to-[#FF705B]",
+            }}
+            name={returnInitials(admin?.name as string)}
+          />
+          <span className="absolute mx-auto  right-0 left-0 -bottom-[0.4rem] rounded-xl p-[0.1rem]  text-[0.7rem] bg-slate-100 text-black w-fit border text-center">
+            admin
+          </span>
+        </div>
+        <AvatarGroup>
+          {members?.map((member, index) => {
+            return (
+              <div key={index} className="relative">
+                <Avatar
+                  className={`${
+                    avatarColors[index % avatarColors.length]
+                  } lg:text-xl text-lg`}
+                  name={returnInitials(member?.name as string)}
+                />
+              </div>
+            );
+          })}
+        </AvatarGroup>
+
         <ShareBoardButton />
-       
       </div>
     </div>
   );
 };
 
 export default DashboardHeader;
+
+const returnInitials = (name: string) => {
+  const initials = name
+    ?.split(" ")
+    ?.map((name) => name[0])
+    ?.join("");
+  return initials;
+};
+
+const avatarColors = [
+  "bg-blue-400",
+  "bg-orange-400",
+  "bg-red-400",
+  "bg-pink-400",
+];

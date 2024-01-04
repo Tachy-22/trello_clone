@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-export async function updateBordMembers(
+export async function updateBoardMembers(
   boardId: string,
   authorId?: string,
   newMeberslist?: string[]

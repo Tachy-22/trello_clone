@@ -36,35 +36,6 @@ const Column = ({
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setIsEditable(false);
       if (column?.title !== title) {
-        // const updatedColumn = currentBoardData?.columns?.filter(
-        //   (col) => col.id === column.id
-        // );
-        // const updatedBoardList = Array.from(
-        //   boardList?.boards as BoardDataType[]
-        // );
-        // const index = boardList?.boards?.findIndex(
-        //   (obj) => obj?.id === column?.id
-        // );
-        // if (index == -1) {
-        //   const boardIndex = ((boardList?.boards?.length as number) -
-        //     1) as number;
-        //   updatedBoardList?.splice(boardIndex, 1);
-
-        //   updatedBoardList?.splice(boardIndex, 0, updatedBoard);
-        //   console.log(
-        //     "updatedBoardList",
-        //     updatedBoardList,
-        //     "boardIndex",
-        //     boardIndex,
-        //     boardList?.boards
-        //   );
-        // } else {
-        //   updatedBoardList?.splice(index as number, 1);
-        //   updatedBoardList?.splice(index as number, 0, updatedBoard);
-        //   console.log("updatedBoardList", updatedBoardList, "id", index);
-        // }
-        //  dispatch(updateBoardList({ ...boardList, boards: updatedBoardList }));
-
         updateColumnTitle(
           column?.id as string,
           column?.boardId as string,
@@ -89,7 +60,7 @@ const Column = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5 }}
+      initial={{ opacity: 0, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.2 }}
     >
@@ -102,7 +73,7 @@ const Column = ({
           >
             <div
               {...provided.dragHandleProps}
-              className=" px-4 py-1 flex justify-between gap-2 items-center"
+              className=" px-4 py-1 flex justify-between gap-2 items-center w-full overflow-hidden "
             >
               {isEditable ? (
                 <input
@@ -114,12 +85,12 @@ const Column = ({
                   className="bg-transparent   text-lg font-semibold bg-white p-2  rounded text-black w-full"
                 />
               ) : (
-                <h1
+                <h3
                   onClick={handleSetIsEditable}
-                  className="text-lg font-semibold text-black p-2"
+                  className="text-lg font-semibold text-black p-2 w-full  text-ellipsis overflow-hidden   "
                 >
-                  {title}
-                </h1>
+                  <span className=""> {title}</span>
+                </h3>
               )}
 
               <ColumnMenuButton board={currentBoardData} column={column} />
@@ -143,7 +114,7 @@ const Column = ({
                 </div>
               )}
             </Droppable>
-          
+
             <AddTask columnId={column?.id as string} />
           </div>
         )}

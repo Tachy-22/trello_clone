@@ -1,12 +1,13 @@
 "use client";
 import updateInvitedBoards from "@/actions/aside/updateInvitedBoards";
-import { updateBordMembers } from "@/actions/board/updateBoardMembers";
+import { updateBoardMembers } from "@/actions/board/updateBoardMembers";
 import isUserRegistered from "@/actions/home/isUserRegistered";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { Button, Code } from "@nextui-org/react";
-import { CopyIcon, Link } from "lucide-react";
+import { Check, CopyIcon, Link } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useCallback, useRef, useState } from "react";
+import { toast } from "sonner";
 
 const ShareBoardForm = () => {
   const memberInputRef = useRef<HTMLInputElement>(null);
@@ -18,8 +19,9 @@ const ShareBoardForm = () => {
   const parsedUrl = new URL(currentURL);
   const origin = parsedUrl.origin;
 
-  const [link, setLink] = useState("");
+  const [link, setLink] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const sendInvitationEmail = useCallback(
     (emailAddress: string, webLink: string) => {
@@ -58,7 +60,7 @@ const ShareBoardForm = () => {
                 newMemberEmail,
               ] as string[];
 
-              updateBordMembers(
+              updateBoardMembers(
                 currentBoardData?.id as string,
                 currentBoardData?.authorId,
                 updatedMembersList
@@ -69,6 +71,11 @@ const ShareBoardForm = () => {
                 sendInvitationEmail(
                   newMemberEmail,
                   `${origin}/dashboard/${newMember?.id}/${currentBoardData?.id}`
+                );
+                toast(
+                  newMember?.name +
+                    "has been added to " +
+                    currentBoardData?.title
                 );
               });
 
@@ -118,6 +125,7 @@ const ShareBoardForm = () => {
     currentBoardData?.authorId,
     currentBoardData?.id,
     currentBoardData?.members,
+    currentBoardData?.title,
     origin,
     sendInvitationEmail,
     userDbData?.email,
@@ -127,7 +135,12 @@ const ShareBoardForm = () => {
     navigator.clipboard
       .writeText(textToCopy)
       .then(() => {
-        alert("Text copied to clipboard: " + textToCopy);
+        setCopied(true);
+        toast("Text copied to clipboard: " + textToCopy);
+        // Reset setCopied to false after 3 seconds
+        setTimeout(() => {
+          setCopied(false);
+        }, 3000);
       })
       .catch((err) => {
         console.error("Error copying text: ", err);
@@ -163,22 +176,21 @@ const ShareBoardForm = () => {
             data-testid="ws-share-link-label"
           >
             Invite someone to this Workspace with a link:
-            <div className="flex gap-2">
-              <Code> {link}</Code>
-              <button
-                onClick={() => {
-                  copyText(link);
-                }}
-                className="text-gray-500  flex h-fit gap-1 items-center hover:text-gray-700 bg-black/10 p-2 rounded-md"
-                type="button"
-              >
-                <CopyIcon size={12} />
-              </button>
-            </div>
+            {link !== null && (
+              <div className="flex gap-2">
+                <Code> {link}</Code>
+                <button
+                  onClick={() => {
+                    copyText(link as string);
+                  }}
+                  className="text-gray-500  flex h-fit gap-1 items-center hover:text-gray-700 bg-black/10 p-2 rounded-md"
+                  type="button"
+                >
+                  {copied ? <Check size={12} /> : <CopyIcon size={12} />}
+                </button>
+              </div>
+            )}
           </span>
-          <button className="text-blue-500 hover:text-blue-700" type="button">
-            Disable link
-          </button>
         </div>
       </div>
     </div>

@@ -1,16 +1,26 @@
 "use client";
 import AsideItems from "@/components/dashboard/aside/AsideItems";
-import { updateBoardList } from "@/lib/redux-toolkit/boardSlice";
+import {
+  updateBoardList,
+  updateInvitedBoards,
+} from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch } from "@/lib/redux-toolkit/hooks";
 import { ChevronDownIcon } from "lucide-react";
 import React, { useCallback, useState, useEffect } from "react";
 
-const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
+const AsideContainer = ({
+  myBoards,
+  invitedBoards,
+}: {
+  myBoards: BoardListType;
+  invitedBoards: BoardDataType[];
+}) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(updateBoardList(myBoards));
-  }, [dispatch, myBoards]);
+    dispatch(updateInvitedBoards(invitedBoards));
+  }, [dispatch, myBoards, invitedBoards]);
 
   const [hidden, toggleHidden] = useState(false);
 
@@ -20,13 +30,9 @@ const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
 
   useEffect(() => {
     const setInitialHiddenState = () => {
-      // Set hidden to true on smaller screens (less than 768px width)
       if (window.innerWidth < 540) {
         toggleHidden(true);
       }
-      // else {
-      //   toggleHidden(false);
-      // }
     };
 
     // Set initial state on component mount
@@ -58,10 +64,10 @@ const AsideContainer = ({ myBoards }: { myBoards: BoardListType }) => {
         <div
           style={{ transitionDuration: "0.5s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 dark:text-white text-black absolute rounded-full top-[3.5rem] bg-white dark:bg-gray-900  w-fit p-1 ${
+          className={`transition-all duration-1000 dark:text-white text-black absolute   rounded-full top-[3.5rem] bg-white dark:bg-gray-900  w-fit p-1 ${
             hidden
               ? "translate-x-[100%] right-[0.5rem] rotate-[270deg] "
-              : "-right-[0.5rem] rotate-90 "
+              : "right-0 rotate-90 "
           }`}
         >
           <ChevronDownIcon size={22} />

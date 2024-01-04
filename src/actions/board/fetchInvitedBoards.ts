@@ -5,16 +5,22 @@ import { revalidatePath } from "next/cache";
 
 export async function fetchInvitedBoards(invites: string[]) {
   console.log("userId :", invites);
-  if (invites.length !== 0) {
+  if (invites === null || invites === undefined) {
+    return;
+  } else {
     try {
-      const myInvitedBoards = await prisma.board.findMany({
-        where: {
-          id: { in: invites },
-        },
-      });
-      console.log("my invited Boards inner inner :", myInvitedBoards);
-      revalidatePath("/myBoards");
-      return myInvitedBoards;
+      if (invites?.length === 0) {
+        return [];
+      } else {
+        const myInvitedBoards = await prisma.board.findMany({
+          where: {
+            id: { in: invites },
+          },
+        });
+        console.log("my invited Boards inner inner :", myInvitedBoards);
+        revalidatePath("/myBoards");
+        return myInvitedBoards;
+      }
     } catch (error) {
       console.error(error);
     }

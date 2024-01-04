@@ -11,7 +11,13 @@ import {
 import { MoreHorizontal } from "lucide-react";
 import DeleteBoardForm from "./DeleteBoardForm";
 
-const DeleteBoardButton = ({ board }: { board: BoardDataType }) => {
+const DeleteBoardButton = ({
+  board,
+  type,
+}: {
+  board: BoardDataType;
+  type: "delete" | "exit";
+}) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -38,7 +44,7 @@ const DeleteBoardButton = ({ board }: { board: BoardDataType }) => {
                 {board?.title}
               </ModalHeader>
               <ModalBody>
-                <DeleteBoardForm board={board} onClose={onClose} />
+                <DeleteBoardForm type={type} board={board} onClose={onClose} />
               </ModalBody>
             </>
           )}

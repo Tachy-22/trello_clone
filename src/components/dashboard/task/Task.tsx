@@ -17,9 +17,7 @@ const Task = ({
   index: number;
   column: ColumnType;
 }) => {
-  const {  currentBoardData } = useAppSelector(
-    (state) => state.board
-  );
+  const { currentBoardData } = useAppSelector((state) => state.board);
   const dispatch = useDispatch();
   const [isEditable, setIsEditable] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -37,34 +35,6 @@ const Task = ({
       setIsEditable(false);
 
       if (task?.content !== content) {
-        // const updatedColumn = currentBoardData?.columns?.filter(
-        //   (col) => col.id === column.id
-        // );
-        // const updatedBoardList = Array.from(
-        //   boardList?.boards as BoardDataType[]
-        // );
-        // const index = boardList?.boards?.findIndex(
-        //   (obj) => obj?.id === column?.id
-        // );
-        // if (index == -1) {
-        //   const boardIndex = ((boardList?.boards?.length as number) -
-        //     1) as number;
-        //   updatedBoardList?.splice(boardIndex, 1);
-
-        //   updatedBoardList?.splice(boardIndex, 0, updatedBoard);
-        //   console.log(
-        //     "updatedBoardList",
-        //     updatedBoardList,
-        //     "boardIndex",
-        //     boardIndex,
-        //     boardList?.boards
-        //   );
-        // } else {
-        //   updatedBoardList?.splice(index as number, 1);
-        //   updatedBoardList?.splice(index as number, 0, updatedBoard);
-        //   console.log("updatedBoardList", updatedBoardList, "id", index);
-        // }
-        //  dispatch(updateBoardList({ ...boardList, boards: updatedBoardList }));
         setIsUpdating(true);
         updateTaskContent(
           task?.id as string,
@@ -117,7 +87,7 @@ const Task = ({
     <Draggable draggableId={task?.taskIdentifier as string} index={index}>
       {(provided, snapshot) => (
         <div
-          className={`" p-1 pr-2 group hover:border-blue-400 focus:border-0 border-2 rounded-lg  border-gray-300 drop-shadow-md  flex gap-6 justify-between items-center  bg-white ${
+          className={`" p-1  group hover:border-blue-400 focus:border-0 border-2 rounded-lg   border-gray-300 drop-shadow-md  flex justify-between items-center  bg-white ${
             snapshot.isDragging
               ? "border-2 border-dashed  border-gray-500"
               : " border border-gray-200"
@@ -127,36 +97,38 @@ const Task = ({
           ref={provided.innerRef}
           //    isDragging={snapshot.isDragging}
         >
-          {isEditable ? (
-            <input
-              autoFocus
-              onBlur={handleContentSubmission}
-              onChange={handleContentChange}
-              value={content}
-              type="text"
-              className="bg-transparent     bg-white p-1  rounded text-black w-full"
-            />
-          ) : (
-            <h1
-              onClick={handleSetIsEditable}
-              className=" w-full  flex justify-between items-center text-black p-1"
-            >
-              <p> {content}</p>
-              {isUpdating && (
-                <span className="relative flex h-2 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                </span>
-              )}
-            </h1>
-          )}
+          <div className="w-full overflow-hidden flex " >
+            {isEditable ? (
+              <input
+                autoFocus
+                onBlur={handleContentSubmission}
+                onChange={handleContentChange}
+                value={content}
+                type="text"
+                className="bg-transparent      bg-white p-1  rounded text-black w-full"
+              />
+            ) : (
+              <h3
+                onClick={handleSetIsEditable}
+                className=" w-full  flex justify-between items-center   text-ellipsis overflow-hidden text-black p-1  "
+              >
+                <span className=""> {content}</span>
+                {isUpdating && (
+                  <span className="relative flex h-2 w-3">
+                    <span className="animate-ping absolute left-0  top-0 inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                  </span>
+                )}
+              </h3>
+            )}
+          </div>
           <Button
             onPress={handleTaskDeletion}
             isIconOnly
             variant="light"
             size="sm"
             color="danger"
-            className="group-hover:flex hidden"
+            className="group-hover:flex hidden " 
           >
             <Trash2Icon size={18} />
           </Button>

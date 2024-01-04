@@ -11,6 +11,7 @@ import {
 } from "@/lib/redux-toolkit/boardSlice";
 import { updateColumnOrderInDb } from "@/actions/board/updateColumnOrderInDb";
 import { updateTaskIdsInDb } from "@/actions/task/updateTaskIdsInDb";
+import { useRouter } from "next/navigation";
 
 export const Board = ({
   boardId,
@@ -19,9 +20,18 @@ export const Board = ({
   boardId: string;
   boardData: BoardDataType;
 }) => {
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const { tasks, userDbData, columns, columnOrder, currentBoardData } =
     useAppSelector((state) => state.board);
+
+  const isAMember =
+    boardData?.members?.filter((member) => member === userDbData?.email)
+      .length !== 0;
+
+  if (!isAMember) {
+    router.push(`/dashboard/${userDbData?.id}/view`);
+  }
 
   console.log(
     "currentBoardData :",

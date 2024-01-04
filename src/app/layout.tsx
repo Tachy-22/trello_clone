@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import NextProvider from "./Providers/NextProvider";
 import StoreProvider from "./Providers/StoreProvider";
 import registerUser from "@/actions/home/registerUser";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Trello",
@@ -25,7 +26,7 @@ export default async function RootLayout({
   const email = user?.emailAddresses[0]?.emailAddress;
   const userDbData = await registerUser(email as string, name);
 
- console.log("userDbData :", userDbData);
+  console.log("userDbData :", userDbData);
   return (
     <ClerkProvider>
       <html lang="en">
@@ -36,6 +37,7 @@ export default async function RootLayout({
             >
               <Header dbData={userDbData} />
               {children}
+              <Toaster />
             </body>
           </StoreProvider>
         </NextProvider>

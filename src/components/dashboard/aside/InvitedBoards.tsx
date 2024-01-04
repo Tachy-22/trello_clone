@@ -3,23 +3,26 @@ import { fetchInvitedBoards } from "@/actions/board/fetchInvitedBoards";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import DeleteBoardButton from "./DeleteBoardButton";
+import { Skeleton } from "@nextui-org/react";
 
 const InvitedBoards = () => {
-  const { userDbData } = useAppSelector((state) => state.board);
-  const [InvitedBoards, setInvitesBoards] = useState<BoardDataType[]>([]);
-  useLayoutEffect(() => {
-    const fetchInvites = async () => {
-      console.log(" userDbData?.invites,", userDbData?.invites);
-      const invites = await fetchInvitedBoards(userDbData?.invites as string[]);
-      setInvitesBoards(invites as BoardDataType[]);
-      console.log("invites", invites);
-    };
-    fetchInvites();
-  }, [userDbData?.invites]);
+  const { userDbData, invitedBoards } = useAppSelector((state) => state.board);
+  // const [InvitedBoards, setInvitesBoards] = useState<BoardDataType[] | null>(
+  //   null
+  // );
+  // useEffect(() => {
+  //   const fetchInvites = async () => {
+  //     console.log(" userDbData?.invites,", userDbData?.invites);
+  //     const invites = await fetchInvitedBoards(userDbData?.invites as string[]);
+  //     setInvitesBoards(invites as BoardDataType[]);
+  //     console.log("invites", invites);
+  //   };
+  //   fetchInvites();
+  // }, [userDbData?.invites]);
 
-  console.log("InvitedBoards:", InvitedBoards);
+  console.log("InvitedBoards:", invitedBoards);
   const pathname = usePathname();
 
   return (
@@ -30,7 +33,7 @@ const InvitedBoards = () => {
       </div>
       <div className="h-full">
         <div className="flex flex-col">
-          {InvitedBoards?.map((board) => {
+          {invitedBoards?.map((board) => {
             const color1 = board?.backgroundColor.split("-")[0];
             const color2 = board?.backgroundColor.split("-")[1];
 
@@ -59,13 +62,25 @@ const InvitedBoards = () => {
                   />
                   <p className=""> {board?.title}</p>
                 </Link>
-                <span className="  hidden pr-4">
-                  <DeleteBoardButton board={board} />
+                <span className="group-hover:block  hidden pr-4">
+                  <DeleteBoardButton type="exit" board={board} />
                 </span>
               </div>
             );
           })}
         </div>
+        {InvitedBoards === null && (
+          <div className="flex flex-col pb-[2rem] px-[1rem] gap-2">
+            {userDbData?.invites.map((skel) => {
+              return (
+                <div key={skel} className="flex gap-2 items-center">
+                  <Skeleton className="w-[2rem] h-[2rem]  rounded-md " />
+                  <Skeleton className="w-full h-[1.5rem] rounded-md " />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

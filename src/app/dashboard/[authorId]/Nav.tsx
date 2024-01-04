@@ -5,10 +5,15 @@ import { fetchBoards } from "@/actions/board/fetchaBoards";
 
 const Nav = async ({ params }: { params: string }) => {
   console.log("params.authorId :", params);
-  const myBoards = await fetchBoards(params);
-    console.log("myBoards i kr:", myBoards);
+  const boards = await fetchBoards(params);
+  console.log("myBoards i kr:", boards?.myBoards);
 
-  return <AsideContainer myBoards={myBoards as BoardListType} />;
+  return (
+    <AsideContainer
+      invitedBoards={boards?.invitedBoards as BoardDataType[]}
+      myBoards={boards?.myBoards as BoardListType}
+    />
+  );
 };
 
 export default Nav;
