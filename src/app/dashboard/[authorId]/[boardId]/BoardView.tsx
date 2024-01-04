@@ -1,4 +1,5 @@
 "use client";
+import getBackground from "@/controls/getBackground";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { User } from "lucide-react";
 import Link from "next/link";
@@ -17,19 +18,12 @@ const BoardView = () => {
         <ul className="flex md:flex gap-4 py-[2rem] overflow-auto scrollVisible">
           {/* map through the list of user's board and display them */}
           {boardList?.boards?.map((board, index) => {
-            const color1 = board?.backgroundColor.split("-")[0];
-            const color2 = board?.backgroundColor.split("-")[1];
-
-            const background =
-              board?.backgroundColor !== ""
-                ? `linear-gradient(to  right,  ${color1} 0%,${color2} 100%)`
-                : `url(${board?.backgroundImage})`;
             return (
               <Link
                 key={index}
                 href={`${board?.id}`}
                 style={{
-                  background: background,
+                  background: getBackground(board),
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}

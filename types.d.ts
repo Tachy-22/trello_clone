@@ -46,3 +46,16 @@ type BoardListType =
       boards: BoardDataType[] | null | undefined;
     } & userDbDataType)
   | undefined;
+
+type memberDataType = {
+  email: string;
+  name: string | null;
+};
+
+
+type CardType2 = {
+  url: string;
+  title: string;
+  content: string;
+  id: number;
+};

@@ -16,13 +16,12 @@ const AsideContainer = ({
   invitedBoards: BoardDataType[];
 }) => {
   const dispatch = useAppDispatch();
+  const [hidden, toggleHidden] = useState(false);
 
   useEffect(() => {
     dispatch(updateBoardList(myBoards));
     dispatch(updateInvitedBoards(invitedBoards));
   }, [dispatch, myBoards, invitedBoards]);
-
-  const [hidden, toggleHidden] = useState(false);
 
   const handleAsideVisibility = useCallback(() => {
     toggleHidden((prev) => !prev);

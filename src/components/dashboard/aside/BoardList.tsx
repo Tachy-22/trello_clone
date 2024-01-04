@@ -2,22 +2,15 @@ import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import DeleteBoardButton from "./DeleteBoardButton";
+import getBackground from "@/controls/getBackground";
 
 const BoardList = () => {
-  const { userDbData, boardList } = useAppSelector((state) => state.board);
+  const { boardList } = useAppSelector((state) => state.board);
   const pathname = usePathname();
-  console.log("myBoards :", boardList, pathname.split("/").at(-1));
 
   return (
     <div className="flex flex-col">
       {boardList?.boards?.map((board) => {
-        const color1 = board?.backgroundColor.split("-")[0];
-        const color2 = board?.backgroundColor.split("-")[1];
-
-        const background =
-          board?.backgroundColor !== ""
-            ? `linear-gradient(to  right,  ${color1} 0%,${color2} 100%)`
-            : `url(${board?.backgroundImage})`;
         return (
           <div
             className={` transition-all duration-250 group   flex hover:bg-black/10 justify-between items-center w-full ${
@@ -31,7 +24,7 @@ const BoardList = () => {
             >
               <div
                 style={{
-                  background: background,
+                  background: getBackground(board),
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}

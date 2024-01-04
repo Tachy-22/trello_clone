@@ -2,51 +2,33 @@
 import fetchBoardMembers from "@/actions/board/fetchBoardMembers";
 import fetchUserWithId from "@/actions/board/fetchUserWithId";
 import { updateBoardTitle } from "@/actions/board/updateBoardTitle";
-import isUserRegistered from "@/actions/home/isUserRegistered";
-import NamedAvatarUi from "@/components/dashboard/board/NamedAvatarUi";
 import ShareBoardButton from "@/components/dashboard/board/ShareBoardButton";
-import {
-  updateBoardList,
-  updateCurrentBoardData,
-} from "@/lib/redux-toolkit/boardSlice";
+import useIsABoardMember from "@/controls/useIsABoardMember";
+import { updateBoardList } from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { Avatar, AvatarGroup } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
-import { toast } from "sonner";
-
-type memberDataType = {
-  email: string;
-  name: string | null;
-};
 
 const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
-  const router = useRouter();
-  const dispatch = useAppDispatch();
+  useIsABoardMember(boardData);
 
-  const { userDbData, currentBoardData, boardList } = useAppSelector(
+  const dispatch = useAppDispatch();
+  const { currentBoardData, boardList } = useAppSelector(
     (state) => state.board
   );
 
-  const isAMember =
-    boardData?.members?.filter((member) => member === userDbData?.email)
-      .length !== 0;
-
-  if (!isAMember) {
-    toast("You do not have access to this board");
-    router.push(`/dashboard/${userDbData?.id}/view`);
-  }
-  console.log("userDbData mikyh :", userDbData);
   const [isUpdating, setIsUpdating] = useState(false);
   const [title, setTitle] = useState<string>(boardData?.title as string);
   const [isEditable, setIsEditable] = useState<boolean>(false);
   const [members, setMembers] = useState<memberDataType[] | null>(null);
   const [admin, setAdmin] = useState<memberDataType | null>(null);
+
   useEffect(() => {
     fetchBoardMembers(currentBoardData?.members as string[]).then((result) => {
-      setMembers(result);
+      setMembers(result as memberDataType[]);
     });
   }, [currentBoardData?.members]);
+
   useEffect(() => {
     fetchUserWithId(currentBoardData?.authorId as string).then((result) =>
       setAdmin(result)
@@ -85,19 +67,10 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
           updatedBoardList?.splice(boardIndex, 1);
 
           updatedBoardList?.splice(boardIndex, 0, updatedBoard);
-          console.log(
-            "updatedBoardList",
-            updatedBoardList,
-            "boardIndex",
-            boardIndex,
-            boardList?.boards
-          );
         } else {
           updatedBoardList?.splice(index as number, 1);
 
           updatedBoardList?.splice(index as number, 0, updatedBoard);
-
-          console.log("updatedBoardList", updatedBoardList, "id", index);
         }
 
         dispatch(

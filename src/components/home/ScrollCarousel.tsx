@@ -39,9 +39,9 @@ const Card = ({ card }: { card: CardType2 }) => {
       <Image
         src={card.url}
         className="  transition-transform h-full w-full  duration-300 "
-        height={420}
+        height={483}
         width={720}
-        alt="pop"
+        alt="illustration"
       />
       <p className="text-md  bg-white/40 dark:bg-gray-900 rounded-lg p-3 mt-4">
         {card.content}
@@ -52,30 +52,23 @@ const Card = ({ card }: { card: CardType2 }) => {
 
 export default ScrollCarousel;
 
-type CardType2 = {
-  url: string;
-  title: string;
-  content: string;
-  id: number;
-};
-
 const cards: CardType2[] = [
   {
-    url: "/Carousel_image_Boards_2x.webp",
+    url: "/CarouselBoards.webp",
     title: "Boards",
     content:
       "Trello boards keep tasks organized and work moving forward. In a glance, see everything from “things to do” to “aww yeah, we did it!",
     id: 1,
   },
   {
-    url: "/Carousel_image_Cards_2x.webp",
+    url: "/CarouselCards.webp",
     title: "Cards",
     content:
       "The different stages of a task. Start as simple as To Do, Doing or Done—or build a workflow custom fit to your team’s needs. There’s no wrong way to Trello.",
     id: 2,
   },
   {
-    url: "/Carousel_image_Lists_2x.webp",
+    url: "/CarouselLists.webp",
     title: "Lists",
     content:
       "Cards represent tasks and ideas and hold all the information to get the job done. As you make progress, move cards across lists to show their status.",
