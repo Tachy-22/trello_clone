@@ -18,7 +18,7 @@ const Features = () => {
           done. Learn more in our guide for getting started.
         </p>
       </div>
-      <div className=" flex lg:p-[2rem] py-[1rem]">
+      <div className=" flex max-w-screen w-full overflow-hidden ">
         <ScrollCarousel />
       </div>
     </div>

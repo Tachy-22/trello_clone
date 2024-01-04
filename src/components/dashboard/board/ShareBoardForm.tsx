@@ -74,7 +74,7 @@ const ShareBoardForm = () => {
                 );
                 toast(
                   newMember?.name +
-                    "has been added to " +
+                    " has been added to " +
                     currentBoardData?.title
                 );
               });

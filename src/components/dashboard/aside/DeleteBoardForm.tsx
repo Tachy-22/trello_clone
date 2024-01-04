@@ -46,9 +46,6 @@ const DeleteBoardForm = ({
             })
         : exitInviteBoard(userDbData?.email as string, updatedInvites)
             .then(() => {
-              router.push(`view`);
-            })
-            .then(() => {
               const updatedMembersList = board?.members?.filter(
                 (email) => email !== userDbData?.email
               );
@@ -63,6 +60,9 @@ const DeleteBoardForm = ({
               dispatch(updateInvitedBoards(updatedInvitedBoardList));
               setDeleting(false);
               onClose();
+            })
+            .then(() => {
+              router.push(`view`);
             });
     }
   }, [

@@ -68,7 +68,10 @@ const HorizontalScrollCarousel = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["1%", "-85%"]);
 
   return (
-    <section ref={targetRef} className="relative overflow-x-clip  h-[150vh]  ">
+    <section
+      ref={targetRef}
+      className=" overflow-x-clip max-w-[100vw]  h-[150vh]  "
+    >
       <div className="sticky top-10 flex  h-fit py-[3rem] items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-4">
           {cards.map((card) => {
@@ -76,7 +79,7 @@ const HorizontalScrollCarousel = () => {
           })}
         </motion.div>
       </div>
-      <div className=" h-[70%]">
+      <div className=" h-[70%] w-full">
         <picture>
           <source
             media="(max-width: 810px)"
@@ -101,11 +104,9 @@ const CardUi = ({ card }: { card: CardType }) => {
   return (
     <Card
       key={card.id}
-      className="p h-[18rem] min-h-full lg:w-[30vw]  w-[60vw] shadow-lg"
+      className="p h-[18rem] min-h-full lg:w-[30vw]  w-[80vw] shadow-lg"
     >
-      <CardHeader
-        className={` ${card.color} pb-0  px-4 flex-col items-start `}
-      >
+      <CardHeader className={` ${card.color} pb-0  px-4 flex-col items-start `}>
         <Image
           src={card.url}
           alt="alt"

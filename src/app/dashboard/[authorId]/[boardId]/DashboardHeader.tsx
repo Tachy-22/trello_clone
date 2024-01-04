@@ -6,7 +6,7 @@ import ShareBoardButton from "@/components/dashboard/board/ShareBoardButton";
 import useIsABoardMember from "@/controls/useIsABoardMember";
 import { updateBoardList } from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
-import { Avatar, AvatarGroup } from "@nextui-org/react";
+import { Avatar, AvatarGroup, Tooltip } from "@nextui-org/react";
 import React, { useCallback, useEffect, useState } from "react";
 
 const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
@@ -133,15 +133,17 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
           </span>
         )}
       </div>
-      <div className="sm:flex gap-1 hidden items-center">
+      <div className="sm:flex gap-1 hidden items-center cursor-pointer">
         <div className="relative flex justify-center mix-blend-difference px-[1rem]">
-          <Avatar
-            classNames={{
-              base: "bg-gradient-to-br lg:text-xl text-lg  from-[#FFB457] to-[#FF705B]",
-            }}
-            name={returnInitials(admin?.name as string)}
-          />
-          <span className="absolute mx-auto  right-0 left-0 -bottom-[0.4rem] rounded-xl p-[0.1rem]  text-[0.7rem] bg-slate-100 text-black w-fit border text-center">
+          <Tooltip content={admin?.email}>
+            <Avatar
+              classNames={{
+                base: "bg-gradient-to-br z-0 lg:text-xl text-lg  from-[#FFB457] to-[#FF705B]",
+              }}
+              name={returnInitials(admin?.name as string)}
+            />
+          </Tooltip>
+          <span className="absolute mx-auto  right-0 left-0 -bottom-[0.6rem] rounded-md px-[0.1rem] z-0 text-[0.7rem]  text-black w-fit  text-center bg-gradient-to-br  from-[#FFB457] to-[#FF705B]">
             admin
           </span>
         </div>
@@ -149,12 +151,14 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
           {members?.map((member, index) => {
             return (
               <div key={index} className="relative">
-                <Avatar
-                  className={`${
-                    avatarColors[index % avatarColors.length]
-                  } lg:text-xl text-lg`}
-                  name={returnInitials(member?.name as string)}
-                />
+                <Tooltip content={member?.email}>
+                  <Avatar
+                    className={`${
+                      avatarColors[index % avatarColors.length]
+                    } lg:text-xl text-lg`}
+                    name={returnInitials(member?.name as string)}
+                  />
+                </Tooltip>
               </div>
             );
           })}

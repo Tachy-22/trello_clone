@@ -10,7 +10,7 @@ const ScrollCarousel = () => {
 
   return (
     <section className=" h-fit z-30  ">
-      <div className="  flex h-fit items-center overflow-hidden text-white ">
+      <div className="  flex h-fit items-center overflow-hidden max-w-screen w-full text-white ">
         <motion.div
           style={{ translateX: x }}
           className="lg:grid lg:grid-cols-3 hidden gap-4 "

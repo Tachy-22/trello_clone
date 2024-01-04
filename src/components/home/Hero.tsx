@@ -8,7 +8,7 @@ const Hero = () => {
       <section className="flex flex-col lg:flex-row overflow-hidden items-center lg:items-start  justify-center gap-2  lg:pt-[8rem] pt-[4rem] md:-mb-[10rem] -mb-[3rem]  w-full ">
         <div className="flex flex-col w-fit lg:gap-3 gap-4  lg:px-4 px-2  py-6">
           <h1 className=" text-3xl lg:text-5xl text-center lg:text-start font-semibold   lg:flex lg:flex-col gap-3 block">
-            <span className="">Drello brings all your</span>{" "}
+            <span className="">Trello brings all your</span>{" "}
             <span>tasks, teammates, and</span>{" "}
             <span className="">tools together</span>
           </h1>

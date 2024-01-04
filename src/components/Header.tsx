@@ -90,7 +90,7 @@ export default function Header({ dbData }: { dbData: userDbDataType | null }) {
 
         {false && (
           <NavbarContent justify="end">
-            <NavbarItem className="hidden lg:flex">
+            <NavbarItem className="hidden ">
               <ThemeSwitcher />
             </NavbarItem>
             <NavbarItem className="hidden lg:flex">
@@ -105,7 +105,7 @@ export default function Header({ dbData }: { dbData: userDbDataType | null }) {
         )}
         {true && (
           <NavbarContent justify="end">
-            <NavbarItem className="hidden sm:flex">
+            <NavbarItem className="hidden ">
               <ThemeSwitcher />
             </NavbarItem>
 

@@ -11,14 +11,18 @@ const useIsABoardMember = (boardData: BoardDataType) => {
     const isAMember =
       boardData?.members?.filter((member) => member === userDbData?.email)
         .length !== 0 || boardData?.authorId === userDbData?.id;
-
     if (!isAMember) {
       toast("You do not have access to this board");
       router.push(`/dashboard/${userDbData?.id}/view`);
     }
+    if (boardData === undefined) {
+      router.push(`/error`);
+    }
+    
   }, [
     boardData?.authorId,
     boardData?.members,
+    boardData,
     router,
     userDbData?.email,
     userDbData?.id,
