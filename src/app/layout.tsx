@@ -24,9 +24,9 @@ export default async function RootLayout({
 
   const name = `${user?.firstName} ${user?.lastName}`;
   const email = user?.emailAddresses[0]?.emailAddress;
-  const userDbData = await registerUser(email as string, name);
+  const userDbData =
+    email !== undefined && (await registerUser(email as string, name));
 
-  console.log("userDbData :", userDbData);
   return (
     <ClerkProvider>
       <html lang="en">
@@ -35,7 +35,7 @@ export default async function RootLayout({
             <body
               className={` relative w-full min-h-screen    dark:bg-gray-900 bg-white transition-colors duration-250`}
             >
-              <Header dbData={userDbData} />
+              <Header dbData={userDbData as userDbDataType} />
               {children}
               <Toaster />
             </body>

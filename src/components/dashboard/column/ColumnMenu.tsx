@@ -1,34 +1,34 @@
 import { deleteColumn } from "@/actions/column/deleteColumn";
+import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { Button } from "@nextui-org/react";
 import { ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useState } from "react";
 
-const ColumnMenu = ({
-  column,
-  board,
-}: {
-  column: ColumnType;
-  board: BoardDataType;
-}) => {
+const ColumnMenu = ({ column }: { column: ColumnType }) => {
   const [deleteStatus, setDeleteStatus] = useState(false);
   const [deleting, setDeleting] = useState<boolean>(false);
-  const router = useRouter();
+  const { currentBoardData } = useAppSelector((state) => state.board);
 
   const handleBoardDeletion = useCallback(() => {
     setDeleting(true);
-    const updatedColumnOrder = board?.columnOrder?.filter(
+    const updatedColumnOrder = currentBoardData?.columnOrder?.filter(
       (columnIdentifier) => columnIdentifier !== column.columnIdentifier
     ) as string[];
-    console.log("newColumnOrder :", updatedColumnOrder);
+
     deleteColumn(
       column?.id as string,
-      board?.id as string,
+      currentBoardData?.id as string,
       updatedColumnOrder
     ).then(() => {
       setDeleting(false);
     });
-  }, [board?.id, column?.id, board?.columnOrder, column.columnIdentifier]);
+  }, [
+    currentBoardData?.id,
+    column?.id,
+    currentBoardData?.columnOrder,
+    column.columnIdentifier,
+  ]);
 
   return (
     <div>

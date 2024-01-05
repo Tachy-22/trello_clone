@@ -1,7 +1,6 @@
 "use client";
 import { motion, useTransform, useScroll } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
 
 const ScrollCarousel = () => {
   const { scrollYProgress } = useScroll();

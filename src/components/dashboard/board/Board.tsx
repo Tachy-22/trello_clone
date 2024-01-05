@@ -1,18 +1,8 @@
 "use client";
-import { DragDropContext, DropResult, Droppable } from "@hello-pangea/dnd";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 import ColumnList from "../column/ColumnList";
 import NewColumnWidget from "../column/NewColumnWidget";
-import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
-import {
-  updateColumnOrder,
-  updateColumns,
-  updateCurrentBoardData,
-} from "@/lib/redux-toolkit/boardSlice";
-import { updateColumnOrderInDb } from "@/actions/board/updateColumnOrderInDb";
-import { updateTaskIdsInDb } from "@/actions/task/updateTaskIdsInDb";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+
 import useDragDropContext from "@/controls/useDragDropContext";
 import useCurentBoardStateUpdate from "@/controls/useCurentBoardStateUpdate";
 import useIsABoardMember from "@/controls/useIsABoardMember";

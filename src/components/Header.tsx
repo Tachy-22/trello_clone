@@ -1,6 +1,14 @@
 "use client";
-import React, { useEffect } from "react";
-import { UserButton, useAuth, useUser } from "@clerk/nextjs";
+import React, { useEffect, useMemo } from "react";
+import {
+  SignIn,
+  SignInButton,
+  SignUp,
+  SignUpButton,
+  UserButton,
+  useAuth,
+  useUser,
+} from "@clerk/nextjs";
 
 import {
   Navbar,
@@ -20,43 +28,33 @@ import { useDispatch } from "react-redux";
 import { updateUserDbData } from "@/lib/redux-toolkit/boardSlice";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 
-export default function Header({ dbData }: { dbData: userDbDataType | null }) {
-  //   const { isLoaded, userId } = useAuth();
-  //   const { isSignedIn, user } = useUser();
-
+export default function Header({
+  dbData,
+}: {
+  dbData: userDbDataType | null | undefined;
+}) {
   const dispatch = useDispatch();
   const { userDbData } = useAppSelector((state) => state.board);
-
   useEffect(() => {
-    userDbData === null && dispatch(updateUserDbData(dbData));
+    userDbData === null &&
+      dbData !== undefined &&
+      dispatch(updateUserDbData(dbData));
   }, [dispatch, dbData, userDbData]);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
-
-  //  console.log("user :", userId, isSignedIn, user, isLoaded);
-
-  const navLinks = [
-    { href: "/", text: "Home" },
-    {
-      href: `/dashboard/${userDbData?.id as string}/view`,
-      text: "Dashboard",
-    },
-    { href: "/contact", text: "Contact" },
-    { href: "/about", text: "About" },
-  ];
+  const navLinks = useMemo(
+    () => [
+      { href: "/", text: "Home" },
+      {
+        href: `/dashboard/${userDbData?.id as string}/view`,
+        text: "Dashboard",
+      },
+      { href: "/contact", text: "Contact" },
+      { href: "/about", text: "About" },
+    ],
+    [userDbData?.id]
+  );
 
   return (
     <>
@@ -88,22 +86,24 @@ export default function Header({ dbData }: { dbData: userDbDataType | null }) {
           ))}
         </NavbarContent>
 
-        {false && (
+        {!dbData && ( 
           <NavbarContent justify="end">
             <NavbarItem className="hidden ">
               <ThemeSwitcher />
             </NavbarItem>
-            <NavbarItem className="hidden lg:flex">
-              <Link href="#">Login</Link>
+            <NavbarItem>
+              <div className="rounded-lg p-2 px-[2rem] hover:bg-black/10 transition-color duration-200">
+                <SignUpButton />
+              </div>
             </NavbarItem>
             <NavbarItem>
-              <Button as={Link} color="primary" href="#" variant="flat">
-                Sign Up
-              </Button>
+              <div className="rounded-lg hover:bg-blue-300 animate-pulse p-2 px-[2rem] bg-blue-400 text-white ">
+                <SignInButton />
+              </div>
             </NavbarItem>
           </NavbarContent>
         )}
-        {true && (
+        {dbData && (
           <NavbarContent justify="end">
             <NavbarItem className="hidden ">
               <ThemeSwitcher />
@@ -118,18 +118,7 @@ export default function Header({ dbData }: { dbData: userDbDataType | null }) {
         <NavbarMenu>
           {navLinks.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === menuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                className="w-full"
-                href={item.href}
-                size="lg"
-              >
+              <Link className="w-full" href={item.href} size="lg">
                 {item.text}
               </Link>
             </NavbarMenuItem>
