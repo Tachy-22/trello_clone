@@ -14,9 +14,9 @@ export const Board = ({ boardData }: { boardData: BoardDataType }) => {
 
   return (
     <div
-      className={`  flex gap-2 h-full pt-[5rem] p-[1.5rem] oveflow-auto scrollVisible snap-end  `}
+      className={`  flex gap-2 h-full pt-[4rem]  oveflow-auto scrollVisible snap-end  `}
     >
-      <div className=" flex w-full  py-6 px-2 gap-4  ">
+      <div className=" flex w-full  py-6  gap-4  ">
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable
             droppableId="all-columns"
