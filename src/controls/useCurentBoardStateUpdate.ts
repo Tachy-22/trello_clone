@@ -6,6 +6,7 @@ import { useEffect } from "react";
 const useCurentBoardStateUpdate = (boardData: BoardDataType) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
+    boardData && dispatch(updateCurrentBoardData(boardData));
     const initialColumnOrder = boardData?.columns?.map(
       (column) => column?.columnIdentifier
     ) as string[];
@@ -15,7 +16,6 @@ const useCurentBoardStateUpdate = (boardData: BoardDataType) => {
         boardData?.authorId as string,
         initialColumnOrder
       );
-    dispatch(updateCurrentBoardData(boardData));
   }, [boardData, dispatch]);
   return;
 };

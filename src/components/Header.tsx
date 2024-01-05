@@ -1,14 +1,6 @@
 "use client";
 import React, { useEffect, useMemo } from "react";
-import {
-  SignIn,
-  SignInButton,
-  SignUp,
-  SignUpButton,
-  UserButton,
-  useAuth,
-  useUser,
-} from "@clerk/nextjs";
+import { SignInButton, SignUpButton, UserButton, useAuth } from "@clerk/nextjs";
 
 import {
   Navbar,
@@ -16,7 +8,6 @@ import {
   NavbarContent,
   NavbarItem,
   Link,
-  Button,
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
@@ -35,6 +26,7 @@ export default function Header({
 }) {
   const dispatch = useDispatch();
   const { userDbData } = useAppSelector((state) => state.board);
+  const { isLoaded } = useAuth();
   useEffect(() => {
     userDbData === null &&
       dbData !== undefined &&
@@ -86,7 +78,7 @@ export default function Header({
           ))}
         </NavbarContent>
 
-        {!dbData && (
+        {!isLoaded && (
           <NavbarContent justify="end">
             <NavbarItem className="hidden ">
               <ThemeSwitcher />
@@ -103,7 +95,7 @@ export default function Header({
             </NavbarItem>
           </NavbarContent>
         )}
-        {dbData && (
+        {isLoaded && (
           <NavbarContent justify="end">
             <NavbarItem className="hidden ">
               <ThemeSwitcher />

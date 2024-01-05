@@ -1,7 +1,5 @@
 import Features from "@/components/home/Features";
 import Hero from "@/components/home/Hero";
-import registerUser from "@/actions/home/registerUser";
-import { currentUser } from "@clerk/nextjs";
 import Targets from "@/components/home/Targets";
 import BoardViews from "@/components/home/BoardViews";
 import Logos from "@/components/home/Logos";

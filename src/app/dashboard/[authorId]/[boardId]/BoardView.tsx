@@ -16,7 +16,6 @@ const BoardView = () => {
       </div>
       <div className="overflow-hidden">
         <ul className="flex md:flex gap-4 py-[2rem] overflow-auto scrollVisible">
-          {/* map through the list of user's board and display them */}
           {boardList?.boards?.map((board, index) => {
             return (
               <Link
@@ -36,6 +35,15 @@ const BoardView = () => {
               </Link>
             );
           })}
+          {boardList?.boards?.length === 0 && (
+            <p className="text-blue-400/50 text-sm px-2 w-full flex flex-col">
+              <span className=""> You currently dont have any boards.</span>
+              <span className="">
+                {" "}
+                click the &quot;+&quot; icon to get started !
+              </span>
+            </p>
+          )}
         </ul>
       </div>
     </div>

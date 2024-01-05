@@ -42,7 +42,10 @@ const BoardList = () => {
       {boardList?.boards?.length === 0 && (
         <p className="text-blue-400/50 text-sm px-2 w-full flex flex-col">
           <span className=""> You currently dont have any boards.</span>
-          <span className=""> click the "+" icon to get started !</span>
+          <span className="">
+            {" "}
+            click the &quot;+&quot; icon to get started !
+          </span>
         </p>
       )}
     </div>

@@ -10,14 +10,14 @@ import { Avatar, AvatarGroup, Tooltip } from "@nextui-org/react";
 import React, { useCallback, useEffect, useState } from "react";
 
 const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
-  useIsABoardMember(boardData);
+ // useIsABoardMember(boardData);
 
   const dispatch = useAppDispatch();
   const { currentBoardData, boardList } = useAppSelector(
     (state) => state.board
   );
 
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [isUpdating, setIsUpdating] = useState<boolean>(false);
   const [title, setTitle] = useState<string>(boardData?.title as string);
   const [isEditable, setIsEditable] = useState<boolean>(false);
   const [members, setMembers] = useState<memberDataType[] | null>(null);
@@ -30,9 +30,11 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
   }, [currentBoardData?.members]);
 
   useEffect(() => {
-    fetchUserWithId(currentBoardData?.authorId as string).then((result) =>
-      setAdmin(result)
-    );
+    if (currentBoardData?.authorId !== undefined) {
+      fetchUserWithId(currentBoardData?.authorId as string).then((result) =>
+        setAdmin(result)
+      );
+    }
   }, [currentBoardData?.authorId]);
 
   const handleTitleChange = useCallback(
@@ -143,7 +145,7 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
               name={returnInitials(admin?.name as string)}
             />
           </Tooltip>
-          <span className="absolute mx-auto  right-0 left-0 -bottom-[0.6rem] rounded-md px-[0.1rem] z-0 text-[0.7rem]  text-black w-fit  text-center bg-gradient-to-br  from-[#FFB457] to-[#FF705B]">
+          <span className="absolute mx-auto  right-0 left-0 -bottom-[0.6rem] rounded-sm px-[0.1rem] z-0 text-[0.7rem]  text-blue-400 w-fit  text-center bg-black/40">
             admin
           </span>
         </div>

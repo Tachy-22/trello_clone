@@ -5,6 +5,7 @@ import {
   updateInvitedBoards,
 } from "@/lib/redux-toolkit/boardSlice";
 import { useAppDispatch } from "@/lib/redux-toolkit/hooks";
+import { useAuth } from "@clerk/nextjs";
 import { ChevronDownIcon } from "lucide-react";
 import React, { useCallback, useState, useEffect } from "react";
 
@@ -17,6 +18,8 @@ const AsideContainer = ({
 }) => {
   const dispatch = useAppDispatch();
   const [hidden, toggleHidden] = useState(false);
+  const { isLoaded, userId, sessionId, getToken } = useAuth();
+  console.log("isLoaded :", isLoaded,userId);
 
   useEffect(() => {
     dispatch(updateBoardList(myBoards));
@@ -49,6 +52,8 @@ const AsideContainer = ({
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  // In case the user signs out while on the page.
 
   return (
     <aside

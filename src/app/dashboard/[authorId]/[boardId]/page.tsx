@@ -22,21 +22,10 @@ const DashBoard = async ({
           }}
           className="flex relative h-full  bg-contain flex-col border-gray-500 border-l  w-full "
         >
-          {params.boardId !== "view" && (
-            <>
-              <DashboardHeader boardData={boardData as BoardDataType} />
-              <section className="h-full   w-full overflow-auto flex px-2 ">
-                <Board boardData={boardData as BoardDataType} />
-              </section>
-            </>
-          )}
-          {params.boardId === "view" && (
-            <>
-              <section className="h-full   w-full overflow-auto flex  ">
-                <BoardView />
-              </section>
-            </>
-          )}
+          <DashboardHeader boardData={boardData as BoardDataType} />
+          <section className="h-full   w-full overflow-auto flex px-2 ">
+            <Board boardData={boardData as BoardDataType} />
+          </section>
         </div>
       ) : (
         <>
@@ -47,7 +36,7 @@ const DashBoard = async ({
               </section>
             </>
           ) : (
-            <div>No such board exists</div>
+            <div>No such board exists !</div>
           )}
         </>
       )}
