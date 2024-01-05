@@ -12,18 +12,18 @@ const ScrollCarousel = () => {
       <div className="  flex h-fit items-center overflow-hidden max-w-screen w-full text-white ">
         <motion.div
           style={{ translateX: x }}
-          className="lg:grid lg:grid-cols-3 hidden gap-4 "
+          className="lg:grid lg:grid-cols-3 hidden gap-6 "
         >
           {cards.map((card) => {
             return <Card card={card} key={card.id} />;
           })}
         </motion.div>
       </div>
-      <motion.div className="lg:hidden gap-4 mx-auto">
+      <div className="lg:hidden gap-6 mx-auto">
         {cards.map((card) => {
           return <Card card={card} key={card.id} />;
         })}
-      </motion.div>
+      </div>
     </section>
   );
 };
@@ -37,7 +37,7 @@ const Card = ({ card }: { card: CardType2 }) => {
       <p className=" font-semibold text-lg ">{card.title}</p>
       <Image
         src={card.url}
-        className="  transition-transform h-full w-full  duration-300 "
+        className="  transition-transform h-full w-full hover:scale-90   duration-300 "
         height={483}
         width={720}
         alt="illustration"
