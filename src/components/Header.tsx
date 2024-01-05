@@ -47,13 +47,13 @@ export default function Header({
     () => [
       { href: "/", text: "Home" },
       {
-        href: `/dashboard/${userDbData?.id as string}/view`,
+        href: `/dashboard/${dbData?.id as string}/view`,
         text: "Dashboard",
       },
       { href: "/contact", text: "Contact" },
       { href: "/about", text: "About" },
     ],
-    [userDbData?.id]
+    [dbData?.id]
   );
 
   return (
@@ -86,7 +86,7 @@ export default function Header({
           ))}
         </NavbarContent>
 
-        {!dbData && ( 
+        {!dbData && (
           <NavbarContent justify="end">
             <NavbarItem className="hidden ">
               <ThemeSwitcher />

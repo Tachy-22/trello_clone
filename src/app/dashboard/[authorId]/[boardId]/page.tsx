@@ -12,27 +12,43 @@ const DashBoard = async ({
   const boardData = await fetchBoard(params.boardId, params.authorId);
 
   return (
-    <div
-      style={{
-        background: getBackground(boardData as BoardDataType),
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      className="flex relative bg-[image:var(--image-url) bg-contain flex-col border-gray-500 border-l  w-full "
-    >
-      {params.boardId !== "view" && (
+    <div className="border-gray-500 border-l h-full w-full">
+      {boardData ? (
+        <div
+          style={{
+            background: getBackground(boardData as BoardDataType),
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+          className="flex relative h-full  bg-contain flex-col border-gray-500 border-l  w-full "
+        >
+          {params.boardId !== "view" && (
+            <>
+              <DashboardHeader boardData={boardData as BoardDataType} />
+              <section className="h-full   w-full overflow-auto flex px-2 ">
+                <Board boardData={boardData as BoardDataType} />
+              </section>
+            </>
+          )}
+          {params.boardId === "view" && (
+            <>
+              <section className="h-full   w-full overflow-auto flex  ">
+                <BoardView />
+              </section>
+            </>
+          )}
+        </div>
+      ) : (
         <>
-          <DashboardHeader boardData={boardData as BoardDataType} />
-          <section className="h-full   w-full overflow-auto flex  ">
-            <Board boardData={boardData as BoardDataType} />
-          </section>
-        </>
-      )}
-      {params.boardId === "view" && (
-        <>
-          <section className="h-full   w-full overflow-auto flex  ">
-            <BoardView />
-          </section>
+          {params.boardId === "view" ? (
+            <>
+              <section className="h-full   w-full overflow-auto flex  ">
+                <BoardView />
+              </section>
+            </>
+          ) : (
+            <div>No such board exists</div>
+          )}
         </>
       )}
     </div>
