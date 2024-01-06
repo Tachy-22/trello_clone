@@ -2,7 +2,7 @@ import ScrollCarousel from "./ScrollCarousel";
 
 const Features = () => {
   return (
-    <div className="  text-black dark:text-foreground py-[3rem] lg:py-[2rem] px-[1rem] lg:px-[2rem] w-full bg-gradient-to-b from-white via-sky-100 to-sky-200 dark:from-[#999999]  dark:to-background flex flex-col gap-[3rem]">
+    <div className="  text-black dark:text-foreground  lg:py-[2rem] px-[1rem] lg:px-[2rem] w-full bg-gradient-to-b from-white via-sky-100 to-sky-200 dark:from-[#999999]  dark:to-background flex flex-col gap-[3rem]">
       <div className="flex flex-col gap-2 w-full  lg:w-[80%] mx-auto">
         <span className="text-2xl  font-semibold tracking-wide uppercase">
           {" "}

@@ -62,7 +62,7 @@ const HorizontalScrollCarousel = () => {
       ref={targetRef}
       className=" overflow-x-clip max-w-[100vw]  h-[700vh] md:h-full lg:h-[700vh]  "
     >
-      <div className="sticky md:relative lg:sticky md:top-[10vh] top-[5vh] md:gap-[4rem] gap-[2rem] flex flex-col justify-end  h-fit py-[3rem] items-start overflow-hidden">
+      <div className="sticky md:relative lg:sticky top-[5vh] md:gap-[4rem] gap-[2rem] flex flex-col justify-end  h-fit py-[3rem] md:py-[0rem] items-start overflow-hidden">
         <div className="flex-col lg:px-[3rem] px-[1rem]   gap-3 h-fit items-start lg:justify-center ">
           <h3 className=" lg:text-xl text-lg uppercase lg:px-[3rem] f">
             Trello In Action
@@ -114,7 +114,7 @@ const CardUi = ({ card }: { card: CardType }) => {
   return (
     <Card
       key={card.id}
-      className="p md:h-[50vh] min-h-full w-[100vw] sm:w-[60vw] md:w-full lg:w-[30vw]  shadow-lg text-background dark:text-foreground "
+      className="p lg:h-[50vh] md:h-full h-full min-h-full w-[100vw] sm:w-[60vw] md:w-full lg:w-[30vw]  shadow-lg text-background dark:text-foreground "
     >
       <CardHeader className={` ${card.color} pb-0  px-4 flex-col items-start `}>
         <Image

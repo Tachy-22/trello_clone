@@ -9,7 +9,6 @@ const ScrollCarousel = () => {
 
   const x = useTransform(scrollYProgress, [0, 0.1], ["70%", "0%"]);
   const cardRef = useRef<HTMLDivElement>(null);
-  const { scaleProgress, opacityProgress } = useEaseIntoView(cardRef);
 
   return (
     <section className=" h-fit z-30   dark:text-foreground">
@@ -23,7 +22,6 @@ const ScrollCarousel = () => {
           })}
         </motion.div>
       </div>
-    
     </section>
   );
 };
@@ -39,8 +37,10 @@ const Card = ({ card }: { card: CardType2 }) => {
         alt="illustration"
       />
 
-      <p className="text-lg   rounded-lg p-3 mt-3">
-        <p className=" font-semibold text-xl mb-1 ">{card.title}</p>
+      <p className="md:text-lg text-base   rounded-lg p-3 mt-3">
+        <p className=" lg:font-semibold font-bold md:text-xl text-lg mb-1 ">
+          {card.title}
+        </p>
         {card.content}
       </p>
     </div>
