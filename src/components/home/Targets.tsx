@@ -5,7 +5,7 @@ const Targets = () => {
       <div className="">
         <HorizontalScrollCarousel />
       </div>
-      <div className="text-xl  lg:px-[4rem] ">
+      <div className="text-xl  lg:px-[4rem] md:py-[2rem] ">
         <div className="flex flex-col items-center lg:justify-start justify-center h-full">
           <div className="flex flex-col items-start lg:justify-start  max-w-7xl justify-center md:py-[4rem] py-[1rem] lg:py-[1rem]">
             <div className="lg:text-start  p-[1rem] mb-[1rem] ">
@@ -72,18 +72,12 @@ const HorizontalScrollCarousel = () => {
           </p>
         </div>
 
-        <motion.div
-          style={{ x }}
-          className="flex md:hidden  lg:flex gap-4"
-        >
+        <motion.div style={{ x }} className="flex md:hidden  lg:flex gap-4">
           {cards.map((card) => {
             return <CardUi card={card} key={card.id} />;
           })}
         </motion.div>
-        <div
-         
-          className="hidden md:grid md:grid-cols-2 lg:hidden gap-4 px-2"
-        >
+        <div className="hidden md:grid md:grid-cols-2 lg:hidden gap-4 px-2">
           {cards.map((card) => {
             return <CardUi card={card} key={card.id} />;
           })}
@@ -114,7 +108,7 @@ const CardUi = ({ card }: { card: CardType }) => {
   return (
     <Card
       key={card.id}
-      className="p lg:h-[50vh] md:h-full h-full min-h-full w-[100vw] sm:w-[60vw] md:w-full lg:w-[30vw]  shadow-lg text-background dark:text-foreground "
+      className="p lg:h-[50vh] md:h-full h-[] min-h-full w-[100vw] sm:w-[60vw] md:w-full lg:w-[30vw]  shadow-lg text-background dark:text-foreground "
     >
       <CardHeader className={` ${card.color} pb-0  px-4 flex-col items-start `}>
         <Image
@@ -252,7 +246,7 @@ const cards2: CardType[] = [
   {
     header: "Trello Enterprise",
     text: "The productivity tool teams love, paired with the features and security needed for scale.",
-    url: "/Search_value.svg",
+    url: "/Search_Value.svg",
     id: 3,
     color: "bg-orange-400/30 ",
   },

@@ -1,5 +1,4 @@
 "use client";
-import useEaseIntoView from "@/controls/useEaseIntoView";
 import { motion, useTransform, useScroll } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -15,7 +14,7 @@ const ScrollCarousel = () => {
       <div className="  flex h-fit items-center overflow-hidden max-w-screen w-full  ">
         <motion.div
           // style={{ translateX: x }}
-          className="md:grid md:grid-cols-3 hidden gap-6 "
+          className="grid md:grid-cols-3  gap-6 "
         >
           {cards.map((card) => {
             return <Card card={card} key={card.id} />;
@@ -37,7 +36,7 @@ const Card = ({ card }: { card: CardType2 }) => {
         alt="illustration"
       />
 
-      <p className="md:text-lg text-base   rounded-lg p-3 mt-3">
+      <p className="md:text-sm text-lg lg:text-lg text-base   rounded-lg p-3 mt-3">
         <p className=" lg:font-semibold font-bold md:text-xl text-lg mb-1 ">
           {card.title}
         </p>
