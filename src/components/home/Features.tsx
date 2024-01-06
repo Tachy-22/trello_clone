@@ -2,17 +2,17 @@ import ScrollCarousel from "./ScrollCarousel";
 
 const Features = () => {
   return (
-    <div className="  text-black py-[4rem] md:py-[4rem] px-[1rem] md:px-[2rem] w-full bg-gradient-to-b from-white via-sky-100 to-sky-200">
-      <div className="flex flex-col gap-2 w-full  md:w-[70%] mx-auto">
-        <span className="text-2xl md:text-center font-semibold tracking-wide uppercase">
+    <div className="  text-black dark:text-foreground py-[3rem] lg:py-[2rem] px-[1rem] lg:px-[2rem] w-full bg-gradient-to-b from-white via-sky-100 to-sky-200 dark:from-[#999999]  dark:to-background flex flex-col gap-[3rem]">
+      <div className="flex flex-col gap-2 w-full  lg:w-[80%] mx-auto">
+        <span className="text-2xl lg:text-start text-center font-semibold tracking-wide uppercase">
           {" "}
           Trello 101
         </span>
-        <h2 className="text-3xl font-bold pb-[1rem] md:text-center">
+        <h2 className="text-3xl font-bold pb-[1rem]  lg:text-start text-center">
           {" "}
           A productivity powerhouse
         </h2>
-        <p className="text-xl md-w-[60%] md:text-center mx-auto ">
+        <p className="text-xl lg:w-[60%]  lg:text-start text-center  ">
           Simple, flexible, and powerful. All it takes are boards, lists, and
           cards to get a clear view of who’s doing what and what needs to get
           done. Learn more in our guide for getting started.

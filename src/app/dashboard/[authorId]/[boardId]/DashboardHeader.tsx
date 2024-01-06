@@ -135,7 +135,7 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
           </span>
         )}
       </div>
-      <div className="sm:flex gap-1 hidden items-center cursor-pointer">
+      <div className="sm: flex gap-1  items-center cursor-pointer">
         <div className="relative flex justify-center mix-blend-difference px-[1rem]">
           <Tooltip content={admin?.email}>
             <Avatar
@@ -145,7 +145,7 @@ const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
               name={returnInitials(admin?.name as string)}
             />
           </Tooltip>
-          <span className="absolute mx-auto  right-0 left-0 -bottom-[0.6rem] rounded-sm px-[0.1rem] z-0 text-[0.7rem]  text-blue-400 w-fit  text-center bg-black/40">
+          <span className="absolute mx-auto  right-0 left-0 -bottom-[0.5rem] rounded-sm px-[0.1rem] z-0 text-[0.7rem]  text-blue-400 w-fit  text-center bg-black/40">
             admin
           </span>
         </div>

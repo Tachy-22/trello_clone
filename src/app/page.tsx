@@ -7,7 +7,7 @@ import Footer from "@/components/home/Footer";
 
 export default async function Home() {
   return (
-    <main className="flex  dark:bg-gray-900  text-black   flex-col items-center max-w-screen  overflow-x-clip">
+    <main className="flex      flex-col items-center max-w-screen  overflow-x-clip">
       <Hero />
       <Features />
       <Targets />

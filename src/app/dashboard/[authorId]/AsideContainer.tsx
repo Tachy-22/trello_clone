@@ -19,7 +19,7 @@ const AsideContainer = ({
   const dispatch = useAppDispatch();
   const [hidden, toggleHidden] = useState(false);
   const { isLoaded, userId, sessionId, getToken } = useAuth();
-  console.log("isLoaded :", isLoaded,userId);
+  console.log("isLoaded :", isLoaded, userId);
 
   useEffect(() => {
     dispatch(updateBoardList(myBoards));
@@ -57,18 +57,16 @@ const AsideContainer = ({
 
   return (
     <aside
-      style={{ transitionDuration: "0.5s" }}
       className={`${
         hidden
           ? "-translate-x-[93%]   w-[1.3rem]  "
           : "min-w-fit  w-fit relative"
-      }  h-full  transition-all   flex flex-col  `}
+      }  h-full  transition-all duration-500  flex flex-col  `}
     >
       <div className=" relative w-full flex p-1 z-50   ">
         <div
-          style={{ transitionDuration: "0.5s" }}
           onClick={handleAsideVisibility}
-          className={`transition-all duration-1000 dark:text-white text-black absolute   rounded-full top-[3.5rem] bg-white dark:bg-gray-900  w-fit p-1 ${
+          className={`transition-all  duration-500  absolute   rounded-full top-[0rem]  w-fit p-1 ${
             hidden
               ? "translate-x-[100%] right-[0.5rem] rotate-[270deg] "
               : "right-0 rotate-90 "

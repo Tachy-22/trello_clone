@@ -29,11 +29,11 @@ export default async function RootLayout({
 
   return (
     <ClerkProvider>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <NextProvider>
           <StoreProvider>
             <body
-              className={` relative w-full min-h-screen    dark:bg-gray-900 bg-white transition-colors duration-250`}
+              className={` relative w-full min-h-screen bg-white dark:bg-background  `}
             >
               <Header dbData={userDbData as userDbDataType} />
               {children}

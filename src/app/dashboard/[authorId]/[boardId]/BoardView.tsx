@@ -28,10 +28,10 @@ const BoardView = () => {
                 }}
                 className="rounded-lg h-[6rem] min-w-[12rem] text-white  text-lg font-semibold"
               >
-                <span className="backdrop-brightness-[50%] h-full w-full p-1 rounded-lg ">
+                <div className="hover:backdrop-brightness-[70%] transition-colors duration-250 backdrop-brightness-[50%] h-full w-full p-1 rounded-lg text-center my-auto ">
                   {" "}
                   {board?.title}
-                </span>
+                </div>
               </Link>
             );
           })}

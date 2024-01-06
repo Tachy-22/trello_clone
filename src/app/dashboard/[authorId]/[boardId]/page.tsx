@@ -12,7 +12,7 @@ const DashBoard = async ({
   const boardData = await fetchBoard(params.boardId, params.authorId);
 
   return (
-    <div className="border-gray-500 border-l h-full w-full">
+    <div className=" border-l h-full w-full min-w-[80vw]">
       {boardData ? (
         <div
           style={{
@@ -20,7 +20,7 @@ const DashBoard = async ({
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
-          className="flex relative h-full  bg-contain flex-col border-gray-500 border-l  w-full "
+          className="flex relative h-full  bg-contain flex-col  border-l  w-full "
         >
           <DashboardHeader boardData={boardData as BoardDataType} />
           <section className="h-full   w-full overflow-auto flex px-2 ">

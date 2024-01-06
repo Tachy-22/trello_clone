@@ -13,7 +13,7 @@ const layout = ({
  
 
   return (
-    <div className="flex w-full flex-row  min-h-[100vh] h-[100vh] pb-[4rem] dark:bg-gray-900 bg-white  fixed  ">
+    <div className="flex w-full flex-row  min-h-[100vh] h-[100vh] pb-[4rem]   fixed  ">
       <Nav params={params.authorId} />
       <div className="w-full min-h-full h-full overflow-auto scrollVisible">
         {" "}

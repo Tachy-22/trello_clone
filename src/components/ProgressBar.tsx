@@ -11,7 +11,7 @@ const ProgressBar = () => {
     <motion.div
       ref={barRef}
       style={{ scaleX: scrollYProgress }}
-      className="h-1 w-full bg-blue-500 sticky origin-top-left top-[4rem] left-0 "
+      className="h-1 w-full bg-blue-500 dark:bg-secondary sticky origin-top-left top-[4rem] left-0 "
     />
   );
 };

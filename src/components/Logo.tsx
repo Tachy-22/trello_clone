@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
 const Logo = () => {
   return (
-    <Link href={`/`}>
+    <Link href={`/`} className="brightness-[200%] dark:brightness-[350%]">
       <svg
         aria-label="Atlassian Trello"
         height="37.5"
@@ -11,7 +11,7 @@ const Logo = () => {
         viewBox="0 0 312 105"
         width="111.42857142857143"
         xmlns="http://www.w3.org/2000/svg"
-      //  xmlns:xlink="http://www.w3.org/1999/xlink"
+        //  xmlns:xlink="http://www.w3.org/1999/xlink"
       >
         <linearGradient
           id="trello-logo-gradient-defaultMJFtCCgVhXrVl7v9HA7EH"
@@ -49,6 +49,6 @@ const Logo = () => {
       </svg>
     </Link>
   );
-}
+};
 
-export default Logo
+export default Logo;

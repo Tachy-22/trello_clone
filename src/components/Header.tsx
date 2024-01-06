@@ -13,7 +13,7 @@ import {
   NavbarMenuToggle,
 } from "@nextui-org/react";
 import ProgressBar from "./ProgressBar";
-import { ThemeSwitcher } from "./ThemeSwitcher";
+import ThemeSwitcher from "./ThemeSwitcher";
 import Logo from "./Logo";
 import { useDispatch } from "react-redux";
 import { updateUserDbData } from "@/lib/redux-toolkit/boardSlice";
@@ -30,6 +30,7 @@ export default function Header({
   useEffect(() => {
     userDbData === null &&
       dbData !== undefined &&
+      dbData !== null &&
       dispatch(updateUserDbData(dbData));
   }, [dispatch, dbData, userDbData]);
 
@@ -71,7 +72,7 @@ export default function Header({
               key={index}
               //   isActive={true}
             >
-              <Link className="" href={link.href}>
+              <Link  className="text-primary dark:text-secondary" href={link.href}>
                 {link.text}
               </Link>
             </NavbarItem>
@@ -97,7 +98,7 @@ export default function Header({
         )}
         {isLoaded && (
           <NavbarContent justify="end">
-            <NavbarItem className="hidden ">
+            <NavbarItem className="flex ">
               <ThemeSwitcher />
             </NavbarItem>
 

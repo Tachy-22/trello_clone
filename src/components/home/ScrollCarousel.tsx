@@ -8,18 +8,18 @@ const ScrollCarousel = () => {
   const x = useTransform(scrollYProgress, [0, 0.1], ["70%", "0%"]);
 
   return (
-    <section className=" h-fit z-30  ">
-      <div className="  flex h-fit items-center overflow-hidden max-w-screen w-full text-white ">
+    <section className=" h-fit z-30   dark:text-foreground">
+      <div className="  flex h-fit items-center overflow-hidden max-w-screen w-full  ">
         <motion.div
           style={{ translateX: x }}
-          className="lg:grid lg:grid-cols-3 hidden gap-6 "
+          className="md:grid md:grid-cols-3 hidden gap-6 "
         >
           {cards.map((card) => {
             return <Card card={card} key={card.id} />;
           })}
         </motion.div>
       </div>
-      <div className="lg:hidden gap-6 mx-auto">
+      <div className="md:hidden gap-6 mx-auto">
         {cards.map((card) => {
           return <Card card={card} key={card.id} />;
         })}
@@ -30,19 +30,17 @@ const ScrollCarousel = () => {
 
 const Card = ({ card }: { card: CardType2 }) => {
   return (
-    <div
-      key={card.id}
-      className="flex flex-col gap-2 text-black dark:text-white"
-    >
-      <p className=" font-semibold text-lg ">{card.title}</p>
+    <div key={card.id} className="flex flex-col gap-2 ">
       <Image
         src={card.url}
-        className="  transition-transform h-full w-full hover:scale-90   duration-300 "
+        className="  transition-transform h-full w-full hover:scale-[98%]   duration-300 "
         height={483}
         width={720}
         alt="illustration"
       />
-      <p className="text-md  bg-white/40 dark:bg-gray-900 rounded-lg p-3 mt-4">
+
+      <p className="text-lg   rounded-lg p-3 mt-3">
+        <p className=" font-semibold text-xl mb-1 ">{card.title}</p>
         {card.content}
       </p>
     </div>
@@ -63,14 +61,14 @@ const cards: CardType2[] = [
     url: "/CarouselCards.webp",
     title: "Cards",
     content:
-      "The different stages of a task. Start as simple as To Do, Doing or Done—or build a workflow custom fit to your team’s needs. There’s no wrong way to Trello.",
+      "The different stages of a task. Start as simple as To Do, Doing or Done—or build a workflow custom fit to your team’s needs. ",
     id: 2,
   },
   {
     url: "/CarouselLists.webp",
     title: "Lists",
     content:
-      "Cards represent tasks and ideas and hold all the information to get the job done. As you make progress, move cards across lists to show their status.",
+      "Cards represent tasks and ideas and hold all the information to get the job done. As you make progress, move cards across lists.",
     id: 3,
   },
 ];

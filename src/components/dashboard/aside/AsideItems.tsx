@@ -5,7 +5,7 @@ import InvitedBoards from "./InvitedBoards";
 
 const AsideContainer = () => {
   return (
-    <div className="w-fit h-full divide-x-3  flex-col flex items-start justify-start    ">
+    <div className="w-fit h-full   flex-col flex items-start justify-start    ">
       <LogoBar />
       <MyBoards />
       <InvitedBoards />
