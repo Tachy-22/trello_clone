@@ -49,11 +49,11 @@ const View1 = () => {
         src={`/TrelloBoard_Timeline_2x.webp`}
       />
       <div className="flex flex-col w-full px-4 lg:px-[4rem] py-[2rem] gap-[1rem] justify-start">
-        <h4 className="font-semibold text-lg uppercase flex gap-2">
+        <h4 className="md:font-semibold font-bold  md:text-base text-sm uppercase flex gap-2">
           <BookMarked />
           <span className=""> Hit deadlines every time</span>
         </h4>
-        <p className="text-xl ">
+        <p className="text-base md:text-lg lg:text-xl ">
           {" "}
           From weekly sprints to annual planning, Timeline view keeps all tasks
           on track. Quickly get a glimpse of what’s coming down the pipeline and
@@ -78,11 +78,11 @@ const View2 = () => {
       className="bg-white dark:bg-slate-800 shadow-xl mx-auto mt-[3rem] rounded-lg p-6 max-w-7xl lg:flex-row flex-col-reverse flex justify-center gap-4"
     >
       <div className="flex flex-col w-full p-4 lg:px-[4rem] py-[2rem] gap-[1rem] justify-start">
-        <h4 className="font-semibold text-lg uppercase flex gap-2">
+        <h4 className="md:font-semibold font-bold  md:text-base text-sm uppercase flex gap-2">
           <ListChecks />
           <span className=""> Stay on top of tasks</span>
         </h4>
-        <p className="text-xl ">
+        <p className="text-base md:text-lg lg:text-xl ">
           Start each day without any surprises. Whether scheduling an editorial
           calendar or staying on top of to-dos, Calendar view is like a crystal
           ball giving you a clear vision of what work lies ahead.

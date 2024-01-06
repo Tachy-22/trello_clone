@@ -3,17 +3,9 @@ const Targets = () => {
   return (
     <section className="bg-white dark:bg-background text-background dark:text-foreground w-screen">
       <div className="">
-        <div className="flex-col lg:px-[3rem] px-[1rem]  pt-[2rem] gap-3 h-fit items-start lg:justify-center ">
-          <h3 className=" lg:text-xl text-lg uppercase lg:px-[3rem] f">
-            Trello In Action
-          </h3>
-          <p className="lg:text-4xl text-xl lg:px-[3rem]">
-            Workflows for any project, big or small
-          </p>
-        </div>
         <HorizontalScrollCarousel />
       </div>
-      <div className="text-xl  lg:px-[4rem] lg:pt-[0rem] pt-[3rem]">
+      <div className="text-xl  lg:px-[4rem] ">
         <div className="flex flex-col items-center lg:justify-start justify-center h-full">
           <div className="flex flex-col items-start lg:justify-start  max-w-7xl justify-center py-[1rem]">
             <div className="lg:text-start  p-[1rem] mb-[1rem]">
@@ -25,7 +17,7 @@ const Targets = () => {
               </p>
             </div>
             <div className="grid md:grid-cols-3">
-              {cards2.map(({ header, color, url, text, id }) => (
+              {cards2.map(({ header, color, url, text, id, types }) => (
                 <div
                   key={id}
                   className={`flex flex-col items-start justify-start p-6  rounded-lg  shadow-lg m-4 ${color}`}
@@ -63,14 +55,23 @@ const HorizontalScrollCarousel = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-85%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-84%"]);
 
   return (
     <section
       ref={targetRef}
-      className=" overflow-x-clip max-w-[100vw]  h-[350vh]  "
+      className=" overflow-x-clip max-w-[100vw]  h-[700vh]  "
     >
-      <div className="sticky top-10 flex  h-fit py-[3rem] items-center overflow-hidden">
+      <div className="sticky md:top-[10vh] top-[5vh] md:gap-[4rem] gap-[2rem] flex flex-col justify-end  h-fit py-[3rem] items-start overflow-hidden">
+        <div className="flex-col lg:px-[3rem] px-[1rem]   gap-3 h-fit items-start lg:justify-center ">
+          <h3 className=" lg:text-xl text-lg uppercase lg:px-[3rem] f">
+            Trello In Action
+          </h3>
+          <p className="lg:text-4xl text-xl lg:px-[3rem]">
+            Workflows for any project, big or small
+          </p>
+        </div>
+
         <motion.div style={{ x }} className="flex gap-4">
           {cards.map((card) => {
             return <CardUi card={card} key={card.id} />;
@@ -102,7 +103,7 @@ const CardUi = ({ card }: { card: CardType }) => {
   return (
     <Card
       key={card.id}
-      className="p h-[80vh]  w-[80vw] sm:w-[60vw] md:w-[65vw] lg:w-[30vw] shadow-lg text-background dark:text-foreground "
+      className="p md:h-[50vh] min-h-full w-[100vw] sm:w-[60vw] md:w-[65vw] lg:w-[30vw]  shadow-lg text-background dark:text-foreground "
     >
       <CardHeader className={` ${card.color} pb-0  px-4 flex-col items-start `}>
         <Image
@@ -116,6 +117,15 @@ const CardUi = ({ card }: { card: CardType }) => {
       <CardBody className="flex p-4 py-[2rem] flex-col gap-3">
         <h3 className="font-semibold text-3xl"> {card.header}</h3>
         <p className="">{card.text}</p>
+        <ul className="flex flex-col">
+          {card.types?.map((type, index) => {
+            return (
+              <li className="" key={index}>
+                {type}
+              </li>
+            );
+          })}
+        </ul>
       </CardBody>
     </Card>
   );
@@ -125,6 +135,7 @@ type CardType = {
   url: string;
   text: string;
   header: string;
+  types?: string[];
   id: number;
   color: string;
 };
@@ -132,7 +143,13 @@ type CardType = {
 const cards: CardType[] = [
   {
     header: "Project management",
-    text: "Keep tasks in order, deadlines on track, and team members aligned with Trello.",
+    text: "Keep tasks in order, deadlines on track, and team members aligned with Trello. From initiation to completion, Trello makes it easy to monitor every aspect of your next project. Designed for teams of any size, anywhere.",
+
+    types: [
+      "Manage any project (big or small) with Trello",
+      "Manage all of your projects in one powerful tool that makes project management manageable magical",
+      "Custom fields: the only limitation is your imagination",
+    ],
     id: 1,
     url: "/icon-content-folder_2x.png",
     color: "bg-orange-500",
@@ -143,6 +160,12 @@ const cards: CardType[] = [
     url: "/icon-object-megaphone_2x.png",
     id: 2,
     color: "bg-blue-400",
+    types: [
+      "Manage any project (big or small) with Trello",
+      "Manage all of your projects in one powerful tool that makes project management manageable magical",
+      "Custom fields: the only limitation is your imagination",
+      "See your projects from any angle",
+    ],
   },
   {
     header: "Onboarding",
@@ -150,6 +173,12 @@ const cards: CardType[] = [
     url: "/icon-object-leaf_2x.png",
     id: 3,
     color: "bg-green-400",
+    types: [
+      "Manage any project (big or small) with Trello",
+      "Manage all of your projects in one powerful tool that makes project management manageable magical",
+      "Custom fields: the only limitation is your imagination",
+      "See your projects from any angle",
+    ],
   },
   {
     header: "Task management",
@@ -157,6 +186,12 @@ const cards: CardType[] = [
     url: "/icon-content-checklists_2x.png",
     id: 4,
     color: "bg-yellow-400",
+    types: [
+      "Manage any project (big or small) with Trello",
+      "Manage all of your projects in one powerful tool that makes project management manageable magical",
+      "Custom fields: the only limitation is your imagination",
+      "See your projects from any angle",
+    ],
   },
   {
     header: "Brainstorming",
@@ -164,6 +199,13 @@ const cards: CardType[] = [
     id: 5,
     url: "/UseCasesBrainstorming.svg",
     color: "bg-teal-300",
+
+    types: [
+      "Manage any project (big or small) with Trello",
+      "Manage all of your projects in one powerful tool that makes project management manageable magical",
+      "Custom fields: the only limitation is your imagination",
+      "See your projects from any angle",
+    ],
   },
   {
     header: "Resource hub",
@@ -171,6 +213,13 @@ const cards: CardType[] = [
     url: "/icon-object-book_2x.png",
     id: 6,
     color: "bg-pink-400",
+
+    types: [
+      "Manage any project (big or small) with Trello",
+      "Manage all of your projects in one powerful tool that makes project management manageable magical",
+      "Custom fields: the only limitation is your imagination",
+      "See your projects from any angle",
+    ],
   },
 ];
 

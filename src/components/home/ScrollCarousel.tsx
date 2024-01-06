@@ -1,17 +1,21 @@
 "use client";
+import useEaseIntoView from "@/controls/useEaseIntoView";
 import { motion, useTransform, useScroll } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 
 const ScrollCarousel = () => {
   const { scrollYProgress } = useScroll();
 
   const x = useTransform(scrollYProgress, [0, 0.1], ["70%", "0%"]);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scaleProgress, opacityProgress } = useEaseIntoView(cardRef);
 
   return (
     <section className=" h-fit z-30   dark:text-foreground">
       <div className="  flex h-fit items-center overflow-hidden max-w-screen w-full  ">
         <motion.div
-          style={{ translateX: x }}
+          // style={{ translateX: x }}
           className="md:grid md:grid-cols-3 hidden gap-6 "
         >
           {cards.map((card) => {
@@ -19,18 +23,14 @@ const ScrollCarousel = () => {
           })}
         </motion.div>
       </div>
-      <div className="md:hidden gap-6 mx-auto">
-        {cards.map((card) => {
-          return <Card card={card} key={card.id} />;
-        })}
-      </div>
+    
     </section>
   );
 };
 
 const Card = ({ card }: { card: CardType2 }) => {
   return (
-    <div key={card.id} className="flex flex-col gap-2 ">
+    <div className="flex flex-col gap-2 ">
       <Image
         src={card.url}
         className="  transition-transform h-full w-full hover:scale-[98%]   duration-300 "

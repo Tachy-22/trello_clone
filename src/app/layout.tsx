@@ -28,20 +28,20 @@ export default async function RootLayout({
     email !== undefined && (await registerUser(email as string, name));
 
   return (
-    <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
-        <NextProvider>
-          <StoreProvider>
-            <body
-              className={` relative w-full min-h-screen bg-white dark:bg-background  `}
-            >
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={` relative w-full min-h-screen bg-white dark:bg-background  `}
+      >
+        <ClerkProvider>
+          <NextProvider>
+            <StoreProvider>
               <Header dbData={userDbData as userDbDataType} />
               {children}
               <Toaster />
-            </body>
-          </StoreProvider>
-        </NextProvider>
-      </html>
-    </ClerkProvider>
+            </StoreProvider>
+          </NextProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

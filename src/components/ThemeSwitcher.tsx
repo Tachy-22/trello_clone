@@ -20,25 +20,25 @@ const ThemeSwitcher = () => {
     <div className="relative flex w-fit items-center rounded-full">
       <button
         className={`${TOGGLE_CLASSES}  ${
-          theme === "light" ? "text-white" : "text-slate-300"
+          theme === "light" ? "text-white" : "text-yellow-400"
         }`}
         onClick={() => {
           setTheme("light");
         }}
       >
-        <MoonIcon className="relative z-10 text-lg md:text-sm" />
+        <SunIcon className="relative z-10 text-lg md:text-sm" />
 
         <span className="relative z-10 hidden sm:block">Light</span>
       </button>
 
       <button
         className={`${TOGGLE_CLASSES}
-${theme === "dark" ? "text-white" : "text-slate-800"}`}
+${theme === "dark" ? "text-white" : "text-slate-400"}`}
         onClick={() => {
           setTheme("dark");
         }}
       >
-        <SunIcon className="relative z-10 text-lg md:text-sm" />
+        <MoonIcon className="relative z-10 text-lg md:text-sm" />
 
         <span className="relative z-10 hidden sm:block">Dark</span>
       </button>
