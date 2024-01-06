@@ -24,7 +24,7 @@ const Targets = () => {
                 set up and customize workflows for just about anything.
               </p>
             </div>
-            <div className="grid lg:grid-cols-3">
+            <div className="grid md:grid-cols-3">
               {cards2.map(({ header, color, url, text, id }) => (
                 <div
                   key={id}
@@ -68,7 +68,7 @@ const HorizontalScrollCarousel = () => {
   return (
     <section
       ref={targetRef}
-      className=" overflow-x-clip max-w-[100vw]  h-[150vh]  "
+      className=" overflow-x-clip max-w-[100vw]  h-[350vh]  "
     >
       <div className="sticky top-10 flex  h-fit py-[3rem] items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-4">
@@ -77,7 +77,7 @@ const HorizontalScrollCarousel = () => {
           })}
         </motion.div>
       </div>
-      <div className=" h-[70%] w-full">
+      {/* <div className="  w-full">
         <picture>
           <source
             media="(max-width: 810px)"
@@ -93,7 +93,7 @@ const HorizontalScrollCarousel = () => {
             className="h-full w-full  rounded-md"
           />
         </picture>
-      </div>
+      </div> */}
     </section>
   );
 };
@@ -102,7 +102,7 @@ const CardUi = ({ card }: { card: CardType }) => {
   return (
     <Card
       key={card.id}
-      className="p h-[18rem] min-h-full  w-[70vw] sm:w-[60vw] md:w-[65vw] lg:w-[30vw] shadow-lg text-background dark:text-foreground "
+      className="p h-[80vh]  w-[80vw] sm:w-[60vw] md:w-[65vw] lg:w-[30vw] shadow-lg text-background dark:text-foreground "
     >
       <CardHeader className={` ${card.color} pb-0  px-4 flex-col items-start `}>
         <Image

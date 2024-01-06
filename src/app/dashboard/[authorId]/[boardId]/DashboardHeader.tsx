@@ -10,7 +10,7 @@ import { Avatar, AvatarGroup, Tooltip } from "@nextui-org/react";
 import React, { useCallback, useEffect, useState } from "react";
 
 const DashboardHeader = ({ boardData }: { boardData: BoardDataType }) => {
- // useIsABoardMember(boardData);
+  // useIsABoardMember(boardData);
 
   const dispatch = useAppDispatch();
   const { currentBoardData, boardList } = useAppSelector(

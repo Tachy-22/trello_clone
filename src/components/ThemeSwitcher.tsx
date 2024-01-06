@@ -28,7 +28,7 @@ const ThemeSwitcher = () => {
       >
         <MoonIcon className="relative z-10 text-lg md:text-sm" />
 
-        <span className="relative z-10">Light</span>
+        <span className="relative z-10 hidden sm:block">Light</span>
       </button>
 
       <button
@@ -40,7 +40,7 @@ ${theme === "dark" ? "text-white" : "text-slate-800"}`}
       >
         <SunIcon className="relative z-10 text-lg md:text-sm" />
 
-        <span className="relative z-10">Dark</span>
+        <span className="relative z-10 hidden sm:block">Dark</span>
       </button>
 
       <div
