@@ -7,8 +7,8 @@ const Targets = () => {
       </div>
       <div className="text-xl  lg:px-[4rem] ">
         <div className="flex flex-col items-center lg:justify-start justify-center h-full">
-          <div className="flex flex-col items-start lg:justify-start  max-w-7xl justify-center py-[1rem]">
-            <div className="lg:text-start  p-[1rem] mb-[1rem]">
+          <div className="flex flex-col items-start lg:justify-start  max-w-7xl justify-center md:py-[4rem] py-[1rem] lg:py-[1rem]">
+            <div className="lg:text-start  p-[1rem] mb-[1rem] ">
               <h2 className="text-lg uppercase">Powerful ways to grow</h2>
               <p className="text-4xl font-bold mb-4">Do more with Trello</p>
               <p className=" text-xl lg:w-[70%]">
@@ -60,9 +60,9 @@ const HorizontalScrollCarousel = () => {
   return (
     <section
       ref={targetRef}
-      className=" overflow-x-clip max-w-[100vw]  h-[700vh]  "
+      className=" overflow-x-clip max-w-[100vw]  h-[700vh] md:h-full lg:h-[700vh]  "
     >
-      <div className="sticky md:top-[10vh] top-[5vh] md:gap-[4rem] gap-[2rem] flex flex-col justify-end  h-fit py-[3rem] items-start overflow-hidden">
+      <div className="sticky md:relative lg:sticky md:top-[10vh] top-[5vh] md:gap-[4rem] gap-[2rem] flex flex-col justify-end  h-fit py-[3rem] items-start overflow-hidden">
         <div className="flex-col lg:px-[3rem] px-[1rem]   gap-3 h-fit items-start lg:justify-center ">
           <h3 className=" lg:text-xl text-lg uppercase lg:px-[3rem] f">
             Trello In Action
@@ -72,11 +72,22 @@ const HorizontalScrollCarousel = () => {
           </p>
         </div>
 
-        <motion.div style={{ x }} className="flex gap-4">
+        <motion.div
+          style={{ x }}
+          className="flex md:hidden  lg:flex gap-4"
+        >
           {cards.map((card) => {
             return <CardUi card={card} key={card.id} />;
           })}
         </motion.div>
+        <div
+         
+          className="hidden md:grid md:grid-cols-2 lg:hidden gap-4 px-2"
+        >
+          {cards.map((card) => {
+            return <CardUi card={card} key={card.id} />;
+          })}
+        </div>
       </div>
       {/* <div className="  w-full">
         <picture>
@@ -103,7 +114,7 @@ const CardUi = ({ card }: { card: CardType }) => {
   return (
     <Card
       key={card.id}
-      className="p md:h-[50vh] min-h-full w-[100vw] sm:w-[60vw] md:w-[65vw] lg:w-[30vw]  shadow-lg text-background dark:text-foreground "
+      className="p md:h-[50vh] min-h-full w-[100vw] sm:w-[60vw] md:w-full lg:w-[30vw]  shadow-lg text-background dark:text-foreground "
     >
       <CardHeader className={` ${card.color} pb-0  px-4 flex-col items-start `}>
         <Image
