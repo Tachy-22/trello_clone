@@ -26,7 +26,7 @@ export default function Header({
 }) {
   const dispatch = useDispatch();
   const { userDbData } = useAppSelector((state) => state.board);
-  const { isLoaded } = useAuth();
+  const { isLoaded, userId } = useAuth();
   useEffect(() => {
     userDbData === null &&
       dbData !== undefined &&
@@ -72,14 +72,17 @@ export default function Header({
               key={index}
               //   isActive={true}
             >
-              <Link  className="text-primary dark:text-secondary" href={link.href}>
+              <Link
+                className="text-primary dark:text-secondary"
+                href={link.href}
+              >
                 {link.text}
               </Link>
             </NavbarItem>
           ))}
         </NavbarContent>
 
-        {!isLoaded && (
+        {!userId && (
           <NavbarContent justify="end">
             <NavbarItem className="hidden ">
               <ThemeSwitcher />
@@ -96,7 +99,7 @@ export default function Header({
             </NavbarItem>
           </NavbarContent>
         )}
-        {isLoaded && (
+        {userId && (
           <NavbarContent justify="end">
             <NavbarItem className="flex ">
               <ThemeSwitcher />
