@@ -88,12 +88,12 @@ export default function Header({
               <ThemeSwitcher />
             </NavbarItem>
             <NavbarItem>
-              <div className="rounded-lg p-2 px-[2rem] hover:bg-black/10 transition-color duration-200">
+              <div className="rounded-lg p-2 md:px-[2rem] hover:bg-black/10 transition-color duration-200">
                 <SignUpButton />
               </div>
             </NavbarItem>
             <NavbarItem>
-              <div className="rounded-lg hover:bg-blue-300 animate-pulse p-2 px-[2rem] bg-blue-400 text-white ">
+              <div className="rounded-lg hover:bg-blue-300 animate-pulse p-2 md:px-[2rem] bg-blue-400 text-white ">
                 <SignInButton />
               </div>
             </NavbarItem>
