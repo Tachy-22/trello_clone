@@ -9,7 +9,9 @@ const DashBoard = async ({
 }: {
   params: { boardId: string; authorId: string };
 }) => {
-  const boardData = await fetchBoard(params.boardId, params.authorId);
+  const boardData =
+    params.boardId !== "view" &&
+    (await fetchBoard(params.boardId, params.authorId));
 
   return (
     <div className=" border-l h-full w-full min-w-[80vw]">

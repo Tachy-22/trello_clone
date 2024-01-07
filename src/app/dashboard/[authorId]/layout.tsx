@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./Nav";
-import { currentUser, useAuth } from "@clerk/nextjs";
+import BoardAuthSecurityProvider from "../BoardAuthSecurityProvider";
 
 const layout = ({
   children,
@@ -10,7 +10,6 @@ const layout = ({
   params: { authorId: string };
 }) => {
   console.log("id:", params.authorId);
- 
 
   return (
     <div className="flex w-full flex-row  min-h-[100vh] h-[100vh] pb-[4rem]   fixed  ">

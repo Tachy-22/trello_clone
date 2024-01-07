@@ -6,8 +6,6 @@ import { Settings, X } from "lucide-react";
 import React, { useCallback, useState, useEffect } from "react";
 
 const SideSheet = () => {
-  const dispatch = useAppDispatch();
-
   const [hidden, toggleHidden] = useState(true);
 
   const handleAsideVisibility = useCallback(() => {

@@ -7,7 +7,6 @@ const registerUser = async (email: string, name: string) => {
   const userData = await isUserRegistered(email);
   if (userData) {
     console.log("this user has been registered already");
-    const status = "registered";
     return userData;
   } else {
     const userData = await prisma.user.create({
@@ -16,7 +15,6 @@ const registerUser = async (email: string, name: string) => {
         name: name,
       },
     });
-    const status = "registered";
     return userData;
   }
 };

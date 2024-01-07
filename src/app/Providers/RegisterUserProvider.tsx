@@ -1,4 +1,5 @@
 "use client";
+import isUserRegistered from "@/actions/home/isUserRegistered";
 import registerUser from "@/actions/home/registerUser";
 import { updateUserDbData } from "@/lib/redux-toolkit/boardSlice";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
@@ -10,11 +11,15 @@ const RegisterUserProvider = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
   const { isLoaded, isSignedIn, user } = useUser();
   const { userDbData } = useAppSelector((state) => state.board);
+
   useEffect(() => {
+    const name = user?.fullName as string;
+    const email = user?.emailAddresses[0]?.emailAddress as string;
+    const userLocal = localStorage.getItem("trello-userId");
+    const userId = user?.id as string;
+
     const provideUserRegistration = async () => {
       try {
-        const name = user?.fullName as string;
-        const email = user?.emailAddresses[0]?.emailAddress as string;
         if (email) {
           const userData = await registerUser(email, name);
           dispatch(updateUserDbData(userData));
@@ -23,10 +28,25 @@ const RegisterUserProvider = ({ children }: { children: React.ReactNode }) => {
         console.error("Error fetching user data:", error);
       }
     };
-    const userLocal = localStorage.getItem("trello-userId");
-    const userId = user?.id as string;
-    if (userLocal !== user?.id && isLoaded && isSignedIn) {
+    console.log({ userId, userDbData, userLocal });
+    const updateUerDbData = async () => {
+      if (userDbData === null && userLocal && email) {
+        const userData = await isUserRegistered(email);
+        dispatch(updateUserDbData(userData));
+      }
+    };
+    updateUerDbData();
+    if (
+      userLocal !== userId &&
+      isLoaded &&
+      isSignedIn &&
+      userDbData === null &&
+      userId !== undefined
+    ) {
       provideUserRegistration().then(() => {
+        console.log(
+          "has provided registeration ability, checking user prescence in db"
+        );
         localStorage.setItem("trello-userId", userId);
       });
     } else {
@@ -36,6 +56,7 @@ const RegisterUserProvider = ({ children }: { children: React.ReactNode }) => {
     dispatch,
     isLoaded,
     isSignedIn,
+    user,
     user?.emailAddresses,
     user?.fullName,
     user?.id,

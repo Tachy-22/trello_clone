@@ -71,7 +71,7 @@ export default function Header() {
           ))}
         </NavbarContent>
 
-        {!userId && (
+        {!userId && isLoaded && (
           <NavbarContent justify="end">
             <NavbarItem className="hidden ">
               <ThemeSwitcher />
