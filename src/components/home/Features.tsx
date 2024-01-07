@@ -1,4 +1,5 @@
-import ScrollCarousel from "./ScrollCarousel";
+import FeatureCards from "./FeatureCards";
+
 
 const Features = () => {
   return (
@@ -19,7 +20,7 @@ const Features = () => {
         </p>
       </div>
       <div className=" flex max-w-screen w-full overflow-hidden ">
-        <ScrollCarousel />
+        <FeatureCards />
       </div>
     </div>
   );

@@ -1,9 +1,6 @@
 "use server";
-
 import { prisma } from "@/lib/prisma";
-
 const updateInvitedBoards = async (email: string, invites: string[]) => {
-  //register user
   if (invites.length !== 0) {
     const update = await prisma.user.update({
       where: {
@@ -13,7 +10,6 @@ const updateInvitedBoards = async (email: string, invites: string[]) => {
         invites: invites,
       },
     });
-    console.log("updates:", update);
     return update;
   }
 };

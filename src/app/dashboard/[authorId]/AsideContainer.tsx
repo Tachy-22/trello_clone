@@ -18,8 +18,6 @@ const AsideContainer = ({
 }) => {
   const dispatch = useAppDispatch();
   const [hidden, toggleHidden] = useState(false);
-  const { isLoaded, userId, sessionId, getToken } = useAuth();
-  console.log("isLoaded :", isLoaded, userId);
 
   useEffect(() => {
     dispatch(updateBoardList(myBoards));
@@ -53,7 +51,6 @@ const AsideContainer = ({
     };
   }, []);
 
-  // In case the user signs out while on the page.
 
   return (
     <aside

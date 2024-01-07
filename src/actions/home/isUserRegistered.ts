@@ -8,7 +8,6 @@ const isUserRegistered = async (email: string,) => {
       
     },
   });
-  console.log("check;", user);
   return user;
 };
 

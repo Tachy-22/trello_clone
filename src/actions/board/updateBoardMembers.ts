@@ -8,7 +8,6 @@ export async function updateBoardMembers(
   authorId?: string,
   newMeberslist?: string[]
 ) {
-  // console.log("authorId :", authorId);
   try {
     await prisma.board.update({
       where: {

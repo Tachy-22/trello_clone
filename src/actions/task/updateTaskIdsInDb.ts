@@ -8,7 +8,6 @@ export async function updateTaskIdsInDb(
   columnId: string,
   taskIds: string[]
 ) {
-  // console.log("authorId :", authorId);
   try {
     await prisma.column.update({
       where: {

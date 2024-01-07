@@ -3,19 +3,28 @@
 
 import { motion } from "framer-motion";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { useTheme } from "next-themes";
 import { MoonIcon, SunIcon } from "lucide-react";
 
 const ThemeSwitcher = () => {
+  const [isMounted, setMounted] = useState<boolean>();
   const { theme, setTheme } = useTheme();
-
   const TOGGLE_CLASSES = useMemo(
     () =>
       "text-sm font-medium flex items-center gap-2 px-2 md:pl-3 md:pr-3 py-2 md:py-1 transition-colors relative ",
     []
   );
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return;
+  }
+
   return (
     <div className="relative flex w-fit items-center rounded-full">
       <button

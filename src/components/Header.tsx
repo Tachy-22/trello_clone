@@ -19,34 +19,23 @@ import { useDispatch } from "react-redux";
 import { updateUserDbData } from "@/lib/redux-toolkit/boardSlice";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
 
-export default function Header({
-  dbData,
-}: {
-  dbData: userDbDataType | null | undefined;
-}) {
+export default function Header() {
   const dispatch = useDispatch();
   const { userDbData } = useAppSelector((state) => state.board);
   const { isLoaded, userId } = useAuth();
-  useEffect(() => {
-    userDbData === null &&
-      dbData !== undefined &&
-      dbData !== null &&
-      dispatch(updateUserDbData(dbData));
-  }, [dispatch, dbData, userDbData]);
-
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const navLinks = useMemo(
     () => [
       { href: "/", text: "Home" },
       {
-        href: `/dashboard/${dbData?.id as string}/view`,
+        href: `/dashboard/${userDbData?.id as string}/view`,
         text: "Dashboard",
       },
       { href: "/contact", text: "Contact" },
       { href: "/about", text: "About" },
     ],
-    [dbData?.id]
+    [userDbData?.id]
   );
 
   return (

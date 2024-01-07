@@ -11,7 +11,6 @@ const fetchUserWithId = async (authorId: string) => {
       email: true,
     },
   });
-  console.log("admin;", user);
   return user;
 };
 

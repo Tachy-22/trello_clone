@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function fetchBoard(boardId: string, authorId: string) {
-  console.log("authorId :", authorId);
   if (boardId !== "view") {
     try {
       const BoardData = await prisma.board.findFirst({
@@ -17,7 +16,6 @@ export async function fetchBoard(boardId: string, authorId: string) {
           tasks: true,
         },
       });
-      console.log("BoardData :", BoardData);
       revalidatePath("/boardData");
       return BoardData;
     } catch (error) {

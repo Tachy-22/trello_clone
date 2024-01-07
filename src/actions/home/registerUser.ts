@@ -4,19 +4,20 @@ import { prisma } from "@/lib/prisma";
 import isUserRegistered from "./isUserRegistered";
 
 const registerUser = async (email: string, name: string) => {
-  const user = await isUserRegistered(email);
-  if (user) {
+  const userData = await isUserRegistered(email);
+  if (userData) {
     console.log("this user has been registered already");
-    return user;
+    const status = "registered";
+    return userData;
   } else {
-    //register user
-    const user = await prisma.user.create({
+    const userData = await prisma.user.create({
       data: {
         email: email,
         name: name,
       },
     });
-    return user;
+    const status = "registered";
+    return userData;
   }
 };
 

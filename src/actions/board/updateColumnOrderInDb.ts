@@ -8,7 +8,6 @@ export async function updateColumnOrderInDb(
   authorId?: string,
   newColumnOrder?: string[]
 ) {
-  // console.log("authorId :", authorId);
   try {
     await prisma.board.update({
       where: {

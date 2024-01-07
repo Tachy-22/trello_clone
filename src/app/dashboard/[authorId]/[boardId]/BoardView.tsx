@@ -7,7 +7,6 @@ import React from "react";
 
 const BoardView = () => {
   const { boardList } = useAppSelector((state) => state.board);
-  console.log("boardList from boards :", boardList);
   return (
     <div className="max-w-7xl flex flex-col p-[2rem] mx-auto w-full ">
       <div className="flex border-b gap-3 py-[2rem] w-full">
@@ -35,16 +34,13 @@ const BoardView = () => {
               </Link>
             );
           })}
-          {boardList?.boards?.length === 0 && (
-            <p className="text-blue-400/50 text-sm px-2 w-full flex flex-col">
-              <span className=""> You currently dont have any boards.</span>
-              <span className="">
-                {" "}
-                click the &quot;+&quot; icon to get started !
-              </span>
-            </p>
-          )}
         </ul>
+        {boardList?.boards?.length === 0 && (
+          <div className="text-blue-400/50 text-sm px-2 w-full flex flex-col">
+            <p className=""> You currently dont have any boards.</p>
+            <p className=""> click the &quot;+&quot; icon to get started !</p>
+          </div>
+        )}
       </div>
     </div>
   );

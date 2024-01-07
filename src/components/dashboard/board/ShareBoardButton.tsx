@@ -10,16 +10,15 @@ import {
 import ShareBoardForm from "@/components/dashboard/board/ShareBoardForm";
 import { UserPlus } from "lucide-react";
 import { useAppSelector } from "@/lib/redux-toolkit/hooks";
-import { usePathname } from "next/navigation";
 
 const ShareBoardButton = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { userDbData, currentBoardData } = useAppSelector(
     (state) => state.board
   );
-  const path = usePathname();
-  console.log(userDbData?.id, currentBoardData?.authorId);
+
   const conditionForFormRender = userDbData?.id === currentBoardData?.authorId;
+  
   return (
     <div className="flex  items-center">
       <Button size="sm" color="default" onPress={onOpen} radius="sm">

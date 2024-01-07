@@ -8,7 +8,6 @@ export async function addTaskToDb(
   content: string,
   taskIdentifier: string
 ) {
-  console.log("boardId", boardId);
   try {
     await prisma.task.create({
       data: {

@@ -5,7 +5,6 @@ import { revalidatePath } from "next/cache";
 import { fetchInvitedBoards } from "./fetchInvitedBoards";
 
 export async function fetchBoards(authorId: string) {
-  console.log("authorId :", authorId);
   try {
     const myBoards = await prisma.user.findUnique({
       where: {
@@ -15,7 +14,6 @@ export async function fetchBoards(authorId: string) {
         boards: true,
       },
     });
-    console.log("myBoards inner inner :", myBoards);
     const invitedBoards = await fetchInvitedBoards(
       myBoards?.invites as string[]
     );

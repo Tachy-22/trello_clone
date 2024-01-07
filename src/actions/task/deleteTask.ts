@@ -2,7 +2,6 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { updateColumnOrderInDb } from "../board/updateColumnOrderInDb";
 import { updateTaskIdsInDb } from "./updateTaskIdsInDb";
 
 export async function deleteTask(
@@ -11,7 +10,6 @@ export async function deleteTask(
   boardId: string,
   newTaskIds: string[]
 ) {
-  // ... you will write your Prisma Client queries here
   if (boardId && columnId) {
     try {
       await prisma.task.delete({
@@ -20,8 +18,6 @@ export async function deleteTask(
           boardId: boardId,
         },
       });
-      console.log("Just deleted task with id :", taskId);
-
       await updateTaskIdsInDb(boardId, columnId, newTaskIds);
       revalidatePath("/boardData");
       return;

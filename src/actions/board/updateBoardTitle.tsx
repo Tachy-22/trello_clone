@@ -8,7 +8,6 @@ export async function updateBoardTitle(
   authorId: string,
   newtitle: string
 ) {
-  console.log("board update :", authorId);
   try {
     await prisma.board.update({
       where: {

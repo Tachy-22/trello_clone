@@ -9,7 +9,6 @@ export async function deleteColumn(
   boardId: string,
   newColumnOrder: string[]
 ) {
-  // ... you will write your Prisma Client queries here
   if (boardId && columnId) {
     try {
       await prisma.column.delete({
@@ -18,7 +17,6 @@ export async function deleteColumn(
           boardId: boardId,
         },
       });
-      console.log("Just deleted column with id :", columnId);
 
       await updateColumnOrderInDb(boardId, undefined, newColumnOrder);
       revalidatePath("/boardData");

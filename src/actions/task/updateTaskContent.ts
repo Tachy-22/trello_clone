@@ -9,7 +9,6 @@ export async function updateTaskContent(
   taskIdentifier: string,
   newContent: string
 ) {
-  console.log("board update :", taskIdentifier);
   try {
     await prisma.task.update({
       where: {

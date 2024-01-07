@@ -18,7 +18,6 @@ const fetchBoardMembers = async (members: string[]) => {
             name: true,
           },
         });
-        console.log("the membersData by name;", membersData);
         return membersData;
       }
     } catch (error) {

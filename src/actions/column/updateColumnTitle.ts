@@ -9,7 +9,6 @@ export async function updateColumnTitle(
   columnIdentifier: string,
   newtitle: string
 ) {
-  console.log("board update :", columnIdentifier);
   try {
     await prisma.column.update({
       where: {

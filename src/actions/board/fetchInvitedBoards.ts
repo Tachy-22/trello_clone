@@ -4,7 +4,6 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 export async function fetchInvitedBoards(invites: string[]) {
-  console.log("userId :", invites);
   if (invites === null || invites === undefined) {
     return;
   } else {
@@ -17,7 +16,7 @@ export async function fetchInvitedBoards(invites: string[]) {
             id: { in: invites },
           },
         });
-        console.log("my invited Boards inner inner :", myInvitedBoards);
+      
         revalidatePath("/myBoards");
         return myInvitedBoards;
       }
